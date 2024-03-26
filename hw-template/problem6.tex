@@ -1,0 +1,81 @@
+\begin{problem}
+  Let $g, f : \R \to \R$ be Riemann integrable on any interval $[a, b] \subset \R$.
+  Is it true that $g \circ f$ is also Riemann integrable on any interval $[a, b] \subset \R$?\\
+  \underline{Hint:} Consider $g$ such that $g(x) = 0$ if $x = 0$
+  and $g(x) = 1$ if $x \neq 0$, and $f$ as in Problem \crim{$3$}:
+  \[
+    f(x) = \begin{cases}
+      0 & \text{ if } x \in \R \setminus \Q \text{ (i.e. not rational).}\\
+      \frac{1}{q} & \text{ if } x \colonequals \frac{p}{q} \in \Q
+      \text{ with $p, q$ coprime and $q > 0$}.
+    \end{cases}
+  \]
+\end{problem}
+
+% \begin{answer}
+  \begin{claim}
+    The composition of two Riemann integrable functions is not necessarily Riemann integrable.
+  \end{claim}
+  \begin{proof}
+    Consider the functions $g, f : \R \to \R$ as defined anove,
+  and their composition $g \circ f$.
+  Both $g$ and $f$ are Riemann integrable on any interval $[a, b] \subset \R$,
+  as priorly shown. However, Let's look at $g \circ f$:
+
+  \[
+    (g \circ f)(x) = \begin{cases}
+      0 & \text{ if } x \in \R \setminus \Q \text{ (i.e. not rational).}\\
+      1 & \text{ if } x \colonequals \frac{p}{q} \in \Q
+      \text{ with $p, q$ coprime and $q > 0$}.
+    \end{cases}
+  \]
+
+
+  Note that $g \circ f$ is not continuous at any point $x \in \Q$,
+  since there exists a rational number between any two distinct irrationals
+  \footnote{
+    \textbf{Proof that there exists a rational number between any two distinct irrationals.} \\
+    Let $a, b \in \R \setminus \Q$ with $a < b$.
+    Let $c = b - a$. By the properties of $\R$, there exists $n \in \N$
+    such that $n > 1/c$, which implies that $cn > 1$.
+    Since we took $c = b - a$, this implies that $nb - na > 1$.
+    Therefore, there exists some integer $N$ such that $na < N < nb$.
+    Dividing by $n$, we get $a < N/n < b$.
+    Thus, $N/n$ is a rational number between $a$ and $b$. \\
+  }
+  and there exists an irrational number between any two distinct rationals
+  \footnote {
+    \textbf{Proof that there exists an irrational number between any two distinct rationals.} \\
+    Let $a, b \in \Q$ with $a < b$.
+    Then $b - a > 0$, $\displaystyle b - a > \frac{b-1}{\sqrt{2}}$,
+    and $\displaystyle \frac{b - a}{\sqrt{2}} \not \in \Q$.
+    Therefore $\displaystyle a + \frac{b - a}{\sqrt{2}} \in \R \setminus \Q$, and it is contained
+    in the interval $(a, b)$. \\
+  }.
+  Consequently, if we take any $0 < \epsilon < 1$, then there is no value
+  for $\delta > 0$ that satisfies the $\epsilon$-$\delta$ criterion for continuity
+  at any point $x \in \R$ since. Take $x_2$ to be any number in the interval
+  $(x - \delta, x + \delta)$, then:
+  \begin{enumarabic}
+    \item If $x \in \Q$ and $x_2 \in \R \setminus \Q$, then
+      $(g \circ f)(x) = 1$ and $(g \circ f)(x_2) = 0$,
+      so \[ \abs{(g \circ f)(x) - (g \circ f)(x_2)} = 1 > \epsilon. \]
+    \item If $x \in \Q$ and $x_2 \in \Q$, then there exists some irrational number
+      $x_3$ between $x$ and $x_2$, then $(g \circ f)(x) = 1$
+      and $(g \circ f)(x_3) = 0$. Therefore,
+      \[ \abs{(g \circ f)(x) - (g \circ f)(x_3)} = 1 > \epsilon. \]
+    \item If $x \in \R \setminus \Q$ and $x_2 \in \Q$, then
+      $(g \circ f)(x) = 0$ and $(g \circ f)(x_2) = 1$,
+      so \[ \abs{(g \circ f)(x) - (g \circ f)(x_2)} = 1 > \epsilon. \]
+    \item If $x \in \Q$ and $x_2 \in \Q$, then there exists some irrational number
+      $x_3$ between $x$ and $x_2$, then $(g \circ f)(x) = 1$
+      and $(g \circ f)(x_3) = 0$. Therefore,
+      \[ \abs{(g \circ f)(x) - (g \circ f)(x_3)} = 1 > \epsilon. \]
+  \end{enumarabic}
+
+  \step
+  Thus,  $g \circ f$ is not continuous at any point $x \in \R$,
+  therefore not Riemann integrable on any interval $[a, b] \subset \R$.
+\end{proof}
+ 
+% \end{answer}

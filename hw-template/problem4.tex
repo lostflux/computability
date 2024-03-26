@@ -1,0 +1,66 @@
+\begin{problem}
+  Prove that if the real-valued function $f$ on the interval $[a, b]$
+  is integrable on $[a, b]$, then so is $\abs{f}$, and
+  \[
+    \abs{\int\limits_a^b f(x) \d x} \leq \int\limits_a^b \abs{f(x)} \d x.
+  \]
+\end{problem}
+
+% \begin{answer}
+  \begin{claim}
+    Suppose $f$ is integrable on $[a, b]$, then so is $\abs{f}$.
+  \end{claim}
+  \begin{proof}
+    Since $f$ is integrable on $[a, b]$, for any $\epsilon > 0$,
+    there exists a partition $P = \set{x_0, x_1, \ldots, x_n}$ of $[a, b]$
+    such that
+    \[ U(f, P) - L(f, P) < \epsilon. \]
+    Since \blue{$\abs{a} - \abs{b} \leq \abs{a - b}$}\footnote{
+      This can be shown using Cauchy-Schwarz inequality:
+      \begin{alignat*}{5}
+        &\abs{a} = \abs{(a - b) + b} &&\leq \abs{a - b} + \abs{b}
+          &&\qquad \text{(triangle inequality)}\\
+        &\abs{a} - \abs{b} &&\leq \abs{a - b} &&\qquad \text{(deduct $\abs{b}$ to both sides)}
+      \end{alignat*}
+    }
+    for all $a, b \in \R$, we have
+    $U(\abs{f}, P) - L(\abs{f}, P) \leq U(f, P) - L(f, P) < \epsilon$,
+    so $\abs{f}$ is also integrable on $[a, b]$.
+  \end{proof}
+
+  \begin{claim}
+    Given that both $f$ and $\abs{f}$ are integrable on $[a, b]$,
+    then $\abs{\int\limits_a^b f(x) \d x} \leq \int\limits_a^b \abs{f(x)} \d x$.
+  \end{claim}
+  \begin{proof}
+    Since $f$ is integrable on $[a, b]$, for any $\epsilon > 0$,
+    there exists a partition $P = \set{x_0, x_1, \ldots, x_n}$ of $[a, b]$
+    such that
+    \[ U(f, P) - L(f, P) < \epsilon, \]
+    and \[ L(f, P) \leq R(f, P) \leq U(f, P), \]
+    with $\displaystyle R(f, P) = \sum\limits_1^n f(c_i)$ for some
+    $c_i \in [a_{i-1}, a_i]$.
+    As $\norm{P} \to 0$, $\epsilon \to 0$, so the Riemann sum $R(f, P)$
+    converges to the integral;
+    \[
+      \blue{
+        \lim_{\norm{P} \to 0} \sum_{i=1}^n f(c_i) \Delta x_i =
+        \int\limits_a^b f(x) \d x}
+      \qquad \text{ and } \qquad
+      \blue{
+        \lim_{\norm{P} \to 0} \sum_{i=1}^n \abs{f(c_i)} \Delta x_i =
+        \int\limits_a^b \abs{f(x)} \d x}.
+    \]
+    Thus, our original claim is equivalent to:
+    \begin{alignat*}{5}
+      &\abs{\int\limits_a^b f(x) \d x} &&= \abs{\lim_{\norm{P} \to 0}
+        \sum_{i=1}^n f(c_i) \Delta x_i}
+        &&\qquad \blue{\text{(for some $c_i \in [x_{i-1}, x_i]$)}}\\
+      & &&\qquad \leq \lim_{\norm{P} \to 0} \sum_{i=1}^n \abs{f(c_i)} \Delta x_i
+        &&\qquad \blue{\text{(triangle inequality)}} \\
+      & &&\qquad \qquad= \int\limits_a^b \abs{f(x)} \d x,
+    \end{alignat*}
+  \end{proof}
+  % reduce bottom margin
+  \vspace{-3em}
+% \end{answer}

@@ -1,0 +1,53 @@
+\begin{problem}
+  Prove that $\displaystyle \int\limits_0^1 f(x) \d x = 0$ if
+  $f(\frac{1}{n})= 1$ for all $n \in \N$ and $f(x) = 0$ for all other $x$.
+\end{problem}
+
+% \begin{answer}
+\begin{claim}
+  $f$ is Rieman integrable on $[0, 1]$.
+\end{claim}
+
+\begin{proof}
+  Since $f = 0$ at all points $x \in [0, 1] \setminus \{1/n : n \in \N\}$,
+  $f$ is continuous at all such $x$. Therefore, we can consider
+  the points of the form $1/n, n \in \N$ as discontinuities of $f$.
+  However, since $\N$ has measure zero (since it is countable),
+  $\set{1/n : n \in \N}$ also has measure zero.
+  By the Lebesgue criterion for Riemann integrability, $f$ is Riemann integrable,
+  so $\displaystyle \int\limits_0^1 f(x) \d x$ exists.
+\end{proof}
+
+\begin{claim}
+  $\displaystyle \int\limits_0^1 f(x) \d x = 0$.
+\end{claim}
+\begin{proof}
+  Given a partition $P_n$ of $[0, 1]$ into $n$ subintervals,
+  \blue{\[
+    L(f, P) = \sum_{i=1}^n m_i \Delta x_i
+            \leq \int \limits_0^1 f(x) \d x
+            \leq \sum_{i=1}^n M_i \Delta x_i
+            = U(f, P),
+  \]}
+  where $m_i = \inf\set{f(x) : x \in [x_{i-1}, x_i]}$ and
+  $M_i = \sup\set{f(x) : x \in [x_{i-1}, x_i]}$.
+  Furthermore;
+  \begin{equation}
+    L(f, P) = \sum_{i=1}^n m_i \Delta x_i
+            = \sum_{i=1}^n 0 \cdot \Delta x_i
+            = 0
+  \end{equation}
+  and
+  \begin{equation}
+    U(f, P) = \sum_{i=1}^n M_i \Delta x_i.
+  \end{equation}
+  Since the set of points where $f$ is nonzero has measure zero,
+  as we make the partitions finer and finer, $M_i \Delta x_i$ will
+  either be zero or approach $0$ for all $i$, so $U(f, P)$ will also approach $0$.
+  On the other hand, $L(f, P)$ will always be $0$.
+  Thus, we can make $U(f, P) - L(f, P)$ arbitrarily small,
+  so $\displaystyle \int\limits_0^1 f(x) \d x = 0$.
+\end{proof}
+  % negative space
+  % \vspace{-1.5em}
+% \end{answer}

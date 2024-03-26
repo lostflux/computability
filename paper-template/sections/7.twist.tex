@@ -1,0 +1,716 @@
+\section{Twisted cohomology}
+\label{sect:twist}
+
+In Proposition~\ref{prop:finite-subgroups} we described the finite
+subgroups of~$\Aut(A)$ or, equivalently, the finite groups that act
+faithfully on our algebra~$A$ by algebra automorphisms, and showed that
+they are all cyclic. A natural next step is to describe the finite
+dimensional Hopf algebras that act on~$A$ faithfully in the appropriate
+sense. In that generality this is a problem that we do not know how to
+approach, so we will settle for the much smaller problem of describing the
+faithful actions of Taft Hopf algebras, motivated by the fact that these
+Hopf algebras can be viewed as «quantum thickenings» of cyclic groups and
+are therefore very close to them. We will do this in the next section.
+
+We will recall the details about Taft algebras later. For now, let us
+mention simply that an action of a Taft Hopf algebra on our algebra~$A$ is
+determined by an algebra automorphism~$\phi:A\to A$ of finite order and a
+$\phi$-twisted derivation of~$A$. We know the automorphisms very well
+already, and our task in the present section will be to obtain a
+description of the twisted derivations.
+
+\bigskip
+
+Let $\omega\in\kk$ be different from~$0$ and~$1$, and let
+$\phi=\phi_{0,\omega}:A\to A$ be the algebra automorphism such that
+$\phi(x)=\omega x$ and $\phi(y)=\omega^{N-1}y$; clearly $\phi$ has finite
+order exactly when $\omega$ has finite order, but we do not need to impose
+that restriction yet. We write ${}_\phi A$ for the $A$-bimodule which
+coincides with $A$ as a right $A$-module and whose left action is such that
+$a\lact x=\phi(a)x$ for all $a\in A$ and all $x\in{}_\phi A$. As the
+automorphism~$\phi$ is homogeneous, the $A$-bimodule~${}_\phi A$ is a
+graded one. 
+
+We are interested in computing the space of \newterm{$\phi$-twisted
+derivations}: such a map is a linear function $\partial:A\to A$ such that 
+  \[ 
+  \partial(ab) = \partial(a)\cdot b+\phi(a)\cdot\partial(b) 
+  \] 
+for all $a$ and~$b$ in~$A$. It is immediate that a $\phi$-twisted
+derivation $A\to A$ is exactly the same thing as a derivation $A\to{}_\phi A$
+into the bimodule~${}_\phi A$, and because of this we will write
+$\Der(A,{}_\phi A)$ for the space of all $\phi$-twisted derivations and
+conflate the two notions.
+
+Now, if $m$ is an element of~$A$, then the map $\ad_\phi(m):a\in A\mapsto
+ma-\phi(a)m\in A$ is an element of~$\Der(A,{}_\phi A)$: we say that such a
+$\phi$-twisted derivation is an \newterm{inner} one. We can thus split the
+calculation of~$\Der(A,{}_\Phi A)$ in two steps: compute the $\phi$-twisted
+derivations modulo inner ones, and then glue back the inner ones into the
+result. The first step amounts, precisely, to the calculation of the first
+Hochschild cohomology space $\H^1(A,{}_\phi A)$, and this is what we will
+do --- and just as in Section~\ref{sect:cohomology} we will do this by
+first computing the spaces $\H^0(A,{}_\phi A)$ and~$\H^2(A,{}_\phi A)$.
+
+\bigskip
+
+The Hochschild cohomology~$\H^*(A,{}_\phi A)$ can be identified with the
+cohomology of the complex~$\hom_{A^e}(P_*,{}_\phi A)$, with $P_*$ the
+projective resolution described in Section~\ref{sect:cohomology}, and this
+complex, in turn --- just as we built the complex~\eqref{eq:comp} in that
+section --- is naturally isomorphic to the complex
+  \[ \label{eq:comp:phi}
+  \begin{tikzcd}
+    & A \arrow[r, "\delta_0"]
+    & A\otimes V^* \arrow[r, "\delta_1"]
+    & A\otimes \Lambda^2V^* \arrow[r]
+    & 0
+  \end{tikzcd}
+  \]
+with differentials such that
+  \begin{align}
+  \delta_0(a) &= (\omega xa-ax)\otimes\hat x+(\omega^{N-1}ya-ay)\otimes\hat y, 
+        \label{eq:d:phi:0} \\
+  \delta_1(b\otimes\hat x+c\otimes\hat y) &=
+    \left((\omega^{N-1}yb-by) + (cx-\omega xc) - \sum_{s+1+t=N}\omega^sx^sbx^t\right)
+    \otimes\hat x\wedge\hat y
+        \label{eq:d:phi:1} 
+  \end{align}
+for all choices of~$a$,~$b$ and~$c$ in~$A$. We remark that we are writing
+«$A$» here and in~\eqref{eq:comp:phi} and not~«${}_\phi A$»: we will write
+the twisted left action explicitly, as in the formulas above for the
+differentials --- we hope this is less confusing than the alternative.
+
+Just as when we dealt with the «untwisted» Hochschild cohomology, we start
+our calculation with a lemma that tells us how some specific commutators
+---~twisted commutators now\footnote{So we have not broken our promise not
+to do any more commutation formulas!}~--- behave. In its statement and in
+the rest of this section we will use the convention that if
+$\mathit{snark}$ is an object related to~$A$ then we will write
+$\widetilde{\smash{\mathit{snark}}}$ the `corresponding' object related to
+the localization~$A_x$.
+
+\begin{Lemma}\label{lemma:comm:phi}
+The map $\alpha:a\in A\mapsto \omega xa-ax\in A$ is injective and has image
+equal to~$xA$, while the map $\tilde\alpha:a\in A_x\mapsto \omega xa-ax\in
+A_x$ is bijective.
+\end{Lemma}
+
+\begin{proof}
+Let $a$ be a non-zero element of~$A$. There are $d\in\NN_0$ and
+$a_0$,\dots,~$a_d\in\kk[x]$ such that $a_d\neq0$ and
+$a=\sum_{i=0}^da_iy^i$, and we have that
+  \[ \label{eq:alpha-a}
+  \alpha(a) = \sum_{i=0}^da_i(\omega xy^i-y^ix)
+        \equiv (\omega-1)a_dxy^d \mod F_{d-1}.
+  \]
+Since $\omega\neq1$, it follows immediately from this that
+$\alpha(a)\neq0$, so that $\ker\alpha=0$.
+
+Let us now show that $xa$ is in the image of~$\alpha$: we will proceed by
+induction with respect to the integer~$d$. If $d=0$, then $a=a_0\in\kk[x]$
+and we have that $xa=\alpha(a/(\omega-1))\in\img\alpha$. If instead
+$d\geq1$, then we have, according to~\eqref{eq:alpha-a}, that
+  \[ \label{eq:alpha-a:2}
+  xa - \alpha\left(\frac{a_dy^d}{\omega-1}\right) \in F_{d-1}.
+  \]
+As $xA=Ax$, the image of~$\alpha$ is certainly contained in~$xA$, and
+therefore the difference in~\eqref{eq:alpha-a:2} is both in~$F_{d-1}$ and
+in~$xA$: the inductive hypothesis therefore implies that it is in the image
+of~$\alpha$, and so is $xa$, as we wanted. With this we have proved the
+claims of the lemma about the map~$\alpha$.
+
+Let now $a$ be an element of~$A_x$. There is a non-negative integer
+$l\in\NN_0$ such that $x^la\in A$. If $\tilde\alpha(a)=0$, then
+$\alpha(x^la)=x^l\tilde\alpha(a)=0$ and what we have already proved implies
+that $x^la=0$, so that $a=0$: this shows that the map~$\tilde\alpha$ is
+injective. On the other hand, as $x^{l+1}a\in xA$, we already know there is
+a $b\in A$ such that $\alpha(b)=x^{l+1}a$ and then
+$\tilde\alpha(x^{-l-1}b)=a$: the map~$\tilde\alpha$ is also surjective.
+\end{proof}
+
+With this lemma we can now easily determine the twisted cohomology
+$\HH^*(A,{}_\phi A)$ in degrees~$0$ and~$2$. Recall that when $N\geq2$ the
+homogeneous components of~$A$ are finite-dimensional, so we can work with
+Hilbert series in that case.
+
+\begin{Proposition}
+We have that $\HH^0(A,{}_\phi A) = 0$. If $N\geq2$, then the Hilbert series of
+$\HH^2(A,{}_\phi A)$ is
+  \[
+  h_{\HH^2(A,{}_\phi A)} = 
+        \begin{dcases*}
+        % debatable: the first item in the frst line is centered here...
+        \hfil t^{-N} & if $\omega^{N-1}\neq1$; \\[5pt]
+        \frac{t^{-N}}{1-t^{N-1}} & if $\omega^{N-1}=1$.
+        \end{dcases*}
+  \]
+If $N=1$, then $\HH^2(A,{}_\phi A)=0$.
+\end{Proposition}
+
+In the proof of the corollary we will exhibit concrete
+representatives for all cohomology classes in~$\HH^2(A,{}_\phi A)$.
+
+\begin{proof}
+Since the map~$\alpha$ of the lemma is injective, it follows 
+from the formula~\eqref{eq:d:phi:0} for the differential~$\delta_0$ that
+the latter is itself injective and, therefore, that $\HH_0(A,{}_\phi A)=0$.
+
+Let us suppose that $N\geq2$ and that $\omega^{N-1}\neq1$. If
+$f\in\kk[y]$ and $v\in A$, then there is $c\in A$ such that
+  \[
+  \omega xc-cx 
+        = \alpha(c) 
+        = - (\omega^{N-1}-1)xv - \sum_{s+1+t=N}\omega^sx^sfx^t,
+  \]
+because the right hand side of this equality is in~$xA$ --- recall that
+$xA=Ax$ --- and therefore
+  \begin{align}
+  \delta_1(f\otimes\hat x+c\otimes y) 
+    &= \left(
+        (\omega^{N-1}yf-fy) 
+        + (cx-\omega xc) 
+        - \sum_{s+1+t=N}\omega^sx^sfx^t
+        \right)
+       \otimes\hat x\wedge\hat y \\
+    &= (\omega^{N-1}-1)(fy + xv) \otimes\hat x\wedge\hat y.
+  \end{align}
+This tells us that 
+  \[ \label{eq:d1:phi}
+  (\kk[y]y+xA)\otimes\hat x\wedge\hat y\subseteq\img\delta_1.
+  \]
+The subspace~$\kk[y]y+xA$ that appears here is the bilateral ideal~$I$ of~$A$
+generated by~$x$ and~$y$. It is clear from the formula~\eqref{eq:d:phi:1}
+and our hypothesis that $N\geq2$ that the image of~$\delta_1$ is contained
+in~$I\otimes\hat x\wedge\hat y$, so in~\eqref{eq:d1:phi} we actually have
+an equality. It follows from this that $\HH^2(A,{}_\phi A)$ can be
+identified with $A/I\otimes\hat x\wedge\hat y$, so it has dimension~$1$,
+and is generated by the class of the element $1\otimes\hat x\wedge\hat y$,
+which is homogeneous of degree~$-N$. We thus have that
+$h_{\HH^2(A,{}_\phi A)} = t^{-N}$.
+
+Next, we suppose that $N\geq2$ and that $\omega^{N-1}=1$. According
+to~\eqref{eq:d:phi:1}, if $b$ and~$c$ are in~$A$ we have now
+  \[
+  \delta_1(b\otimes\hat x+c\otimes\hat y)  =
+    \left([y,b] + (cx-\omega xc) - \sum_{s+1+t=N}\omega^sx^sbx^t\right)
+    \otimes\hat x\wedge\hat y.
+  \]
+The three terms in the sum wrapped with big parentheses are clearly in~$xA$,
+so 
+  \[ \label{eq:d1:phi:2}
+  \img\delta_1 \subseteq xA\otimes\hat x\wedge\otimes\hat y.
+  \]
+As $\delta_1(c\otimes 1)=-\alpha(c)\otimes\hat x\wedge\hat y$ for each $c\in
+A$, Lemma~\ref{lemma:comm:phi} implies us that in fact we have an equality
+in~\eqref{eq:d1:phi:2} and therefore that $\HH^2(A,{}_\phi A)$ is in this
+case isomorphic to $A/xA\otimes\hat x\wedge\hat y$. This is isomorphic as a
+graded vector space to~$\kk[y]\otimes\hat x\wedge\hat y$, and therefore in
+this case the Hilbert series we are after is
+  \[
+  h_{\HH^2(A,{}_\phi A)} = \frac{t^{-N}}{1-t^{N-1}}.
+  \]
+
+Finally, let us suppose that $N=1$. For all $b$ and $c$ in~$A$ we
+have now that
+  \[
+  \delta_1(b\otimes\hat x+c\otimes\hat y) =
+    \Bigl([y,b] + (cx-\omega xc) - b\Bigr)
+    \otimes\hat x\wedge\hat y.
+  \]
+If $u$ is an element of~$A$, then there are $f\in\kk[y]$ and $v\in A$ such
+that $u=f+xv$, and there is a $g\in A$ such that $gx-\omega
+xg=-\alpha(g)=xv$, so that
+  \(
+  \delta_1(-f\otimes\hat x+g\otimes\hat y) = u\otimes\hat x\wedge\hat y
+  \).
+This tells us that the map~$\delta_1$ is in this case surjective, so that
+we have $\HH^2(A,{}_\phi A)=0$.
+\end{proof}
+
+We can now compute $\HH^1(A,{}_\phi A)$ using the same strategy that
+we used for the regular cohomology in Section~\ref{sect:cohomology}.
+
+\begin{Proposition}\label{prop:h1:phi}
+If $N\geq2$, then the Hilbert series of $\HH^1(A,{}_\phi A)$ is
+  \[
+  h_{\HH^1(A,{}_\phi A)}(t)
+        = \begin{dcases*}
+          0 & if $\omega^{N-1}\neq1$; \\ 
+          \frac{1}{t(1-t^{N-1})} & if $\omega^{N-1}=1$.
+          \end{dcases*}
+  \]
+If $N=1$, the $\HH^1(A,{}_\phi A)=0$.
+\end{Proposition}
+
+\begin{proof}
+Let us suppose first that~$N\geq2$.
+The Hilbert series of our algebra~$A$, as we saw before, is
+  \(
+  h_A(t) = (1-t)^{-1}(1-t^{N-1})^{-1}
+  \),
+and the Euler characteristic of the complex~\eqref{eq:comp:phi}~is
+  \[
+  h_A(t) - (t^{-1}+t^{-(N-1)})h_A(t)+t^{-N}h_A(t) = t^{-N},
+  \]
+so the invariance of the Euler characteristic when passing to cohomology
+implies that
+  \[
+  h_{\HH^0(A,{}_\phi A)}(t)
+  -h_{\HH^1(A,{}_\phi A)}(t)
+  +h_{\HH^2(A,{}_\phi A)}(t)
+  = t^{-N}.
+  \]
+The Hilbert series~$h_{\HH^1(A,{}_\phi A)}(t)$ can be computed immediately
+from this and the preceding proposition, and turns out to be what is
+described in the statement.
+
+Let us now suppose that $N=1$ and let $\eta=b\otimes\hat x+c\otimes\hat y$,
+with $b$ and~$c$ in~$A$, be a $1$-cocycle in the
+complex~\eqref{eq:comp:phi}. If $f\in A$, then 
+  \[
+  \eta+\delta_0(f) = (b+\omega xf-xf)\otimes\hat x +
+  (\text{something})\otimes\hat y,
+  \]
+and Lemma~\ref{lemma:comm:phi} implies that we can choose~$f$ so that
+$b+\omega xf-xf$ is in~$\kk[y]$. This means that, up to replacing~$\eta$ by
+a cohomologous $1$-cocycle, we can suppose that $b$ itself is in~$\kk[y]$.
+In that case we have, according to~\eqref{eq:d:phi:1}, that
+  \[
+  0 = \delta_1(\eta) = 
+    (cx-\omega xc - b) \otimes\hat x\wedge\hat y.
+  \]
+Since $cx-\omega xc\in xA$ and $b\in\kk[y]$, this implies that $cx-\omega
+xc=b=0$ and the injectivity of the map~$\alpha$ that, in fact, also $c=0$.
+This shows that every $1$-cocycle in our complex~\eqref{eq:comp:phi} is
+cohomologous to zero and therefore that $\HH^1(A,{}_\phi A)=0$.
+\end{proof}
+
+The proposition we have just proved shows that all $\phi$-twisted derivations
+$\Der(A,{}_\phi A)$ are in fact inner except in the special case in which
+$N\geq2$ and $\omega^{N-1}=1$. In this special case we can make the
+following observations. We will work with the localization~$A_x$ of~$A$ at
+the powers of the normal element~$x$, in which we have the following
+commutation rule:
+  \[
+  yx^{-1}-x^{-1}y = -x^{N-2}.
+  \]
+The canonical map $A\to A_x$ is injective, so we view $A$ as a subalgebra
+of~$A_x$.
+The automorphism $\phi:A\to A$ such that $\phi(x)=\omega x$ and
+$\phi(y)=\omega^{N-1}y$ clearly extends to an automorphism
+$\tilde\phi:A_x\to A_x$, and every $\phi$-twisted derivation
+$\partial:A\to A$ extends uniquely to a $\tilde\phi$-twisted derivation
+$\tilde\partial:A_x\to A_x$ that has $\tilde\partial(x^{-1}) =
+-\omega^{-1}x^{-1}\partial(x)x^{-1}$.
+
+The following technical result will allow us to construct twisted
+derivations.
+
+\begin{Proposition}\label{prop:nin}
+Suppose that $N\geq2$ and $\omega^{N-1}=1$.
+\begin{thmlist}
+
+\item There is a $\phi$-twisted derivation $\partial_0^\phi:A\to A$ such
+that
+  \[
+  \partial_0^\phi(x) = 1-\omega, 
+  \qquad
+  \partial_0^\phi(y) = x^{N-2},
+  \]
+and it is homogeneous of degree~$-1$ and not inner. The inner
+$\tilde\phi$-twisted derivation $\ad_{\tilde\phi}(x^{-1}):A_x\to A_x$
+of~$A_x$ corresponding to~$x^{-1}$ preserves the subalgebra~$A$ and, in
+fact, the map $\partial_0^\phi$ is the restriction
+of~$\ad_{\tilde\phi}(x^{-1})$ to~$A$.
+
+\item There is a derivation $\partial_{N-1}:A\to A$ such that
+  \[
+  \partial_{N-1}(x) = xy, 
+  \qquad
+  \partial_{N-1}(y) 
+    = \hskip-1em\sum_{s+2+t=N}(s+1)x^{s+1}yx^t 
+         +  \frac{N-1}{2}
+            \left(
+              y^{2}
+              -N
+              x^{N-1}y
+            \right).
+  \]
+This derivation commutes with~$\phi:A\to A$.
+
+\item If $\partial:A\to{}_\phi A$ is a twisted derivation that is
+homogeneous of some degree~$l$, then the map
+  \[
+  \partial_{N-1}\circ\partial-\partial\circ\partial_{N-1}:A\to A
+  \]
+is also a $\phi$-twisted derivation that is homogeneous, now of
+degree~$l+N-1$. There is therefore a map  
+  \[
+  \ad(\partial_{N-1}):
+        \partial
+        \in\Der(A,{}_\phi A)
+        \longmapsto
+        \partial_{N-1}\circ\partial-\partial\circ\partial_{N-1}
+        \in\Der(A,{}_\phi A)
+  \]
+that is homogeneous of degree~$N-1$.
+
+\item If $u$ is an element of~$A_x$ such that the inner
+$\tilde\phi$-derivation $\ad_{\tilde\phi}(u):A_x\to A_x$ preserves the
+subalgebra~$A$, so that the restriction
+$\ad_{\tilde\phi}(u)|_A:A\to A$ is an element of~$\Der(A,{}_\phi A)$, then
+the map $\ad_{\tilde\phi}(\tilde\partial_{N-1}(u)):A_x\to A_x$ also
+preserves~$A$ and
+  \[ \label{eq:adad}
+  \ad(\partial_{N-1})\Bigl(\ad_{\tilde\phi}(u)|_A\Bigr)
+        = \ad_{\tilde\phi}(\tilde\partial_{N-1}(u))|_A.
+  \]
+Here $\tilde\partial_{N-1}(u)$ denotes the value at~$u$ of the
+extension~$\tilde\partial_{N-1}$ of the derivation~$\partial_{N-1}$
+of~\thmitem{2} to~$A_x$.
+
+\end{thmlist}
+\end{Proposition}
+
+\begin{proof}
+\thmitem{1} Let $\kk\gen{X,Y}$ be the free algebra on two generators~$X$
+and~$Y$. There is an automorphism $\hat\phi:\kk\gen{X,Y}\to\kk\gen{X,Y}$
+such that $\hat\phi(X)=\omega X$ and
+$\hat\phi(Y)=Y$, and it preserves the bilateral ideal
+$I=(YX-XY-X^N)$, since $\omega^{N-1}=1$. The quotient $\kk\gen{X,Y}/I$ is
+of course isomorphic to~$A$, and we may thus view $A$ as a
+$\kk\gen{X,Y}$-bimodule. Since the algebra $\kk\gen{X,Y}$ is free, there is
+a unique derivation $\hat\partial:\kk\gen{X,Y}\to{}_{\hat\phi} A$ such that
+$\hat\partial(X)=1-\omega$ and $\hat\partial(Y)=x^{N-2}$. This derivation
+vanishes on the ideal~$I$: to check this, it is sufficient to show that it
+vanishes on the generator $YX-XY-X^N$ of that ideal, and that is easy. One
+need only keep in mind that $\hat\partial$ is a \emph{$\hat\phi$-twisted}
+derivation, so that
+  \[
+  \hat\partial(X^N)
+        = (1+\omega+\cdots+\omega^{N-1})(1-\omega)x^{N-1}
+        = (1-\omega)x^{N-1}.
+  \]
+It follows from this that $\hat\partial$ induces a derivation
+$\partial_0^\phi:A\to{}_\phi A$ such that
+$\partial_0^\phi(x)=1-\omega$ and $\partial_0^\phi(y)=x^{N-2}$. It
+is manifestly homogeneous of degree~$-1$, and it is not inner because there
+are no elements of negative degree in~$A$.
+
+Now, we certainly have an inner $\tilde\phi$-twisted derivation
+$\ad_{\tilde\phi}(x^{-1}):A_x\to A_x$, and we can compute that
+  \begin{align}
+  \ad_{\tilde\phi}(x^{-1})(x)
+       &= x^{-1}x-\tilde\phi(x)x^{-1}
+        = 1-\omega, \\
+  \ad_{\tilde\phi}(x^{-1})(y)
+       &= x^{-1}y-\tilde\phi(y)x^{-1}
+        = x^{N-2}.
+  \end{align}
+Since $\tilde\phi(A)=A$, the facts that $x$ and~$y$ generate~$A$ and
+that $\ad_{\tilde\phi}(x^{-1})$ is a $\tilde\phi$-twisted derivation imply
+together that $\ad_{\tilde\phi}(x^{-1})$ maps the subalgebra~$A$ into
+itself. Moreover, its restriction to~$A$ is a $\phi$-twisted derivation
+that coincides with $\partial^\phi_0$ at~$x$ and at~$y$, so
+we have that $\ad_{\tilde\phi}(x^{-1})|_A=\partial^\phi_0$.
+
+\thmitem{2} The derivation~$\partial_{N-1}$ described here is simply the
+one given by Proposition~\ref{prop:hh1-high} when $l=N-1$, which we know to be
+homogeneous of degree~$N-1$ and not inner. To make this explicit we have
+used the fact that $\Phi_2 = \frac{1}{2}(y^{2} -N x^{N-1}y)$. A simple
+direct calculation shows that $\partial_{N-1}$ commutes with~$\phi$.
+
+\thmitem{3} This follows from an easy direct calculation. They key fact
+that makes things work is that the derivation $\partial_{N-1}:A\to A$
+commutes with the automorphism $\phi:A\to A$.
+
+\thmitem{4} A direct calculation shows that we have an equality of
+maps~$A_x\to A_x$
+  \[
+  \ad(\tilde\partial_{N-1})\Bigl(\ad_{\tilde\phi}(u)\Bigr)
+        = \ad_{\tilde\phi}\Bigl(\tilde\partial_{N-1}(u)\Bigr)
+  \]
+The left hand side preserves~$A$ because $\ad_{\tilde\phi}(u)$
+and~$\tilde\partial_{N-1}$ do, so the right hand side also preserves it.
+The equality~\eqref{eq:adad} that appears in the statement of the
+proposition is now immediate.
+\end{proof}
+
+Combining the different parts of the proposition we have just proved we can
+construct $\phi$-twisted derivations $A\to{}_\phi A$ of all degrees of the
+form $-1+l(N-1)$ with $l\in\NN_0$.
+
+\begin{Corollary}\label{coro:partial:phi}
+Suppose that $N\geq2$ and $\omega^{N-1}=1$, and let $\phi:A\to A$ be the
+automorphism such that $\phi(x)=\omega x$ and $\phi(y)=y$.
+Let $\tilde\phi:A_x\to A_x$ and $\tilde\partial_{N-1}:A_x\to A_x$ be the
+extensions of~$\phi$ and of the $\phi$-twisted
+derivation~$\partial_{N-1}:A\to A$ of Proposition~\ref{prop:nin}. 
+For each $l\in\NN_0$ the $\tilde\phi$-twisted derivation
+  \[
+  \ad_{\tilde\phi}\bigl(\tilde\partial_{N-1}^l(x^{-1})\bigr):A_x\to A_x
+  \]
+preserves~$A$ and its restriction to~$A$ is a map 
+  \[
+  \partial^\phi_l:A\to A
+  \]
+that is a homogeneous $\phi$-twisted derivation of degree~$-1+l(N-1)$ and
+that coincides with the map
+  \[
+  \ad(\partial_{N-1})^l(\partial_0^\phi) \in \Der(A,{}_\phi A).
+  \]
+\end{Corollary}
+
+\begin{proof}
+This can be proved immediately by induction starting with~\thmitem{1} of
+the proposition and using part~\thmitem{4} for the inductive step.
+\end{proof}
+
+\begin{Remark}\label{rem:general-nonsense}
+There is a general-nonsense way of looking at our last few results. We will
+explain it, as it helps to make sense of them.
+
+Suppose that $N\geq2$ and that $\omega^{N-1}=1$, and let $\nu$ be the order
+of~$\omega$ in~$\kk^\times$, which is a divisor of~$N-1$. General
+considerations imply that the automorphism~$\phi$ acts in a canonical way
+on the Hochschild cohomology~$\HH^*(A)$ of~$A$, the invariant
+subspace~$\HH^*(A)^\phi$ is a sub-Gerstenhaber algebra of~$\HH^*(A)$, and
+there is a «Gerstenhaber module structure»
+  \[
+  \HH^*(A)^\phi \otimes \HH^*(A,{}_\phi A)
+  \to
+  \HH^*(A,{}_\phi A)
+  \]
+that in particular restricts to a Lie module structure
+  \[ \label{eq:hhhh}
+  \HH^1(A)^\phi \otimes \HH^1(A,{}_\phi A)
+  \to
+  \HH^1(A,{}_\phi A),
+  \]
+which itself is induced by the map
+  \[ \label{eq:derder}
+  f\otimes g\in\Der(A)\otimes\Der(A,{}_\phi A)
+  \mapsto
+  \ad(f)(g) \in\Der(A,{}_\phi A),
+  \]
+using the notation of part~\thmitem{3} of Proposition~\ref{prop:nin}. 
+
+If we view~$\HH^1(A)$ as $\Der(A)/\InnDer(A)$ then the action of~$\phi$
+on~$\HH^1(A)$ is induced by the map  
+  \[
+  \phi^\sharp:d\in\Der(A)\mapsto\phi\circ d\circ\phi^{-1}\in\Der(A),
+  \]
+and a direct calculation proves that if $d:A\to A$ is a homogeneous
+derivation of degree~$l$, then $\phi^\sharp(d)=\omega^l d$. It follows from
+this that the invariant subspace~$\HH^1(A)^\phi$ is spanned by the classes
+of the derivations of the form~$L_{j\nu}$, with~$j\in\ZZ$ such that
+$j\geq-1$, and $\partial_0$, using the notation of
+Section~\ref{sect:explicit}. On the other hand,
+Proposition~\ref{prop:h1:phi} tells us that the only homogeneous components
+of~$\HH^1(A,{}_\phi A)$ that are non-zero are those of degrees~$l$ such
+that $l\geq-1$ and $l\equiv-1\mod N-1$: as the action~\eqref{eq:hhhh} is
+homogeneous, this implies that the only $L_l$ in~$\HH^1(A)^\phi$ that can
+act non-trivially on~$\HH^1(A,{}_\phi A)$ are those with those with
+$l\equiv0\mod N-1$. What Corollary~\ref{coro:partial:phi} does is,
+essentially, to describe the action of~$L_{N-1}$, the simplest of those:
+in part~\thmitem{1} of Proposition~\ref{prop:nin} we exhibited an
+element~$\partial_0^\phi$ in~$\Der(A,{}_\phi A)$, and in
+Corollary~\ref{coro:partial:phi} we produced many others by using the
+action~\eqref{eq:derder}. We will see below that in this way we 
+obtain a basis for~$\HH^1(A,{}_\phi A)$.
+\end{Remark}
+
+We are just a hop, skip and jump away from the description of
+$\H^1(A,{}_\phi A)$ in the exceptional case in which it is non-zero ---
+apart, alas, for one exception.
+
+\begin{Proposition}\label{prop:h1:phi:base}
+Suppose that $N\geq4$ and that $\omega^{N-1}=1$, and let $\phi:A\to A$ be
+the automorphism of~$A$ such that $\phi(x)=\omega x$ and $\phi(y)=y$. The
+cohomology classes of the $\phi$-twisted derivations $\partial^\phi_l$ with
+$l\in\NN_0$ that we described in Corollary~\ref{coro:partial:phi} freely
+span the vector space~$\H^1(A,{}_\phi A)$.
+\end{Proposition}
+
+This excludes the cases in which $2\leq N\leq 3$. Now if $N=2$ then the
+hypothesis on~$\omega$ is that $\omega=1$ and, since we are assuming
+throughout that $\omega\neq1$, this case cannot actually occur. The case in
+which $N=3$, on the other hand, is a real possibility that is excluded in
+this proposition --- and for good reason, as we will see below.
+
+\begin{proof}
+It is enough that we show that the cohomology classes of those
+$\phi$-twisted derivations are linearly independent in~$\H^1(A,{}_\phi A)$,
+because if that is the case then they span the whole space: this follows
+immediately from our calculation of the Hilbert series of~$\H^1(A,{}_\phi
+A)$ in Proposition~\ref{prop:h1:phi} and the fact that for all $l\in\NN_0$
+the twisted derivation $\partial^\phi_l$ has degree~$-1+l(N-1)$.
+
+Let us suppose that the cohomology classes of the twisted derivations in
+the statement are linearly dependent. There are then
+an integer $d\geq0$ and scalars $a_0$,~\dots,~$a_d$ in~$\kk$
+such that $a_d\neq0$ and the $\phi$-twisted derivation 
+  \[
+  \delta\coloneqq\sum_{i=0}^da_i\partial_i^\phi:A\to A
+  \]
+is inner, so that there is an element~$u$ in~$A$ such that
+$\delta=\ad_\phi(u)$. We let $P$ be the polynomial
+$\sum_{i=0}^da_iT\in\kk[T]$ and consider the $\tilde\phi$-twisted
+derivation
+  \[ \label{eq:urgh}
+  \ad_{\tilde\phi}\bigl(P(\tilde\partial_{N-1})(x^{-1})\bigr):A_x\to A_x
+  \]
+It follows from Corollary~\ref{coro:partial:phi} that this map
+preserves~$A$ and its restriction to~$A$ is precisely~$\delta$. In
+particular, the map in~\eqref{eq:urgh} and~$\ad_{\tilde\phi}(u):A_x\to A_x$
+take the same value on~$x$ and~$y$ and therefore, since they are
+$\tilde\phi$-twisted derivations, they are in fact equal --- in other
+words, we have that
+  \[ \label{eq:urgh:1}
+  \ad_{\tilde\phi}\Bigl(P(\tilde\partial_{N-1})(x^{-1})-u\Bigr) = 0.
+  \]
+We know form Lemma~\ref{lemma:comm:phi} that the map $\tilde\alpha:a\in
+A_x\mapsto\omega xa-xa\in A_x$ is injective, and as a consequence of that
+
+\begin{claim}\label{eq:urgh:2}
+    If $v\in A_x$ and the map $\ad_{\tilde\phi}(v):A_x\to A_x$
+  vanishes at~$x$, then $v=0$.
+\end{claim}
+
+From this and the equality~\eqref{eq:urgh:1} we can conclude that
+  \[
+  P(\tilde\partial_{N-1})(x^{-1}) = u \in A.
+  \]
+
+Let us next check that for all $l\in\NN_0$ we have that
+  \[ \label{eq:urgh:3}
+  \tilde\partial_{N-1}^l(x^{-1})
+        \equiv \prod_{i=0}^{l-1}\left(\frac{t(N-1)}{2}-1\right)\cdot x^{-1}y^{l} 
+        \mod \tilde F_{l-1}.
+  \]
+This is clear when $l=0$, and when $l=1$ we have that
+  \[
+  \tilde\partial_{N-1}(x^{-1})
+        = -x^{-1}\tilde\partial_{N-1}(x)x^{-1}
+        = -yx^{-1}
+        \equiv -x^{-1}y\mod \tilde F_0,
+  \]
+in accordance with the formula we want to prove. The general case follows
+by induction and the observation that for all $l\in\NN_0$ we have
+  \begin{align}
+  \MoveEqLeft
+  \tilde\partial_{N-1}(x^{-1}y^l)
+        = \tilde\partial_{N-1}(x^{-1})y^l + x^{-1}\tilde\partial_{N-1}(y^l) 
+        = -yx^{-1}y^l + x^{-1}\sum_{i=0}^{l-1}y^i\tilde\partial_{N-1}(y)y^{l-1-i} \\
+       &= -yx^{-1}y^l + x^{-1}\sum_{i=0}^{l-1}y^i
+                \left[
+                \sum_{s+2+t=N}(s+1)x^{s+1}yx^t 
+                         +  \frac{N-1}{2}
+                            \left(
+                              y^{2}
+                              -N
+                              x^{N-1}y
+                            \right)
+               \right]
+               y^{l-1-i}
+          \\
+       &\equiv \left(\frac{l(N-1)}{2}-1\right)
+                x^{-1}
+               y^{l+1} \mod \tilde F_l.
+  \end{align}
+
+Now, using the congruence~\eqref{eq:urgh:3} we have just proved we see that
+  \[
+  P(\tilde\partial_{N-1})(x^{-1})
+    \equiv \underbrace{a_d \prod_{i=0}^{d-1}\left(\frac{t(N-1)}{2}-1\right)}
+        {}\cdot x^{-1}y^{d} 
+    \mod \tilde F_{d-1}
+  \]
+As $N\geq4$, the scalar marked with a brace is non-zero. If we call it
+$\gamma$ for brevity, then what we have is that 
+  \[
+  A \ni P(\tilde\partial_{N-1})(x^{-1}) = \gamma\cdot x^{-1}y^d + w
+  \]
+for some $w\in\tilde F_d$, and this is absurd. This contradiction proves
+the proposition.
+\end{proof}
+
+When $N=3$, in the situation of Proposition~\ref{prop:h1:phi:base} we can
+compute that 
+  \[
+  \tilde\partial_2(x)=xy, 
+  \qquad
+  \tilde\partial_2(x^{-1})=-x^{-1}y+x,
+  \qquad
+  \tilde\partial_2(y)=x^4+y^2
+  \]
+and using that that
+  \[
+  \tilde\partial_2^2(x^{-1}) = -x^3 \in A.
+  \]
+This tells us that the $\phi$-twisted derivation $\partial^\phi_2:A\to A$
+is inner, and implies that in fact the $\phi$-twisted derivation
+$\partial^\phi_l:A\to A$ is inner whenever $l$ is an integer such that
+$l\geq2$. The conclusion of Proposition~\ref{prop:h1:phi:base} is therefore
+very false when $N=3$. We can fix it as follows:
+
+\begin{Proposition}
+Suppose that $N=3$ and that $\omega^{N-1}=1$, so that $\omega=-1$, and let
+$\phi:A\to A$ be the automorphism of~$A$ such that $\phi(x)=-x$ and
+$\phi(y)=y$. The $\tilde\phi$-twisted
+derivations of~$A_x$  
+  \[
+  \ad_{\tilde\phi}(x^{-1}),
+  \qquad\quad
+  \ad_{\tilde\phi}(\tilde\partial_2(x^{-1})),
+  \qquad\quad
+  \ad_{\tilde\phi}(\tilde\partial_2^l(x^{-1}y^2)), \quad l\geq0
+  \]
+preserve the subalgebra~$A$ and the cohomology classes of their
+restrictions to~$A$ freely span the vector space~$\H^1(A,{}_\phi A)$.
+\end{Proposition}
+
+\begin{proof}
+This can be proved in essentially the same way as the previous proposition,
+and we therefore omit the details.
+\end{proof}
+
+With this we have concluded the calculation of the twisted Hochschild
+cohomology $\H^*(A,{}_\phi A)$. One nice observation we can immediately
+make with the result at hand is:
+
+\begin{Proposition}\label{prop:der:xinner}
+Suppose that $N\geq1$ and that $\omega\in\kk^\times\setminus\{1\}$, and let
+$\phi:A\to A$ be the automorphism of~$A$ such that $\phi(x)=\omega x$ and
+$\phi(y)=\omega^{N-1}y$. Every $\phi$-twisted derivation $A\to{}_\phi A$ is
+the restriction to~$A$ of an inner $\tilde\phi$-twisted derivation
+$A_x\to{}_{\tilde\phi} A_x$ that preserves~$A$. \qed
+\end{Proposition}
+
+By analogy with the notion of X-inner automorphisms of Har\v{c}enko
+\citelist{\cite{Harchenko:1}\cite{Harchenko:2}}, we can rephrase this
+proposition saying that all $\phi$-twisted derivations of~$A$ are X-inner.
+
+\bigskip
+
+When $N=0$, so that the algebra $A$ is the first Weyl
+algebra, the calculation of the twisted Hochschild cohomology
+$\H^*(A,{}_\phi A)$ for an automorphism $\phi:A\to A$ such that
+$\phi(x)=\omega x$ and $\phi(y)=\omega^{-1}y$ for some
+$\omega\in\kk^\times$ was done in~\cite{AFLS} by Jacques Alev, Thierry
+Lambre, Marco Farinati and Andrea Solotar: the end result is that
+  \[
+  \dim\H^p(A,{}_\phi A) \cong 
+    \begin{cases*}
+    1 & if $p=0$ and $\omega=1$, or if $p=2$ and $\omega\neq1$; \\
+    0 & in any other case.
+    \end{cases*}
+  \]
+This is rather different from what we have found above for $N\geq1$. It
+should be noticed that while the automorphism group of the first Weyl
+algebra is considerably larger than that of our algebras $A$ with $N\geq1$,
+but every one of its elements of finite order is conjugated to one of
+the form of the automorphism~$\phi$ described here. On the other hand,
+there are non-cyclic finite groups of automorphisms of the first Weyl
+algebra.

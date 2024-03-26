@@ -1,0 +1,37 @@
+\begin{problem}
+  Prove that if $f$ is a continuous real-valued function on the interval
+  $[a, b]$ such that $f(x) \geq 0$ for all $x \in [a, b]$ and
+  $f(x) > 0$ for some $x \in [a, b]$, then $\displaystyle \int\limits_a^b f(x) \d x > 0$.
+\end{problem}
+
+% \begin{answer}
+  \begin{claim}
+    $\displaystyle \int\limits_a^b f(x) \d x > 0$.
+  \end{claim}  
+  \begin{proof}
+    First, note that $f$ is Riemann integrable on $[a, b]$ since it is continuous
+    on $[a, b]$ and $[a, b]$ is a closed interval.
+    We are given that $f(x) > 0$ for some $x \in [a, b]$.
+    Since $f$ is continuous over $[a, b]$,
+    for every $\epsilon > 0$ there exists a $\delta > 0$
+    such that for all $x_1, x_2 \in [a, b]$, if $|x_1 - x_2| < \delta$
+    then $\abs{f(x_1) - f(x_2)} < \epsilon$.
+    Let $y = \inf\set{f(x) \given x \in [a, b]}$, with $\xi$ as the corresponding
+    value for $x$. Since $f > 0$ at some point over $[a, b]$, $y > 0$.
+    Pick $\epsilon = y/2$, and pick $\delta$ as above.
+    Then, for all $x \in [\xi - \delta, \xi + \delta] \cap [a, b]$,
+    $f(x) > y - \epsilon = y/2 > 0$.
+    Therefore,
+    \[ \text{Therefore, }\int\limits_{\max (a, \xi - \epsilon)}^{\min(b, \xi + \epsilon)} f(x) \d x > 0. \]
+    Since $f(x) \geq 0$ for all $x \in [a, b]$, and $[a, b]$ is a superset
+    of $[\max (a, \xi - \epsilon), \min(b, \xi + \epsilon)]$, it follows that
+    \blue{
+      \[
+        \int\limits_a^b f(x) \d x \geq
+        \int\limits_{\max (a, \xi - \epsilon)}^{\min(b, \xi + \epsilon)} f(x) \d x
+        > 0.
+      \]
+    }
+    Therefore, $\displaystyle \int\limits_a^b f(x) \d x > 0$.
+  \end{proof}
+% \end{answer}

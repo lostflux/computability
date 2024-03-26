@@ -1,0 +1,33 @@
+\begin{problem}
+  Prove integration by parts.
+  That is, suppose $F$ and $G$ are continuously differentiable functions on $[a, b]$.
+  Then, prove that
+  \[
+    \int\limits_a^b F(x)G'(x) \d x = F(b)G(b) - F(a)G(a) - \int\limits_a^b F'(x)G(x) \d x.
+  \]
+\end{problem}
+
+% \begin{answer}
+  \begin{proof}
+    Since $F$ and $G$ are continuously differentiable on $[a, b]$,
+    they are also continuous on $[a, b]$.
+    Thus, by the fundamental theorem of calculus, we have
+    Let $H(x) = F(x)G(x)$, then
+    \begin{align*}
+      H'(x) &= \frac{d}{dx} \brackets{F(x)G(x)} \\
+            &= F'(x)G(x) + F(x)G'(x) \qquad \blue{\text{(by the product rule)}}. \\
+      \intertext{ What happens if we integrate both sides of this equation? }
+      \int\limits_a^b H'(x) \d x &= \int\limits_a^b \brackets{F'(x)G(x) + F(x)G'(x)} \d x \\
+      H(b) - H(a) &= \int\limits_a^b F'(x)G(x) \d x + \int\limits_a^b F(x)G'(x) \d x
+    \end{align*}
+    Rearranging this gives us
+    \[
+      H(b) - H(a) - \int\limits_a^b F'(x)G(x) \d x = \int\limits_a^b F(x)G'(x) \d x
+    \]
+
+    Since $H(x) = F(x)G(x)$, we have
+    \blue{\[
+      \int\limits_a^b F(x)G'(x) \d x = F(b)G(b) - F(a)G(a) - \int\limits_a^b F'(x)G(x) \d x
+    \]}
+  \end{proof}
+% \end{answer}

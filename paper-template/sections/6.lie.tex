@@ -1,0 +1,813 @@
+\section{The Lie algebra structure on \texorpdfstring{$\HH^1(A)$}{HH1(A)}}
+\label{sect:lie}
+
+Now that we have explicit derivations whose classes freely span  $\HH^1(A)$
+we can compute the canonical Lie algebra structure of this vector space. In
+what follows we will write $\sim$ for the relation of cohomology between
+derivations of~$A$.
+
+\begin{Lemma}\label{lemma:brackets}
+Let $l$ and $m$ be two integers such that $l\geq -N+1$, $m\geq -N+1$, and
+let $i$, $j$, $u$ and~$v$ be the unique integers such that $l+1=i+j(N-1)$,
+$m+1=u+v(N-1)$, $i$,~$u\in\inter{1,N-1}$ and $j$,~$v\geq-1$. Suppose that,
+moreover, $l\leq m$.
+\begin{thmlist}
+
+\item If $i+u>N$, then $[\partial_l,\partial_m]\sim0$.
+
+\item If $i+u\leq N$, then $[\partial_l,\partial_m]$ is cohomologous to
+  \[
+  \begin{c-dcases*}
+    \left(u-i+\frac{N-i}{j+1}v-\frac{N-u}{v+1}j\right)\partial_{l+m}
+          & if $l\geq1$ and $m\geq1$; \\
+    0     & if $l\leq-1$ and~$m\leq-1$ or $lm=0$ \\
+    v\partial_{l+m}
+          & if $lm<0$ and $l+m\geq1$; \\
+    -(l+m)\partial_{l+m}
+          & if $lm<0$ and $l+m\leq-1$; \\
+    E     & if $l=-N+1$ and~$m=N-1$.
+  \end{c-dcases*}
+  \]
+Here we cannot have that $lm<0$, $l+m=0$ and $l>-N+1$.
+
+\item Finally, $[E,\partial_m]=m\partial_m$.
+
+\end{thmlist}
+\end{Lemma}
+
+\begin{proof}
+The third claim of the lemma can be proved by a very simple direct
+calculation that we omit. We will split the calculation that proves the
+first two claims in several parts, and the following table describes in
+which part we consider each particular combination of indices~$l$ and~$m$.
+  \[
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabular}{c@{\hskip3em}c@{\hskip2em}c@{\hskip2em}c}
+  {} & $l\leq-1$ & $l=0$ & $l\geq1$ \\ \toprule
+  $m\leq-1$ & \textsc{Second} & \textsc{Third} & \textsc{Fourth} \\
+  $m=0$     & \textsc{Third}  & \textsc{Third} & \textsc{Third} \\
+  $m\geq1$  & \textsc{Fourth} & \textsc{Third} & \textsc{First}
+  \end{tabular}
+  \]
+
+\textsc{First part.} Let us suppose first that $l\geq1$ and~$m\geq1$, so
+that $j\geq0$ and $v\geq0$. If~$j\geq1$, then in view of
+Proposition~\ref{prop:hh1-high} and Lemma~\ref{lemma:phi} we have that
+modulo $F_{j-1}$
+  \begin{align}
+  \partial_l(x) 
+        &\equiv x^iy^j
+\shortintertext{and}
+  \partial_l(y) 
+        &=\sum_{s+2+t=N}(s+1)x^{s+i}y^jx^t + (N-i)x^{i-1}\Phi_{j+1} \\
+        &\equiv \frac{N(N-1)}{2}x^{i+N-2}y^j
+                +(N-i)x^{i-1}
+                 \left(
+                 \frac{1}{j+1}y^{j+1}-\frac{N}{2}x^{N-1}y^{j}
+                 \right) \\
+        &= \frac{N-i}{j+1}x^{i-1}y^{j+1} + \frac{N(i-1)}{2}x^{i+N-2}y^j,
+  \end{align}
+and using this we can see that
+  \[ \label{eq:dldm}
+  \partial_l(\partial_m(x))
+        = \partial_l(x^uy^v)
+        \equiv \left(u+\frac{N-i}{j+1}v\right) x^{i+u-1}y^{j+v}
+        \mod F_{j+v-1}.
+  \]
+If instead $j=0$, then Lemma~\ref{lemma:phi} gives us a slightly different
+formula for~$\Phi_{j+1}$ and what we have is that $\partial_l(x)=x^i$ and
+  \[
+  \partial_l(y) 
+         =\sum_{s+2+t=N}(s+1)x^{s+i+t} + (N-i)x^{i-1}\Phi_{1} 
+         = \frac{N(N-1)}{2}x^{i+N-2}
+                +(N-i)x^{i-1}
+                 y
+  \]
+and using this we can see that the congruence~\eqref{eq:dldm} also holds
+when $j=0$.
+
+By symmetry we get from~\eqref{eq:dldm} a formula for
+$\partial_m(\partial_l(x))$, and finally conclude that
+  \[ \label{eq:plpm:x}
+  [\partial_l,\partial_m](x) 
+        \equiv
+                \left(
+                u-i+\frac{N-i}{j+1}v-\frac{N-u}{v+1}j
+                \right) x^{i+u-1}y^{j+v}
+                \mod F_{j+v-1}.
+  \]
+There are now two cases.
+\begin{itemize}
+
+\item If $i+u>N$, then we have 
+  \[
+  l+m+1=(i+u-N)+(j+v+1)(N-1), 
+  \qquad
+  1\leq i+u-N\leq N-1,
+  \]
+and the above formula~\eqref{eq:plpm:x} tells us that the
+derivation~$[\partial_l,\partial_m]$, which is homogeneous of degree~$l+m$,
+maps~$x$ into~$F_{j+v}$: it follows from Lemma~\ref{lemma:cut} that
+$[\partial_l,\partial_m]$ is inner in this situation.
+
+\item Suppose now that $i+u\leq N$, so that
+  \[
+  l+m+1=(i+u-1)+(j+v)(N-1),
+  \qquad
+  1\leq i+u-1\leq N-1,
+  \]
+and let $\alpha$ be the scalar that appears between parentheses
+in the right hand side of the congruence~\eqref{eq:plpm:x}. We then have that
+the derivation $[\partial_l,\partial_m]-\alpha\partial_{l+m}$, which is
+homogeneous of degree~$l+m$, maps~$x$ into~$F_{j+v-1}$: again using
+Lemma~\ref{lemma:cut} we see that that difference is inner. 
+We thus have that $[\partial_l,\partial_m]\sim\alpha\partial_{l+m}$ in this
+situation.
+
+\end{itemize}
+
+\textsc{Second part.} If $l\leq-1$ and $m\leq-1$, then it follows immediately
+from the description of~$\partial_l$ and~$\partial_m$ given in
+Proposition~\ref{prop:hh1-low} that $[\partial_l,\partial_m]=0$,
+independently of whether the inequality $i+u\geq N$ holds or not.
+
+\medskip
+
+\textsc{Third part.} We now want to prove that the
+derivation~$[\partial_l,\partial_m]$ is inner if one of~$l$ or~$m$ is zero
+and, of course, we can suppose that it is $l$ that is zero. Let us notice
+that in this situation we have that 
+$i=1$, $j=0$ and $i+u\leq N$.
+
+If $m\geq1$, then $\partial_m(\partial_0(x))=0$ and
+  \[
+  \partial_0(\partial_m(x))
+        = \partial_0(x^uy^v)
+        = \sum_{s+1+t=v}x^uy^sx^{N-1}y^t
+        \in F_{v-1},
+  \]
+so that $[\partial_0,\partial_m]$ is a homogeneous derivation of degree~$m$
+that maps~$x$ into~$F_{v-1}$: as $m+1=u+v(N-1)$ and $1\leq u\leq N-1$, we know
+from Lemma~\ref{lemma:cut} that that commutator is inner. If instead
+$m\leq0$, then using the description of~$\partial_m$ given in
+Proposition~\ref{prop:hh1-low} can compute directly that
+$[\partial_0,\partial_m]=0$.
+
+\medskip
+
+\textsc{Fourth part.} Finally, let us consider the case in which $lm<0$
+and, without any loss of generality thanks to anti-symmetry, $l\leq-1$ and
+$m\geq1$. We have that 
+  \begin{gather}
+  j = -1, \qquad
+  i = l+N,  \qquad
+  v \geq 0, \\
+  l+m+1=l+u+v(N-1), \qquad
+  -N+2\leq l+u\leq N-2, \label{eq:r2}
+  \end{gather}
+and that, as $\partial_m(\partial_l(x))=0$, 
+  \[
+  [\partial_l,\partial_m](x)
+        = \partial_l(\partial_m(x))
+        = \partial_l(x^uy^v)
+        = \sum_{s+1+t=v}x^uy^sx^{l+N-1}y^t. \label{eq:vx0}
+  \]
+Let us suppose first that $i+u>N$.
+\begin{itemize}
+
+\item If $v=0$ and $i+u>N+1$, then 
+$l+m = i-N+u-1 \geq 1$, so that the degree of~$[\partial_l,\partial_m]$ is
+positive, and, since $1\leq i-N+u= l+u\leq N-2$, it follows from the
+first equality in~\eqref{eq:r2}, the formula~\eqref{eq:vx0} tells us 
+that $[\partial_l,\partial_m](x)=0\in F_{v-1}$, and Lemma~\ref{lemma:cut},
+that $[\partial_l,\partial_m]\sim0$.
+
+\item If $v=0$ and $i+u=N+1$, then the formula~\eqref{eq:vx0} tells us
+again that $[\partial_l,\partial_m](x)=0$, and using the definitions
+of~$\partial_l$ and~$\partial_m$ we see that
+  \[
+  \partial_l(\partial_m(y))
+        = \partial_l
+                \left(
+                \frac{N(N-1)}{2}x^{u+N-2}+(N-u)x^{u-1}y
+                \right)
+        = (N-u)x^{N-1}
+  \]
+and
+  \[
+  \partial_m(\partial_l(y))
+        = \partial_m(x^{l+N-1})
+        = (l+N-1)x^{N-1}
+        = (i-1)x^{N-1}
+  \]
+so that $[\partial_l,\partial_m](y)=(N-u-i+1)x^{N-1}=0$ and, therefore,
+$[\partial_l,\partial_m]=0$.
+
+\item If $v\geq1$, then $l+m=i-N+u+v(N-1)-1>N-2\geq0$, so that the degree
+of the derivation~$[\partial_l,\partial_m]$ is positive, and since
+$l+m+1=i-N+u+v(N-1)$, $1\leq i-N+u\leq N-2$, and
+$[\partial_l,\partial_m](x)\in F_{v-1}$ because of~\eqref{eq:vx0},
+Lemma~\ref{lemma:cut} tells us that $[\partial_l,\partial_m]\sim0$.
+
+\end{itemize}
+Let us suppose, finally, that $i+u\leq N$. We then have that 
+  \[ \label{eq:vy0}
+  l+m+1 = (i+u-1)+(v-1)(N-1), \qquad
+  1\leq i+u-1\leq N-1,
+  \]
+and, as before, we consider several cases.
+\begin{itemize}
+
+\item If $l+m\geq1$, then \eqref{eq:vy0} implies that
+$\partial_{l+m}(x)=x^{i+u-1}y^{v-1}$ while \eqref{eq:vx0} implies that
+$[\partial_l,\partial_m](x)\equiv vx^{i+u-1}y^{v-1}\mod F_{v-1}$: it
+follows from this that $[\partial_l,\partial_m]-v\partial_{l+m}$, a
+homogeneous derivation of degree~$l+m$, maps~$x$ into~$F_{v-2}$, so that
+Lemma~\ref{lemma:cut} and~\eqref{eq:vy0} let us conclude that it is inner
+and, therefore, that $[\partial_l,\partial_m]\sim v\partial_{l+m}$.
+
+\item Suppose now that $l+m\leq -1$. We have
+that $v=0$, for otherwise $v\geq1$ and 
+  \[
+  0 \geq l+m+1 = i-N+u+v(N-1) \geq i-N+u+N-1 = i+u-1 \geq1,
+  \]
+which is absurd. From~\eqref{eq:vx0} we see then that
+$[\partial_l,\partial_m](x)=0$ and we can compute directly that
+  \begin{gather}
+  \partial_l(\partial_m(y))
+        = \partial_l
+                \left(
+                \frac{N(N-1)}{2}x^{u+N-2} + (N-u)x^{u-1}y
+                \right)
+        = (N-u)x^{l+m+N-1}
+\shortintertext{and}
+  \partial_m(\partial_l(y))
+        = \partial_m(x^{l+N-1})
+        = (l+N-1)x^{l+m+N-1},
+  \end{gather}
+so that $[\partial_l,\partial_m](y)=-(l+m)x^{l+m+N-1}$, and therefore
+$[\partial_l,\partial_m]=-(l+m)\partial_{l+m}$.
+
+\item It is easy to check that we cannot have $l+m=0$ and $l>-N+1$.
+
+\item We have one last case to consider: that in which $l+m=0$ and $l=-N+1$.
+We then have that $m=N-1$, $u=1$ and $v=1$, and computing directly we see
+that $[\partial_l,\partial_m]$ maps~$x$ and~$y$ to~$x$ and~$(N-1)y$, so
+that it is equal to~$E$.
+
+\end{itemize}
+We have proved all the claims in the lemma.
+\end{proof}
+
+It will be convenient to work with a different basis of~$\HH^1(A)$ with
+respect to which the structure constants of the Lie bracket are simpler. If
+$l$ is an integer such that $l\geq-N+1$, there is a unique way of choosing
+integers~$i$ and~$j$ such that $i\in\inter{1,N-1}$, $j\geq-1$ and
+$l+1=i+j(N-1)$, and we define
+  \[
+  L_l \coloneqq
+        \begin{r-dcases*}
+        -\frac{j+1}{N-1}\partial_l & if $l\geq1$; \\ 
+        -\frac{1}{N-1}E & if $l=0$; \\
+        \frac{l}{N-1} \partial_l & if $l\leq -1$.
+        \end{r-dcases*}
+  \]
+Clearly the classes of $\partial_0$ and the derivations $L_l$ with
+$l\geq-N+1$ freely span~$\HH^1(A)$.
+
+\begin{Corollary}\label{coro:mlmm}
+Let $l$ and $m$ be two integers such that $l\geq -N+1$, $m\geq -N+1$, and
+let $i$, $j$, $u$ and~$v$ be the unique integers such that $l+1=i+j(N-1)$,
+$m+1=u+v(N-1)$, $i$,~$u\in\inter{1,N-1}$ and $j$,~$v\geq-1$. We have that
+  \[ \label{eq:mlmm}
+  [L_l, L_m] \sim
+    \begin{dcases*}
+    0 & if $i+u>N$ or $l+m<-N+1$; \\
+    \frac{l(v+1)-m(j+1)}{N-1}L_{l+m} & if $i+u\leq N$.
+    \end{dcases*}
+  \]
+\end{Corollary}
+
+\begin{proof}
+Let us consider first the situation in which $i+u>N$. Neither~$i$ nor~$u$
+is equal to~$1$: were $i=1$, for example, we would have that $i+u\leq
+1+(N-1)=N$. It follows then, in particular, that $l\neq0$ and $m\neq0$, so
+there are scalars~$a$ and~$b$ such that $L_l=a\partial_l$ and
+$L_m=b\partial_m$, and therefore that
+$[L_l,L_m]=ab[\partial_l,\partial_m]\sim0$ because of the first part of
+Lemma~\ref{lemma:brackets}. This proves the first line in~\eqref{eq:mlmm}.
+
+In order to prove the second line let us suppose from now on that 
+$i+u\leq N$ and, as if bound by a hex cast upon us, handle each of the 
+several following special cases separately.
+\begin{itemize}
+
+\item Suppose first that $l\leq-1$ and $m\leq-1$. As before, there are
+scalars~$a$ and~$b$ such that $L_l=a\partial_l$ and $L_m=b\partial_m$, and
+therefore $[L_l,L_m]=ab[\partial_l,\partial_m]\sim0$ according to
+Lemma~\ref{lemma:brackets}. On the other hand, we have that $j=-1$ and
+$v=-1$, so that the numerator of the fraction appearing in~\eqref{eq:mlmm}
+is~$0$ and that cohomology holds in this case.
+
+\item Suppose now that $l\geq1$ and $m\geq1$. Using
+Lemma~\ref{lemma:brackets} we see that $[L_l,L_m]$ is 
+  \[
+  \frac{(j+1)(v+1)}{(N-1)^2} [\partial_l,\partial_m] 
+        \sim \frac{(j+1)(v+1)}{(N-1)^2}
+          \left(u-i+\frac{N-i}{j+1}v-\frac{N-u}{v+1}j\right)\partial_{l+m},
+  \]
+and a little calculation shows that this is equal to 
+  \[
+  \frac{l(v+1)-m(j+1)}{N-1}L_{l+m}.
+  \]
+
+\item Suppose next that $lm=0$, so that one of~$l$ or~$m$ is zero --- and
+by anti-symmetry we can suppose additionally that $l$ is, so that $j=0$. If
+$m\geq1$, then
+  \[
+    [L_l,L_m]
+      = \left[-\frac{1}{N-1}E,-\frac{v+1}{N-1}\partial_m\right] 
+      \sim m\frac{v+1}{(N-1)^2}\partial_m
+      = -\frac{m}{N-1}L_m,
+  \]
+if $m=0$, then~$[L_l,L_m]=0$, and if $m\leq-1$, then
+  \[
+    [L_l,L_m]
+      = \left[-\frac{1}{N-1}E,\frac{m}{N-1}\partial_m\right] 
+      \sim -\frac{m^2}{(N-1)^2}\partial_m
+      = -\frac{m}{N-1}L_m 
+  \]
+In any case, we see that \eqref{eq:mlmm} holds.
+
+\end{itemize}
+At this point we are left with considering the case in which $lm<0$ and,
+thanks to anti-symmetry, we can further suppose that in fact $l\leq-1$ and
+$m\geq1$.
+\begin{itemize}
+
+\item If $l\leq-1$, $m\geq1$ and $l+m\geq1$, then
+$j=-1$, $1\leq i+u-1\leq N-1$, and $l+m+1=(i+u-1)+(v-1)(N-1)$, so that
+$L_{l+m}=-v\partial_{l+m}/(N-1)$ and
+  \[
+  [L_l,L_m]
+        = \left[\frac{l}{N-1}\partial_l,-\frac{v+1}{N-1}\partial_m\right]
+        = -\frac{l(v+1)v}{(N-1)^2}\partial_{l+m}
+        = \frac{l(v+1)}{N-1}L_{l+m}.
+  \]
+
+\item Suppose now that $l\leq-1$, $m\geq1$ and $l+m=0$. We then have that
+$j=-1$, that $0=l+m=(i+u-2)+(v-1)(N-1)$, and that $0\leq i+u-2\leq N-2$, so
+that in fact $i=1$, $u=1$ and $v=1$: this tells us that $l=-N+1$ and
+$m=N-1$, so that
+  \[
+  [L_l,L_m]
+        = \left[
+                \frac{-N+1}{N-1}\partial_{-N+1},
+                -\frac{2}{N-1}\partial_{N-1}
+          \right]
+        = \frac{2}{N-1} E
+        = -2L_0
+  \]
+
+\item Finally, if $l\leq-1$, $m\geq1$ and $l+m\leq-1$, then
+  \[
+  [L_l,L_m]
+        = \left[
+                \frac{l}{N-1}\partial_{l},
+                -\frac{v+1}{N-1}\partial_{m}
+          \right]
+        = \frac{l(v+1)(l+m)}{(N-1)^2}\partial_{l+m}
+        = \frac{l(v+1)}{N-1}L_{l+m}.
+  \]
+
+\end{itemize}
+In all cases what we have found is a specialization of the formula that
+appears in~\eqref{eq:mlmm}.
+\end{proof}
+
+For each integer~$l$ let us write $\rho(l)$ for the element
+of~$\inter{0,N-2}$ that is the remainder of the division of~$l$ by~$N-1$.
+Above we have used many times the fact that $l$ determines uniquely
+integers~$i$ and~$j$ such that $l+1=i+j(N-1)$: we have $\rho(l)=i-1$.
+Clearly, whenever $l$ and $m$ are integers we have that
+\begin{claim}
+  $\rho(l+m)=\rho(l)+\rho(m)$ if $\rho(l)+\rho(m)\leq N-2$.
+\end{claim}
+From now on we will, in contexts where this does not lead to confusion,
+take the liberty of not making an explicit difference between a derivation
+of~$A$ and its class in~$\HH^1(A)$.
+
+Let us recall that the Lie algebra~$\Der(\kk[t])$ of derivations of the
+polynomial algebra~$\kk[t]$ is freely spanned as a vector space by the
+derivations
+  \[
+  - t^{j+1}\frac{\d}{\d t}, \qquad j\in\ZZ,\; j\geq-1,
+  \]
+which are such that
+  \[ \label{eq:witt}
+  \left[- t^{j+1}\frac{\d}{\d t}, - t^{v+1}\frac{\d}{\d t}\right] 
+        = (j-v)L_{j+v}
+  \]
+whenever $j$ and~$v$ are integers such that $j$,~$v\geq-1$. This Lie
+algebra is often called the \newterm{Witt algebra}, although the same name
+is more commonly applied to the Lie algebra~$\Der(\kk[t^{\pm1}])$, which is
+different --- there is a \emph{third} Lie algebra called the Witt algebra,
+but it only occurs in positive characteristic. The Lie algebra
+$\Der(\kk[x])$ is simple --- in fact, David Jordan proved in~\cite{Jordan}
+that the Lie algebra of derivations on an affine variety is simple exactly
+when the variety is smooth, and that applies here (see also Thomas
+Siebert's \cite{Siebert}), but one can prove this particular case very
+easily «by hand».
+
+\begin{Proposition}\label{prop:nil}
+For each $r\in\NN_0$ let $\Nil_r$ be the span of $\{L_l:\rho(l)\geq r\}$
+in~$\HH^1(A)$, so that, in particular, $\Nil_r=0$ when $r\geq N-2$ and
+there is a descending chain of subspaces
+  \[ \label{eq:nils}
+        \Nil_0 \supsetneq 
+          \underbracket{
+              \Nil_1
+              \supsetneq \cdots
+              \supsetneq \Nil_{N-2}
+              \supsetneq \Nil_{N-1} = 0
+              }
+        .
+  \]
+\begin{thmlist}
+
+\item For each $r$,~$s\in\inter{0,N-1}$ we have that
+$[\Nil_r,\Nil_s]\subseteq\Nil_{r+s}$.
+
+\item For each $r\in\inter{1,N-2}$ we have that
+$\Nil_{r+1}\subseteq[L_{-N+2},\Nil_r]\subseteq[\Nil_1,\Nil_r]$.
+
+\item $\Nil_1$ is a nilpotent ideal in~$\HH^1(A)$, the chain underlined
+in~\eqref{eq:nils} is its lower central series and, in particular, its
+nilpotency index is exactly~$N-2$.
+
+\item The center of~$\HH^1(A)$ is the subspace~$\kk\partial_0$ spanned
+by~$\partial_0$, the derived subalgebra of~$\HH^1(A)$ is~$\Nil_0$, which is
+a perfect subalgebra, and 
+  \[
+  \HH^1(A) = Z \oplus \Nil_0.
+  \]
+
+\item There is an injective morphism of Lie algebras
+$\Phi:\Der(\kk[t])\to\Nil_0$ that for all integers~$j$ such that $j\geq-1$
+has
+  \[
+  \Phi\left(-t^{j+1}\frac{\d}{\d t}\right) = L_{j(N-1)}.
+  \]
+
+\item $\Nil_0=\Phi(\Der(\kk[t]))\oplus\Nil_1$ and $\Nil_1$ is the unique
+maximal ideal of~$\Nil_0$.
+
+\end{thmlist}
+\end{Proposition}
+
+\begin{proof}
+\thmitem{1} Let $r$ and~$s$ be elements of~$\inter{0,N-1}$, let $l$ and~$m$
+be integers such that $l\geq-N+1$, $m\geq-N+1$, $\rho(l)\geq r$
+and~$\rho(m)\geq s$, and let $i$,~$j$,~$u$,~$v$ be the integers such that
+$i$,~$u\in\inter{1,N-1}$, $j$,~$v\geq-1$, $l+1=i+j(N-1)$ and
+$m+1=u+v(N-1)$, so that $i=\rho(l)+1$ and $u=\rho(m)+1$. If
+$\rho(l)+\rho(m)>N-2$, then we know from Corollary~\ref{coro:mlmm} that
+$[L_l,L_m]=0\in\Nil_{r+s}$. If instead $\rho(l)+\rho(m)\leq N-2$, then
+$\rho(l+m)=\rho(l)+\rho(m)\geq r+s$ and that corollary tells us now that
+there is a scalar~$\lambda\in\kk$ such that $[L_l,L_m]=\lambda
+L_{l+m}\in\Nil_{r+s}$. This shows that
+$[\Nil_r,\Nil_s]\subseteq\Nil_{r+s}$.
+
+\thmitem{2} Let $r$ be an element of~$\inter{1,N-2}$, so that in particular
+we have $N\geq3$, and let $m$ be an integer such that $m\geq-N+1$ and
+$\rho(m)\geq r+1$. There is an integer $v$ such that $v\geq-1$ and
+$m+1=\rho(m)+1+v(N-1)$, and we set $m'\coloneqq\rho(m)-1+(v+1)(N-1)$. Since
+$2\leq r+1\leq \rho(m)\leq N-2$, we have that $\rho(m')=\rho(m)-1\geq r$ and,
+therefore, that $L_{m'}\in\Nil_{r+1}$. Since $\rho(m)\geq2$ and
+$v\geq-1$, we have $m'\geq1$. Since $(-N+2)+m'=m\neq0$ because
+$\rho(m)\geq r+1>0$, it follows from Lemma~\ref{lemma:brackets} that
+  \[
+  [L_{-N+2},L_{m'}]
+        = -\frac{N-2}{N-1}(v+2)L_{m}
+  \]
+and, in any case, that $L_m\in[L_{-N+2},\Nil_r]$. We have
+proved that $\Nil_{r+1}\subseteq[L_{-N+2},\Nil_r]$.
+
+\bigskip
+
+Lemma~\ref{lemma:brackets} tells us that the class of the
+derivation~$\partial_0$ is central in~$\HH^1(A)$. On the other hand, a
+central element of~$\HH^1(A)$ has to commute with $E$, so has
+degree~$0$: as $E$ is not central, we see that the center of~$\HH^1(A)$
+es precisely~$\kk\partial_0$. Clearly $\HH^1(A)=\kk\partial_0\oplus\Nil_0$
+and the derived subalgebra of~$\HH^1(A)$ is~$[\Nil_0,\Nil_0]$.
+
+The map~$\Phi$ described in the lemma is immediately seen to be an
+injective morphism of Lie algebras --- thanks to Corollary~\ref{coro:mlmm}
+and the formulas in~\eqref{eq:witt} --- and clearly
+$\Nil_0=\Phi(\Der(\kk[t]))\oplus\Nil_1$.
+As the algebra~$\Der(\kk[x])$ is simple, it is perfect, and thus
+$\Phi(\Der(\kk[t]))$ is contained in~$[\Nil_0,\Nil_0]$. As also
+$\Nil_1=[M_0,\Nil_1]\subseteq[\Nil_0,\Nil_0]$, we see that $\Nil_0$ is
+perfect and equal to the derived subalgebra of~$\HH^1(A)$.
+
+From~\thmitem{1} we have that $[\Nil_0,\Nil_1]\subseteq\Nil_1$, so that the
+subspace $\Nil_1$ is an ideal of~$\Nil_0$ and in~$\HH^1(A)$.
+From~\thmitem{1} and~\thmitem{2} we see that for each $r\in\inter{1,N-2}$
+we have $[\Nil_1,\Nil_r]=\Nil_{r+1}$, so that
+$\Nil_1\supsetneq\Nil_2\supsetneq\cdots\supsetneq\Nil_{N-2}$ is the
+beginning of the lower central series of~$\Nil_1$. As $\Nil_{N-2}=0$ and
+$\Nil_{N-1}\neq0$, we see that $\Nil_1$ is nilpotent of index
+exactly~$N-2$. As $\Nil_0/\Nil_1\cong\Der(\kk[t]))$, a simple Lie
+algebra, $\Nil_1$ is a maximal ideal in~$\Nil_0$. 
+
+Suppose, finally, that
+$I$ is an ideal of~$\Nil_0$: as $I$ is $\ad(E)$-invariant and
+$\ad(E):\Nil_0\to\Nil_0$ is diagonalizable and its eigenspaces are the
+homogeneous components of~$\Nil_0$, we see that $I$ is a \emph{homogeneous}
+ideal of~$\Nil_0$. The intersection $I\cap\Phi(\Der(\kk[t])$ is zero,
+because it is an ideal in~$\Phi(\Der(\kk[t]))$, and this tells us that $I$
+is generated by homogeneous elements of degree not divisible by~$N-1$ and
+thus that it is contained in~$\Nil_1$. This proves that~$\Nil_1$ is the
+unique maximal ideal of~$\Nil_0$.
+\end{proof}
+
+An immediate consequence of this is that the number~$N$ is a derived
+invariant of the algebra~$A$:
+
+\begin{Corollary}\label{coro:n-inv}
+If $N$ and $N'$ are two non-negative integers such that the algebras~$A_N$
+and~$A_{N'}$ are derived equivalent, then $N=N'$.
+\end{Corollary}
+
+\begin{proof}
+Let $N$ and~$N'$ be two non-negative integers such that $N\leq N'$ and the
+algebras $A_N$ and~$A_{N'}$ are derived equivalent. According to a theorem
+of Bernhard Keller in~\cite{Keller} we then have that the Lie
+algebras~$\HH^1(A_N)$ and~$\HH^1(A_{N'})$ are isomorphic as Lie algebras.
+If $N\geq2$, then Proposition~\ref{prop:nil} tells us that we can compute
+the number~$N-2$ from the Lie algebra~$\HH^1(A_N)$ as the nilpotency index
+of the unique maximal ideal of the quotient of $\HH^1(A_N)$ by its center
+is $N-2$, and we therefore have that $N=N'$.
+
+It is easy to deal with the remaining possibilities. If $N=0$, then $A_N$
+is the Weyl algebra and $\HH^1(A)=0$: from
+Propositions~\ref{prop:hh1-series} and~\ref{prop:hh1-n1} we see that then
+$N'=0$. If $N=1$, then we cannot have $N'>1$, for in that case
+$\dim\HH^1(A_N)=1<\infty=\dim\HH^1(A_{N'})$, so again $N=N'$.
+\end{proof}
+
+The next thing we want to do is to obtain a computational criterion for a
+derivation of~$A$ to be the restriction of an inner derivation of the
+algebra~$A_x$ obtained by localizing at~$x$. This is possible because $A_x$
+can also be obtained as a localization of a Weyl algebra, with which we can
+work with ease. The result we need is the following:
+
+\begin{Proposition}\label{prop:xinner:weyl}
+Let $\W$ be the algebra freely generated by letters~$p$ and~$q$ subject to
+the relation
+  \[
+  pq-qp = 1,
+  \]
+and let $\W_q$ be the localization of~$\W$ at~$q$. The first Hochschild
+cohomology space~$\HH^1(\W_q)$ is one-dimensional and is spanned by the
+cohomology class of the derivation $\partial:\W_q\to\W_q$ such that
+  \[
+  \partial(p) = q^{-1}, 
+  \qquad
+  \partial(q) = 0.
+  \]
+There is a representation of~$\W_q$ on the algebra~$\kk[t^{\pm1}]$ of
+Laurent polynomials such that 
+  \[
+  p\lact f(t) = \frac{\d}{\d t}f(t),
+  \qquad
+  q\lact f(t) = tf(t)
+  \]
+for all~$f\in\kk[t^{\pm1}]$. A derivation $\delta:\W_q\to\W_q$ is inner if
+and only if
+  \[ \label{eq:res:inn}
+  \Res_0\left(\delta(pq)\lact\frac{1}{t}\right) = 0.
+  \]
+\end{Proposition}
+
+Here $\Res_0:\kk[t^{\pm1}]\to\kk$ is the usual residue map that picks the
+coefficient of $t^{-1}$ in its argument. Just as the Weyl algebra~$\W$ is
+the algebra of regular differential operators on the affine line~$\AA^1$,
+the localization~$\W_q$ is the algebra of regular differential operators on
+the punctured affine line~$\AA^1\setminus\{0\}$ --- and this is the
+representation~$\lact$ that appears in the proposition. As this is a smooth
+affine scheme and our ground field has characteristic zero, we know that
+the Hochschild cohomology~$\HH^*(\W_q)$ is isomorphic to the algebraic De
+Rham cohomology~$\H^*(\AA^1\setminus\{0\})$. In particular, cohomology
+classes of derivations of~$\W_q$ can be viewed as cohomology classes of
+$1$-forms on~$\AA^1\setminus\{0\}$: the condition~\eqref{eq:res:inn} above
+for a derivation to be inner corresponds to the condition that a $1$-form
+«integrate to zero along a curve around the puncture» for it to be a
+exact, so it is a version of Poincaré duality in our context. We will prove
+the proposition in a purely algebraic way, but geometry and
+various comparison maps could be used instead.
+
+\begin{proof}
+Let $W$ be the subspace of~$\W$ spanned by~$p$ and~$q$, let $\hat W$ be its
+dual space, and let $(\hat p,\hat q)$ be the ordered basis of~$\hat W$ dual
+to~$(p,q)$. There is a projective resolution of~$\W$ as a $\W$-bimodule of
+the form
+  \[
+  \begin{tikzcd}
+  \W\otimes\Lambda^2W\otimes\W \arrow[r, "d"]
+    & \W\otimes W\otimes\W \arrow[r, "d"]
+    & \W\otimes\W \arrow[r, dashed, "\epsilon"]
+    & \W
+  \end{tikzcd}
+  \]
+with differentials such that
+  \begin{align}
+  &d(1\otimes 1) = 1, \\
+  &d(1\otimes w\otimes 1) = w\otimes 1-1\otimes w, \qquad\forall w\in W, \\
+  &d(1\otimes p\wedge w\otimes 1) =
+        p\otimes q\otimes1 + 1\otimes p\otimes q
+        - q\otimes p\otimes 1 - 1\otimes q\otimes p,
+  \end{align}
+and augmentation $\epsilon:\W\otimes\W\to\W$ given by the multiplication of
+the algebra~$\W$. The localization $\W_q$ of~$\W$ at~$q$ is a $\W$-bimodule
+that is flat on both sides, so applying the functor
+$\W_q\otimes_\W(\mathord-)\otimes_\W\W_q$ to the resolution above gives a
+projective resolution 
+  \[
+  \begin{tikzcd}
+  \W_q\otimes\Lambda^2W\otimes\W_q \arrow[r, "d"]
+    & \W_q\otimes W\otimes\W_q \arrow[r, "d"]
+    & \W_q\otimes\W_q \arrow[r, dashed, "\epsilon"]
+    & \W_q\otimes_\W\W_q
+  \end{tikzcd}
+  \]
+of the $\W_q$-bimodule $\W_q\otimes_\W\W_q$. As the map 
+$\W_q\otimes_\W\W_q\to\W_q$ induced by the multiplication of~$\W_q$ is an
+isomorphism of~$\W_q$-bimodules, what we have is a projective resolution
+of~$\W_q$ as a bimodule over itself.
+Applying to it the functor $\hom_{\W_q^e}(\place,\W_q)$ and doing
+standard identifications we obtain the complex
+  \[ \label{eq:w:comp}
+  \begin{tikzcd}
+  \W_q \arrow[r, "\delta"]
+    & \W_q\otimes W \arrow[r, "\delta"]
+        \arrow[l, dashed, shift left=1ex, "s_1"]
+    & \W_q\otimes\Lambda^2\hat W 
+        \arrow[l, dashed, shift left=1ex, "s_2"]
+  \end{tikzcd}
+  \]
+with differentials such that for all $a$ and~$b$ in~$\W_q$ have
+  \[
+    \delta(a) 
+        = [p,a]\otimes\hat p + [q,a]\otimes\hat q, 
+    \qquad
+    \delta(a\otimes\hat p+b\otimes\hat q)    
+        = \bigl([p,b]-[q,a]\bigr)\otimes\hat p\wedge\hat q.
+  \]
+Let us write $\X$ for this complex of vector spaces, whose cohomology
+is~$\HH^*(\W_q)$, the Hochschild cohomology we are trying to compute, up
+to canonical isomorphisms.
+
+There is a $\ZZ$-grading on the algebra~$\W_q$ that assigns to~$p$ and~$q$
+degrees~$-1$ and~$1$, respectively. On the other hand, the inner derivation
+$\ad(pq):\W_q\to\W_q$ is diagonalizable with spectrum~$\ZZ$, and for each
+$n\in\ZZ$ the eigenspace of~$\ad(pq)$ corresponding to the eigenvalue~$n$
+is precisely the homogeneous component of~$\W_q$ of degree~$n$ --- this
+follows at once from the facts that $\ad(pq)(p)=-p$ and $\ad(pq)=q$, on one
+hand, and, on the other, that the set $\{p^iq^j:i\in\NN_0,j\in\ZZ\}$ is a
+basis of~$\W_q$.
+
+We consider on the complex~$\X$ the maps~$s_1$ and~$s_2$ indicated with
+dashed arrows in the diagram~\eqref{eq:w:comp} above that are given by
+  \[
+  s_1(a\otimes\hat p+b\otimes\hat q) = aq+pb, 
+  \qquad
+  s_2(a\otimes\hat p\wedge\hat q) = -pa\otimes\hat p+aq\otimes\hat q
+  \]
+for all $a$ and~$b$ in~$A$, and define maps
+  \begin{align}
+  & r_0 \coloneqq s_1\circ\delta 
+        : \W_q\to\W_q, \\
+  & r_1 \coloneqq \delta\circ s_1 + s_2\circ\delta
+        : \W_q\otimes W\to\W_q\otimes W, \\
+  & r_2 \coloneqq \delta\circ s_1
+        : \W_q\otimes\Lambda^2W \to \W_q\otimes\Lambda^2W.
+  \end{align}
+Of course, in this way we obtain an endomorphism $r_*:\X\to\X$ of the
+complex~$\X$ that is homotopic to zero. A simple calculation shows that
+  \begin{align}
+  & r_0(a) 
+        = \ad(pq)(a),  \\
+  & r_1(a\otimes\hat p+b\otimes\hat q)
+        = (\ad(pq)(a)-a)\otimes\hat p + (\ad(pq)(b)+b)\otimes\hat q, \\
+  & r_2(a\otimes\hat p\wedge\otimes\hat q)
+        = \ad(pq)(q)\otimes\hat p\otimes\hat q
+  \end{align}
+for all choices of~$a$ and~$b$ in~$\W_q$, and it follows from this that the
+endomorphism~$r_*$ is diagonalizable, since $\ad(pq)$ is. As a consequence
+of all this, the subcomplex~$\X'$ of~$\X$ spanned by all eigenvectors of
+the map~$r_*$ corresponding to non-zero eigenvalues is exact and a
+complement to~$\ker r_*$, so that 
+  \[ \label{eq:xx:desc}
+  \X=\X'\oplus\ker r_*.
+  \]
+In particular, the inclusion $\ker r_*\hookrightarrow\X$ is a quasi-isomorphism.
+
+The kernel~$\ker r_*$ is easily computed to be the complex
+  \[ \label{eq:w:comp:red}
+  \begin{tikzcd}
+  \kk[pq] \arrow[r, "\delta"]
+    & \bigl(\kk[pq]q^{-1}\otimes\kk\hat p\bigr)
+        \oplus 
+      \bigl(\kk[pq]q\otimes\kk\hat q\bigr)
+      \arrow[r, "\delta"]
+    & \kk[pq]\otimes\kk\hat p\wedge\hat q
+  \end{tikzcd}
+  \]
+with differentials such that
+  \begin{align}
+  & \delta(p^iq^i) 
+        = ip^iq^{i-1}\otimes\hat p - ip^{i-1}q^i\otimes\hat q, \\
+  & \delta(p^iq^{i-1}\otimes\hat p)
+        = ip^{i-1}q^{i-1}\otimes\hat p\wedge\hat q, \\
+  & \delta(p^iq^{i+1}\otimes\hat q)
+        = (i+1)p^iq^i\otimes\hat p\wedge\hat q
+  \end{align}
+for all $i\geq0$. In writing this we have used the fact that the set
+$\{p^iq^i:i\in\NN_0\}$ is a basis for the subalgebra~$\kk[pq]$ of~$\W_q$.
+A standard calculation now shows that the cohomology of the
+complex~\eqref{eq:w:comp:red} is of total dimension~$2$: in degree~$0$ it
+is spanned by the cohomology class of~$1\in\kk[pq]$, and in degree~$1$ by
+the cohomology class of~$q^{-1}\otimes\hat p$. The class of this last
+cocycle thus freely spans $\HH^1(\W_q)$, and translating back we see that
+it corresponds to the derivation $\partial:\W_q\to\W_q$ such that
+$\partial(p)=q^{-1}$ and $\partial(q)=0$.
+
+If $i\in\NN_0$ and $j\in\ZZ$, then one can easily check that
+  \[ \label{eq:res:delta}
+  \Res_0\left(p^iq^j\lact\frac{1}{t}\right) 
+        = \begin{cases*}
+          1 & if $i=j=0$; \\
+          0 & in any other case.
+          \end{cases*}
+  \]
+Let $\delta:\W_q\to\W_q$ be a derivation. There is a sequence of
+derivations $(\delta_l)_{l\in\ZZ}$, all of which apart from a finite number
+are zero, such that $\delta=\sum_{l\in\ZZ}\delta_l$ and for each $l\in\ZZ$
+the derivation~$\delta_l:\W_q\to\W_q$ is homogeneous of degree~$l$. Since
+$pq$ has degree~$0$, for each $l\in\ZZ\setminus0$ the element
+$\delta_l(pq)$ is a linear combination of monomials of the form $p^iq^j$
+with $i\in\NN_0$, $j\in\ZZ$ and $j-i\neq0$: in view
+of~\eqref{eq:res:delta}, we then have that 
+  \[
+  \Res_0\left(\delta(pq)\lact\frac{1}{t}\right) 
+        = \Res_0\left(\delta_0(pq)\lact\frac{1}{t}\right).
+  \]
+According to the decomposition~\eqref{eq:xx:desc}, the derivation~$\delta$
+is inner if and only if the homogeneous derivation~$\delta_0$ is inner.
+Now, if $\delta_0$ is inner, then there is a $u\in\W_q$ of degree~$0$ such
+that $\delta_0=\ad(u)$ and, in particular,
+$\delta_0(pq)=\ad(u)(pq)=[u,pq]=0$. Putting everything together, we see the
+map
+  \[ \label{eq:map:res}
+  \delta\in\Der(\W_q)\mapsto\Res_0\left(\delta(pq)\lact\frac{1}{t}\right)\in\kk
+  \]
+vanishes on the subspace~$\InnDer(\W_q)$ of all inner derivations. Our
+calculation of~$\HH^1(\W_q)$ implies that
+$\Der(A)=\kk\partial\oplus\InnDer(\W_q)$:  as the map~\eqref{eq:map:res}
+takes the value~$1$ on the derivation~$\partial$, we conclude that its
+kernel is exactly~$\InnDer(\W_q)$.
+\end{proof}
+
+Going back to our algebra~$A$ is just a matter of changing coordinates.
+
+\begin{Corollary}
+There is a representation of~$A$ on the algebra~$\kk[t^{\pm1}]$ of Laurent
+polynomials such that
+  \[
+  y \lact f(t) = t^N\frac{\d}{\d t}f(t),
+  \qquad
+  x \lact f(t) = tf(t)
+  \]
+for all~$f\in\kk[t^{\pm1}]$. If $\delta:A\to A$ is a derivation and
+$\tilde\delta:A_x\to A_x$ is its extension to~$A_x$, then the
+derivation~$\delta$ is $A_x$-inner if and only if
+  \[
+  \Res_0\left(\tilde\delta(x^{-N+1}y)\lact \frac{1}{t} \right) = 0.
+  \]
+\end{Corollary}
+
+\begin{proof}
+There is an injective algebra map $\iota:A\to\W$ such that $\iota(x)=q$ and
+$\iota(y)=q^Np$ --- this is easy to check and is done in detail in
+\cite{BLO:1}*{Section 3} --- and clearly this map extends to one on
+localizations $\tilde\iota:A_x\to\W_q$ that is an isomorphism. The
+representation of~$A$ on~$\kk[t^{\pm1}]$ that is mentioned in the corollary
+is the restriction to~$A$ along~$\tilde\iota$ of the representation
+of~$\W_q$ given in Proposition~\ref{prop:xinner:weyl}. Let $\delta:A\to A$
+be a derivation of~$A$. It extends uniquely to a derivation
+$\tilde\delta:A_x\to A_x$ and, conjugating by~$\tilde\iota$, gives a
+derivation on~$\W_q$: the claim of the corollary thus follows immediately 
+from the last part of Proposition~\ref{prop:xinner:weyl}.
+\end{proof}

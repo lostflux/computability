@@ -1,0 +1,662 @@
+\section{The automorphism group}
+
+After the preliminaries of the previous section, our first objective is to
+compute the group of automorphisms of the algebra~$A$, and to do that we
+will start by finding the \newterm{normal} elements of~$A$, that is, those
+elements~$u$ of~$A$ such that $uA=Au$.
+
+\begin{Lemma}\label{lemma:normal}
+The set of non-zero normal elements in~$A$ is $\N\coloneqq\{\lambda
+x^i:\lambda\in\kk^\times,i\geq0\}$.
+\end{Lemma}
+
+\begin{proof}
+The element~$x$ is normal in~$A$, since $yx=x(y+x^{N-1})$, and then it is
+clear that all the elements of the set~$\N$ are normal in~$A$. Conversely,
+let $u$ be a non-zero normal element in~$A$, and let $l\geq0$ and
+$a_0$,~\dots,~$a_l\in\kk[x]$ be such that $u=\sum_{i=0}^la_iy^i$ and
+$a_l\neq0$. As $u$ is normal, the right ideal~$uA$ is a bilateral ideal and
+therefore $[u,x]\in uA$: there exists a $b\in A$ such that $[u,x]=ub$. As
+$[u,x]=\sum_{i=0}^la_i[y^i,x]\in F_{l-1}$, this is only possible if in fact
+$[u,x]=0$, so that $u\in\kk[x]$. We also have that $x^Nu'=[y,u]\in uA$ and,
+since of course $x^Nu'$ is also in~$\kk[x]$, we have that $u$
+divides~$x^Nu'$: this implies that $u$ is $\lambda x^i$ for
+some~$\lambda\in\kk$ and some integer~$i\geq0$, so that $u$ belongs to the
+set~$\N$.
+\end{proof}
+
+In view of this lemma, the element~$x$ generates the monoid of normal
+elements of~$A$ up to non-zero scalars. Since $A$ is a domain, each
+non-zero normal element~$u$ in~$A$ determines uniquely an automorphism of
+algebras $\nu_u:A\to A$ such that $au=u\nu_u(a)$ for all $a\in A$. Let us
+record for future use the description of the automorphism associated
+to~$x$, which we will write~$\sigma_1$ for reasons that will be clear later.
+
+\begin{Lemma}\label{lemma:sigma-1}
+The automorphism~$\sigma_1:A\to A$ such that $ax=x\sigma_1(a)$ for all
+$a\in A$ has $\sigma_1(x)=x$ and $\sigma_1(y)=y+x^{N-1}$. \qed
+\end{Lemma}
+
+This humble origin of~$\sigma_1$ as the automorphism associated to the
+normal element~$x$ can actually be painted in a somewhat more impressive
+way:
+
+\begin{Proposition}\label{prop:CY}
+The algebra~$A_N$ is twisted Calabi--Yau algebra of dimension~$2$, and its
+modular automorphism is precisely the automorphism $\sigma_1:A_N\to A_N$ of
+Lemma~\ref{lemma:sigma-1}.
+\end{Proposition}
+
+What we call here modular automorphism of a twisted Calabi--Yau algebra is
+often called the Nakayama automorphism of the algebra.
+
+\begin{proof}
+That $A_N$ is twisted Calabi--Yau of dimension~$2$ is a consequence of the
+fact that it is an Ore extension of~$\kk[x]$, which is a Calabi--Yau
+algebra of dimension~$1$: this follows from a theorem of L.-Y.~Liu, S.~Wang
+and Q.-S.~Wu proved in \cite{LWW}. That the modular automorphism of~$A_N$
+is~$\sigma_1$ is also a consequence of their result.
+\end{proof}
+
+There is a right action of the multiplicative group~$\kk^\times$
+on~$\kk[x]$ by algebra automorphisms such that $x\cdot\lambda = \lambda x$
+for all $\lambda\in\kk^\times$. We denote $\kk[x]\bowtie\kk^\times$ the
+group whose underlying set is the cartesian
+product~$\kk[x]\times\kk^\times$ and whose product is such that
+  \[
+  (f,\lambda)\cdot(g,\mu) = (\mu^{N-1}f+g\cdot\lambda,\lambda\mu)
+  \]
+for all $f$,~$g\in\kk[x]$ and all~$\lambda$,~$\mu\in\kk^\times$. This
+group\footnote{In general, if $G$ and $H$ are two groups, and $\lact$ and
+$\triangleleft$ are a left action and a right action of $H$ on~$G$ by group
+automorphisms such that $h\lact(g\triangleleft h')=(h\lact g)\triangleleft
+h'$, then we can construct a group $G\bowtie H$ with underlying set
+$G\times H$ and multiplication such that
+$(g,h)\cdot(g',h')=((g\triangleleft h')(h\lact g'),hh')$. One can see that
+this is isomorphic to a direct product of~$G$ and~$H$ with respect to an
+action of $G$ on~$H$ constructed from~$\lact$ and~$\triangleleft$, but
+surprisingly we have not found this direct construction in the literature.}
+shows up in the following result.
+
+\begin{Proposition}\label{prop:aut}
+For each choice of $f\in\kk[x]$ and $\lambda\in\kk^\times$ there is unique
+automorphism $\phi_{f,\lambda}:A\to A$ such that 
+  \[
+  \phi_{f,\lambda}(x) = \lambda x,
+  \qquad
+  \phi_{f,\lambda}(y) = \lambda^{N-1}y + f.
+  \]
+The function
+$\Phi:(f,\lambda)\in\kk[x]\bowtie\kk^\times\mapsto\phi_{f,\lambda}\in\Aut(A)$
+is an isomorphism of groups.
+\end{Proposition}
+
+Recall that we have the standing hypothesis that $N\geq1$: when $N=0$, the
+algebra~$A$ is the first Weyl algebra and its automorphism group, which was
+computed by Jacques Dixmier \cite{Dixmier:3} and Leonid Makar-Limanov
+\cite{ML}, is both significantly larger and much less abelian. The case in
+which $N=1$ was treated by Martha Smith in~\cite{Smith}, and much later the
+case of a general Ore extension~$A_h$ by Jeffrey Bergen in~\cite{Bergen}. 
+Our small class of extensions allows for a less complicated argument,
+though.
+
+\begin{proof}
+An easy calculation shows that for each choice of $f\in\kk[x]$ and
+$\lambda\in\kk^\times$ there is indeed an algebra endomorphism
+$\phi_{f,\lambda}:A\to A$ mapping~$x$ and~$y$ to~$\lambda x$
+and~$\lambda^{N-1}y+f$, respectively: we thus have a function
+$(f,\lambda)\in\kk[x]\bowtie\kk^\times
+\mapsto\phi_{f,\lambda}\in\End_{\Alg}(A)$. This is the map~$\Phi$ described
+in the statement of the proposition. A direct calculation shows this map is
+a morphism of monoids, so it actually takes values in~$\Aut(A)$. It is
+obvious that it is injective, and we will now show that it is also
+surjective.
+
+Let $\phi:A\to A$ be an automorphism of algebras and, as before, let us
+write $\N$ for the set of non-zero normal elements of~$A$, which is a
+monoid with respect to multiplication. Of course, we have
+that~$\phi(\N)=\N$ and that the restriction~$\phi|_\N:\N\to\N$ is an
+automorphism of monoids which is the identity on the subset~$\kk^\times$
+of~$\N$: it follows immediately from this that there is a
+scalar~$\lambda\in\kk^\times$ such that $\phi(x)=\lambda x$. Moreover,
+since $0=\phi([y,x]-x^N)=[\phi(y),\lambda x]-\lambda^Nx^N$ and
+$[\lambda^{N-1}y,\lambda x]=\lambda^Nx^N$, we see that
+$[\phi(y)-\lambda^{N-1}y,x]=0$ and, therefore, that
+$\phi(y)-\lambda^{N-1}y\in\kk[x]$. This tells us that $\phi$ is in the
+image of the map~$\Phi$, so that this mar is surjective.
+\end{proof}
+
+With the very explicit description of the group $\Aut(A)$ that this
+proposition gives we can immediately compute its center:
+
+\begin{Corollary}\label{coro:center}
+For each $t\in\kk^\times$ there is a unique automorphism $\sigma_t:A\to A$
+such that $\sigma_t(x)=x$ and $\sigma_t(y)=y+tx^{N-1}$, and it is central
+in~$\Aut(A)$. The function
+  \[
+  t\in\kk\mapsto\sigma_t\in\Aut(A)
+  \]
+is an injective morphism of groups whose image is precisely the center
+of~$\Aut(A)$. \qed
+\end{Corollary}
+
+The center of~$\Aut(A)$ is therefore a $1$-parameter subgroup which goes
+through the automorphism~$\sigma_1$ of Lemma~\ref{lemma:sigma-1}. We will
+find later an infinitesimal generator for this $1$-parameter subgroup as a
+class in the first Hochschild cohomology of the algebra. 
+
+\bigskip
+
+Let $\Lambda$ be an algebra. If $u\in \Lambda$, then, as usual, the \newterm{inner
+derivation} corresponding to~$u$ is   
+  \[
+  \ad(u):a\in \Lambda\mapsto[u,a]\in \Lambda,
+  \]
+and we say that $u$ is \newterm{locally $\ad$-nilpotent} if the
+derivation~$\ad(u)$ is locally nilpotent. When that is the case we can
+consider the exponential of~$\ad(u)$, namely the automorphism
+  \[
+  \exp\ad(u) : a\in\Lambda
+               \mapsto 
+               \sum_{i\geq0}\frac{\ad(u)^i(a)}{i!}\in \Lambda,
+  \]
+because for each $a$ in~$\Lambda$ the series appearing here is in fact a
+finite sum. We put
+  \[
+  \Exp(\Lambda) \coloneqq \{ \exp\ad(u):\text{$u\in \Lambda$ is 
+                        locally $\ad$-nilpotent} \}.
+  \]
+This is a conjugation-invariant subset of~$\Aut(\Lambda)$ but, in general,
+not a subgroup. We refer to G.~Freudenburg's book \cite{Freudenburg} for
+general information about locally nilpotent derivations, albeit in a
+commutative setting.
+
+\begin{Proposition}\label{prop:ad-nilpotent}
+The set of $\ad$-locally nilpotent elements in~$A$ is $\kk[x]$ and for each
+$f\in\kk[x]$ we have that
+  \[
+  \exp\ad(f)=\phi_{x^Nf',1}.
+  \]
+The set~$\Exp(A)$ coincides with $\{\phi_{f,1}:f\in x^N\kk[x]\}$ and is
+a normal subgroup of~$\Aut(A)$.
+\end{Proposition}
+
+The locally $\ad$-nilpotent elements of the first Weyl algebra were
+described by Dixmier in~\cite{Dixmier:3}*{Théorème 9.1}: when viewing the
+algebra as that of differential operators on the line, they are the
+elements that belong to the orbits of constant coefficient differential
+operators under the action of the automorphism group of the algebra. Here
+one could use the same description, but it is much less interesting: the
+automorphism group of a Weyl algebra is much larger.
+
+\begin{proof}
+For each $a\in\kk[x]\setminus0$ let us write
+$\nu(a)\coloneqq\max\{t\in\NN_0:a\in x^t\kk[x]\}$. On the other hand, if
+$u$ is an element of~$A$ that is not in~$\kk[x]$, then there exist $l\geq1$
+and $a_0$,~\dots,~$a_l\in\kk[x]$ such that $u=\sum_{i=0}^la_iy^i$ and
+$a_l\neq0$, and we will call the rational number $\slope(u)\coloneqq
+\nu(a_l)/l$ the \newterm{slope} of~$u$. We will start by showing that
+  
+\begin{claim}\label{eq:sl}
+  If $u$ and $v$ are elements of $A\setminus\kk[x]$ and
+  $\slope(v)>\slope(u)$, then $[u,v]\in A\setminus\kk[x]$ and
+  $\slope([u,v])>\slope(u)$.
+\end{claim}
+To do so, let $u$,~$v\in A\setminus\kk[x]$, so that there are
+$l$,~$m\geq1$, $a_0$,~\dots,~$a_l$, $b_0$,~\dots,~$b_m\in\kk[x]$ such that
+$u=\sum_{i=0}^la_iy^i$, $v=\sum_{j=0}^mb_jy^j$, $a_l\neq0$ and $b_m\neq0$,
+and let us suppose that $\slope(v)>\slope(u)$, so that
+  \[\label{eq:sl:1}
+  \nu(b_m)/m>\nu(a_l)/l.
+  \]
+We have that
+  \begin{align}
+  [u,v] 
+       &= \sum_{i=0}^l\sum_{j=0}^m
+          \Bigl(
+          a_i[y^i,b_j]y^j
+          +
+          b_j[a_i,y^j]y^i
+          \Bigr)
+       \equiv
+          a_l[y^l,b_m]y^m
+          +
+          b_m[a_l,y^m]y^l
+          \\
+     &\equiv x^N(la_lb_m' - mb_ma_l') y^{l+m-1} \mod F_{l+m-2}.
+        \label{eq:sl:2}
+  \end{align}
+There are $c$,~$d\in\kk[x]$ not divisible by~$x$ such that
+$a_l=x^{\nu(a_l)}c$ and $b_m=x^{\nu(b_m)}d$, and 
+  \[ \label{eq:sl:3}
+  la_lb_m' - mb_ma_l' 
+  = x^{\nu(a_l)+\nu(b_m)-1}
+    \Bigl(
+    \bigl(l\nu(b_m)-m\nu(a_l)\bigr)cd
+    +
+    x\bigl(lcd'-mdc'\bigr)
+    \Bigr).
+  \]
+If the left hand side of this equality is~$0$, then ---~since $x$ does not
+divide the product~$cd$~--- we have that $l\nu(b_m)-m\nu(a_l)=0$: this is
+absurd, since we are assuming that the inequality~\eqref{eq:sl:1} holds.
+Going back to~\eqref{eq:sl:2}, we see that $[u,v]\in F_{l+m-1}\setminus
+F_{l+m-2}$ and, in particular, that $[u,v]\in A\setminus\kk[x]$, since
+$l+m-1\geq1$. Moreover, in view of~\eqref{eq:sl:2} and~\eqref{eq:sl:3} and
+the fact that $x$ does not divide the product~$cd$, we have
+  \begin{align}
+  \slope([u,v]) 
+        &= \frac{\nu(a_l)+\nu(b_m)+N-1}{l+m-1}
+\intertext{and this is easily seen to be}
+        &> \frac{\nu(a_l)}{l} = \slope(u)
+  \end{align}
+using~\eqref{eq:sl:1} and the fact that $N\geq1$. This proves the
+claim~\eqref{eq:sl} above.
+
+Suppose now that $u$ is an element of~$A\setminus\kk[x]$, and let $m$ be an
+integer such that $m>\slope(u)$. If we put $v_i\coloneqq\ad(u)^i(x^my)$ for
+each non-negative integer~$i$, then an obvious induction
+using~\eqref{eq:sl}, starting with the observation that $v_0\in
+A\setminus\kk[x]$ and $\slope(v_0)=m>\slope(u)$, shows that $v_i\neq0$ for
+all $i\in\NN_0$. This proves that the element~$u$ is not locally
+$\ad$-nilpotent and, therefore, that the set of locally $\ad$-nilpotent
+element of~$A$ is contained in~$\kk[x]$.
+
+Conversely, if $f$ is an element of~$\kk[x]$ then we have that
+$\ad(f)(F_i)\subseteq F_{i-1}$ for all $i\in\NN_0$, so that
+$\ad(f)^{i+1}(F^i)=0$ for all $i\in\NN_0$: this shows that~$f$ is locally
+$\ad$-nilpotent and, with that, the first claim of the proposition.
+Moreover, a direct calculation show that $(\exp\ad(f))(x)=x$ and
+$(\exp\ad(f))(y)=y+x^Nf'$, so that $\exp\ad(f)$ is the
+automorphism~$\phi_{x^Nf',1}$. That $\Exp(A)$ is $\{\phi_{f,1}:f\in
+x^N\kk[x]\}$ is now clear, that it is a subgroup of~$\Aut(A)$ follows
+another simple calculation, and its normality is obvious.
+\end{proof}
+
+The subgroup of~$\Aut(A)$ generated by the exponentials of the locally
+$\ad$-nilpotent elements of~$A$, which we have just shown to be
+precisely~$\Exp(A)$, is cognate to the group of inner automorphisms of a
+Lie algebra ---~as given by Roger Carter in~\cite{Carter}*{\textsection 3.2}, for
+example~--- so it makes sense to view the quotient $\Aut(A)/\Exp(A)$ as a
+Lie-theoretic version of the \newterm{outer automorphism group} of~$A$. We
+will describe this quotient below. For comparison, the \emph{usual} inner
+automorphism group of~$A$, in the sense of associative algebras, is
+trivial, as the units of~$A$ are central, so that the usual outer
+automorphism group of~$A$ is just $\Aut(A)$. On the other hand, the X-inner
+automorphism group of~$A$ ---~that is, the group of automorphisms of~$A$
+that are restrictions of inner automorphisms of the Martindale left
+quotient ring of~$A$, considered originally by Vladislav K.\,Har\v{c}enko
+in~\citelist{\cite{Harchenko:1}\cite{Harchenko:2}}~--- is isomorphic
+to~$\ZZ$: this was computed by Jeffrey Bergen in~\cite{Bergen}*{Theorem~2.6}. 
+
+\begin{Corollary}\label{coro:aut-quot}
+Let $\xi$ be the class of $x$ in the quotient $Q\coloneqq\kk[x]/(x^N)$, let
+$\kk^\times$ act on the right on this quotient by algebra automorphisms in
+such a way that $\xi\cdot\lambda = \lambda\xi$ for all
+$\lambda\in\kk^\times$, and let $Q\bowtie\kk^\times$ be the group that as a
+set coincides with $Q\times\kk^\times$ and whose product is such that
+  \[
+  (p,\lambda)\cdot(q,\mu) = (\mu^{N-1}p+q\cdot\lambda,\lambda\mu)
+  \]
+whenever $(p,\lambda)$ and $(q,\mu)$ are two elements
+of~$Q\times\kk^\times$. The function
+  \[
+  Q\bowtie\kk^\times \to \frac{\Aut(A)}{\Exp(A)} 
+  \]
+that maps each pair $(f+(x^N),\lambda)$ to the class of the
+automorphism~$\phi_{f,\lambda}$ is an isomorphism of groups. The quotient
+$\Aut(A)/\Exp(A)$ has therefore a natural structure of Lie group over~$\kk$
+of dimension $N+1$, solvable of class~$2$ and, in fact, an extension of
+$\kk^N$ by $\kk^\times$. \qed
+\end{Corollary}
+
+The most interesting part of this is, of course, that dividing by the group
+of inner automorphisms allows us to go from the infinite-dimensional group
+$\Aut(A)$ to a finite-dimensional one. As elements of~$\Exp(A)$ has a
+tendency to act trivially on objects associated to~$A$, this is useful. The
+proof of the corollary is immediate given the description of have
+of~$\Aut(A)$ and of~$\Exp(A)$, and we omit it.
+
+\bigskip
+
+Let us determine now the locally nilpotent derivations of our algebra ---
+we already know those which are inner.
+
+\begin{Proposition}\mbox{}\label{prop:lnd}
+\begin{thmlist}
+
+\item If $g\in\kk[x]$, then there is a unique derivation $d_g:A\to A$ such
+that $d_g(x)=0$ and $d_g(y)=g$, it is locally nilpotent, it is inner
+exactly when $g\in x^N\kk[x]$, and for all $t\in\kk$ we have that
+$\exp(td_g) = \phi_{tg,1}$.
+
+\item If $d:A\to A$ is a locally nilpotent, there is exactly one
+polynomial~$g\in\kk[x]$ such that $d=d_g$.
+
+\end{thmlist}
+\end{Proposition}
+
+\begin{proof}
+Let $g$ be an element of~$\kk[x]$. That there is
+indeed a derivation~$d_g:A\to A$ such that $d_g(x)=0$ and $d_g(y)=g$
+follows by a trivial calculation using the presentation of~$A$. Since it is
+a derivation, for all $i$,~$j\in\NN_0$ we have that
+  \[
+  d_g(x^iy^j) 
+        = \sum_{s+1+t=j}x^iy^sgy^t
+        \equiv jgx^{i}y^{j-1} \mod F_{j-2}.
+  \]
+This implies that $d_g(F_j)\subseteq F_{j-1}$ for all $j\in\NN_0$ and, in
+particular, that $d_g$ is locally nilpotent. If $t\in\kk$, then
+$\exp(td_g)(x)=x$ because $d_g(x)=0$ and $\exp (td_g)(y)=y+td_g(y)=y+tg$
+because $d_g^2(y)=0$, and this tells us that
+$\exp(t\partial_0)=\phi_{tg,1}$.
+
+If there is an element~$a\in A$ such that $d_g=\ad(a)$, then
+$0=d_g(x)=[a,x]$, so that $a\in\kk[x]$ because of
+Lemma~\ref{lemma:centralizer:x}, and therefore $g=d_g(y)=[a,y]\in x^NA$.
+Conversely, if $g=x^Nh$ for some $h\in\kk[x]$ and we chose $k\in\kk[x]$
+such that $k'=-h$, then $d_g=\ad(k)$, so that $d_g$ is inner. With
+this we have proved all the claims in part~\thmitem{1} of the proposition.
+
+Next, let $d:A\to A$ be a locally nilpotent derivation of~$A$, so that, in
+particular, there are two non-negative integers~$l$ and~$m$ such that
+$d^{l+1}(x)=0$ and $d^{m+1}(y)=0$. As~$d$~is locally nilpotent, for each
+$t\in\kk$ we can consider the automorphism $\exp(td):A\to A$. In view of
+Proposition~\ref{prop:aut}, for each $t\in\kk$ there exist a non-zero
+scalar~$\lambda_t\in\kk^\times$ and a polynomial~$f_t\in\kk[x]$ such that
+$\exp(td)=\phi_{f_t,\lambda_t}$ and therefore
+  \[ \label{eq:dxy}
+  \sum_{i=0}^lt^i\frac{d^i(x)}{i!} = \lambda_t x, 
+  \qquad
+  \sum_{i=0}^mt^i\frac{d^i(y)}{i!} = \lambda_t^{N-1}y + f_t. 
+  \]
+Let $t_0$,~\dots,~$t_l$ be $l$ pairwise different elements of~$\kk$. The
+Vandermonde matrix built out of those $l+1$ scalars is invertible: it
+follows that from the $l+1$ equalities that we get from the first
+one in~\eqref{eq:dxy} by replacing~$t$ by each of~$t_0$,~\dots,~$t_l$ we
+can solve for~$d(x)$ and find that there is a scalar~$\alpha$ such that
+  \[ \label{eq:dxx}
+  d(x)=\alpha x.
+  \]
+Proceeding similarly with the second equation in~\eqref{eq:dxy} we see that
+there are a scalar~$\beta\in\kk$ and a polynomial~$g\in\kk[x]$ such that 
+  \[ \label{eq:dyy}
+  d(y)=\beta y+g.
+  \]
+
+Of course, we must have that $d(yx-xy-x^N)=0$, and writing this out we find
+that $\beta=(N-1)\alpha$. On the other hand, from~\eqref{eq:dxx}
+and~\eqref{eq:dyy} we can see immediately that there is a sequence of
+polynomial~$(g_n)_{n\geq0}$ in~$\kk[x]$ such that
+  \[
+  d^n(y) = (N-1)^n\alpha^n y + g_n
+  \]
+for all $n\in\NN_0$. As $d^m(y)=0$, this implies that $\alpha=0$. As $g$ is
+uniquely determined by the derivation~$d$, this proves the
+claim~\thmitem{2} of the proposition.
+\end{proof}
+
+This proposition allows us to give a particularly important example of a
+locally nilpotent derivation:
+
+\begin{Corollary}\label{coro:expp0}
+There is a derivation $\partial_0:A\to A$ such that $\partial_0(x)=0$ and
+$\partial_0(y)=x^{N-1}$, it is locally nilpotent, not inner, and
+  \[ \label{eq:expp0}
+  \exp(t\partial_0) = \sigma_t.
+  \]
+for all $t$. \qed
+\end{Corollary}
+
+Here $\sigma_t$ is the central automorphism of~$A$ that we described in
+Corollary~\ref{coro:center}, so the derivation~$\partial_0$ is an
+infinitesimal generator for the $1$-parameter subgroup of~$\Aut(A)$ that is
+its center. We will show later that the class of the
+derivation~$\partial_0$ generates the center of~$\HH^1(A)$. The point of
+the following remark is that this derivation is also of Poisson-theoretic
+interest.
+
+\begin{Remark}\label{rem:modular}
+In proving this proposition we have noted that $\partial_0(F_j)\subseteq
+F_{j-1}$ for all $j\in\NN_0$, and this implies immediately that the
+derivation $\partial_0$ induces a derivation $\overline\partial_0:\gr
+A\to\gr A$ on the associated graded algebra~$\gr A$ of~$A$ such that
+  \[
+  \overline\partial_0(\overline x)=0,
+  \qquad
+  \overline\partial_0(\overline y)=\overline x^{N-1}.
+  \]
+This is a Poisson derivation of~$\gr F$ and, in fact, it is the
+\newterm{modular derivation} of that Poisson algebra, in the sense of Alan
+Weinstein in~\cite{Weinstein}, that is, the map
+  \[ \label{eq:md}
+  f\in\gr A\mapsto \div H_f\in\gr A.
+  \]
+As a consequence of this, the morphism in Corollary~\ref{coro:center} that,
+according to Corollary~\ref{coro:expp0}, arises by exponentiation
+from~$\partial_0$, is precisely the \newterm{modular flow} of the Poisson
+algebra $\gr A$. In~\eqref{eq:md} we have written
+$H_f\coloneqq\{f,\place\}$ for the Hamiltonian derivation corresponding to
+an element~$f$ of~$\gr A$, and $\div$ for the divergence operator, so that 
+  \[
+  X\lact\d\overline x\wedge\d\overline y 
+        = \div L\cdot\d\overline x\wedge\d\overline y
+  \]
+for each $X\in\Der(\gr A)$, with $\lact$ the action of vector fields on
+differential forms.
+\end{Remark}
+
+\begin{Remark}
+The derivation~$\partial_0$ is not inner, but it is a «logarithmic
+derivation» in that
+  \[
+  \partial_0(a) = \frac{1}{x}[x,a]
+  \]
+for all $a\in A$. Here the right hand side of the equality is, in
+principle, an element of the localization~$A_x$ of~$A$ at~$x$, but it turns
+out to be in~$A$.
+\end{Remark}
+
+Knowing the locally nilpotent derivations we obtain another nice subgroup
+of~$\Aut(A)$.
+
+\begin{Corollary}\mbox{}\label{coro:aut-0}
+\begin{thmlist}
+
+\item The set $\LND(A)$ of all locally nilpotent derivations of~$A$ is an
+abelian subalgebra of the Lie algebra~$\Der(A)$ of all derivations of~$A$.
+
+\item The set of the exponentials of the elements of~$\LND(A)$ is the
+normal abelian subgroup 
+  \[
+  \Aut_0(A) \coloneqq \{\phi_{g,1}:g\in\kk[x]\}
+  \]
+of~$\Aut(A)$. 
+
+\item The function $\det:\Aut(A)\to\kk^\times$ such that
+$\det(\phi_{f,\lambda})=\lambda$ whenever $f\in\kk[x]$ and
+$\lambda\in\kk^\times$ is a morphism of groups. The sequence
+  \[
+  \begin{tikzcd}
+  0 \arrow[r]
+    & \Aut_0(A) \arrow[hook, r]
+    & \Aut(A) \arrow[r, "\det"]
+    & \kk^\times \arrow[r]
+    & 1
+  \end{tikzcd}
+  \]
+is an extension of groups that is split by the morphism
+$\lambda\in\kk^\times\mapsto\phi_{0,\lambda}\in\Aut(A)$. \qed
+
+\end{thmlist}
+\end{Corollary}
+
+All this follows immediately from Proposition~\ref{prop:lnd}. This
+corollary describes the algebraic actions of the additive group $\GG_a$ on
+the algebra~$A$. Indeed, such a thing is the same thing as a right
+algebra-comodule structure on~$A$ over the coordinate Hopf algebra~$\kk[t]$
+of~$\GG_a$, which is a coassociative morphism of algebras $\phi:A\to
+A\otimes\kk[t]$. In fact, a linear map $A\to A\otimes\kk[t]$ is determined
+by a sequence $(\phi_i)_{i\geq0}$ of linear maps~$A\to A$ such that for
+each $a\in A$ the sequence $(\phi_i(a))_{i\geq0}$ has almost all its
+components equal to zero and $\phi(a)=\sum_{i=0}^\infty\phi_i(a)$, and it
+is a algebra-comodule structure on~$A$ over~$\kk[x]$ exactly when
+$\phi_1:A\to A$ is a locally nilpotent derivation and $\phi_i=\phi_1^i/i!$
+for all $i\in\NN_0$.
+
+It should be remarked that the space of locally nilpotent derivations of an
+algebra is most often not a subalgebra of the Lie algebra of
+derivations of the algebra.
+
+\bigskip
+
+On the end of the spectrum opposite to where the $\GG_a$-actions lie are
+the actions of finite groups. With the description of the automorphism
+group of our algebra that we have we can easily find these. Later,
+in Section~\ref{sect:taft}, we will consider more generally coactions of
+some finite-dimensional Hopf algebras --- and that will require considerably
+more work.
+
+\begin{Proposition}\label{prop:finite-subgroups}\mbox{}
+\begin{thmlist}
+
+\item If $\phi$ is an element of~$\Aut(A)$ of finite order~$m$, then exists
+a unique $\lambda\in\kk^\times$ of order exactly~$m$ such that $\phi$ is
+conjugated in~$\Aut(A)$ to~$\phi_{0,\lambda}$.
+
+\item If $\lambda$ is an element of order~$m$ in~$\kk^\times$, then the
+automorphism $\phi_{0,\lambda}$ has order~$m$, and if 
+$G\coloneqq\gen{\phi_{0,\lambda}}$ is the subgroup of~$\Aut(A)$ generated
+by it, then the subalgebra~$A^G$ of invariants
+under~$G$ is the $m$th Veronese subalgebra
+$A^{(m)}=\bigoplus_{i\geq0}A_{mi}$.
+
+\item Every finite subgroup of~$\Aut(A)$ is cyclic, and conjugated to the
+subgroup generated by~$\phi_{0,\lambda}$, with $\lambda$ a root of unity
+in~$\kk$. 
+
+\end{thmlist}
+\end{Proposition}
+
+The first two parts of the proposition imply that for all $m\in\NN$ the
+number of conjugacy classes of~$\Aut(A)$ of elements of order~$m$ coincides
+with the number of elements of order~$m$ in~$\kk^\times$. On the other
+hand, the third part tells us that set of conjugacy classes of finite
+subgroups of~$\Aut(A)$ are in bijection with the set of integers~$m$ such
+that there is a primitive $m$th root of unity in~$\kk$, the bijection being
+given by taking the order.
+
+\begin{proof}
+Let $(f,\lambda)\in\kk[x]\bowtie\kk^\times$, let $k\in\NN$ and let us
+suppose that the automorphism~$\phi_{f,\lambda}$ has order~$k$. Since
+  \[
+  \phi_{f,\lambda}^k(x) = \lambda^kx,
+  \qquad
+  \phi_{f,\lambda}^k(y) = \lambda^{k(N-1)}y
+        + \sum_{i=0}^{k-1}\lambda^{i(N-1)}f(\lambda^{k-1-i}x),
+  \]
+we see that $\lambda^k=1$, so that $\lambda$ has finite order
+in~$\kk^\times$, and that 
+  \[ \label{eq:fxk}
+  \sum_{i=0}^{k-1}\lambda^{i(N-1)}f(\lambda^{k-1-i}x) = 0.
+  \]
+Let $m$ be the order of~$\lambda$ in~$\kk^\times$, so that $m$ divides~$k$.
+If $h\in\kk[x]$, then
+  \begin{align}
+  (\phi_{h,1}\circ\phi_{f,\lambda}\circ\phi_{h,1}^{-1})(x)
+    &= \lambda x,
+    \\
+  (\phi_{h,1}\circ\phi_{f,\lambda}\circ\phi_{h,1}^{-1})(y)
+    &= \lambda^{N-1}y+f(x)+\lambda^{N-1}h(x)-h(\lambda x)
+  \end{align}
+This tells us that replacing~$f$ by
+$f+\lambda^{N-1}h(x)-h(\lambda x)$ does not change the conjugacy class
+of~$\phi_{f,\lambda}$ in~$\Aut(A)$ and,
+as the subspace 
+  \(
+  \gen[\Big]{\lambda^{N-1}h(x)-h(\lambda x):h\in\kk[x]}
+  \)
+of~$\kk[x]$ is spanned by the monomials $x^d$ with $d\not\equiv N-1\mod m$,
+that up to conjugacy we can suppose that the polynomial~$f$ is a linear
+combination of monomials~$x^d$ with $d\equiv N-1\mod m$. It is easy to
+check now that when that is the case the left hand side of the
+equality~\eqref{eq:fxk} is equal to~$kf(\lambda^{k-1}x)$, and therefore
+that equality implies that $f=0$, since our ground field has
+characteristic zero. This shows that every element of~$\Aut(A)$ of finite
+order is conjugated to one of the form~$\phi_{0,\lambda}$ with $\lambda$ an
+element of finite order in~$\kk^\times$, and that of course the order
+of~$\phi_{0,\lambda}$ is equal to the order of~$\lambda$. To complete the
+proof of the first part of the proposition we need only notice that if
+$\lambda$ and~$\mu$ are two elements of~$\kk^\times$ the automorphisms
+$\phi_{0,\lambda}$ and~$\phi_{0,\mu}$ are conjugated in~$\Aut(A)$ exactly
+when $\lambda=\mu$: this is an immediate consequence of the fact that the
+map 
+  \[ \label{eq:pi}
+  \pi:\phi_{f,\lambda}\in\Aut(A)\mapsto\lambda\in\kk^\times
+  \]
+is a morphism of groups.
+
+If $m\in\NN$ and $\lambda$ is an element of order~$m$ in~$\kk^\times$, then
+$\phi_{0,\lambda}(x^iy^j)=\lambda^{i+j(N-1)}x^iy^j$. We see immediately
+from this that the subalgebra fixed by~$\phi_{0,\lambda}$, and by the
+cyclic group it generates, is spanned by the monomials~$x^iy^j$ with $m\mid
+i+j(N-1)$, that is, whose degree is divisible by~$m$. The claim~\thmitem{2}
+of the proposition follows at once from this.
+
+Suppose now that $G$ is a finite subgroup of $\Aut(A)$. If  $f$ and $g$ are
+two elements of~$\kk[x]$ and $\lambda$ one of~$\kk^\times$ such that
+$\phi_{f,\lambda}$ and~$\phi_{g,\lambda}$ are both in~$G$, then the
+composition $\phi_{f,\lambda}\circ\phi_{g,\lambda}$ has finite order and
+maps~$x$ and~$y$ to $x$ and to~$y+\lambda^{-N+1}(f-g)$, respectively: it
+follows immediately from this that $f=g$. This means that the map~$\pi$
+from~\eqref{eq:pi} is injective when restricted to~$G$ and therefore $G$ is
+isomorphic to a finite subgroup of~$\kk^\times$ and, in particular, cyclic.
+If $\phi$ is a generator of~$G$ and $m$ is the order of~$G$, we have seen
+above that there is a primitive $m$th root of unity~$\lambda$ in~$\kk$ such
+that $\phi$ is conjugated to~$\phi_{0,\lambda}$ and, therefore, $G$ is
+conjugated to~$\gen{\phi_{0,\lambda}}$.
+\end{proof}
+
+Proposition~\ref{prop:finite-subgroups} gives us a classification of the
+finite subgroups of~$\Aut(A)$ and their corresponding invariant
+subalgebras, and it is natural to consider the classical problem of classifying
+these up to isomorphism. This seems to be a rather complicated problem, as
+even giving presentations for them is not easy. We will content ourselves
+with describing two «extreme» instances of this problem.
+
+Let $\lambda$ be a root of unity in~$\kk$, let $m$ be its order, and let us
+suppose that $m>1$. We let $G$ be the subgroup generated
+by~$\phi_{0,\lambda}$ in~$\Aut(A)$, which has order~$m$, so that the
+invariant subalgebra~$A^G$ is the $m$th Veronese
+subalgebra~$A^{(m)}$ of~$A$. 
+\begin{thmlist}
+
+\item\label{it:ag:1} Suppose first that $m$ divides $N-1$, and let $k$ be
+the integer such that $N-1=km$. The invariant subalgebra~$A^G$ is easily
+seen to be generated by~$x^n$ and $y$ and, since
+  \[
+  yx^n-x^ny=nx^{n+N-1}=n(x^n)^k,
+  \]
+isomorphic to $A_k=\kk\lin{x,y}/(yx-xy-x^k)$. We will see below, in
+Corollary~\ref{coro:n-inv}, that as $m$ varies among the $\phi(N-1)$
+positive divisors of~$N-1$ the algebras that we obtain in this way are
+pairwise non-isomorphic. These algebras can obviously be generated by two
+elements and not by one.
+
+\item Suppose now that $N-1$ divides properly~$m$, and let $l$ be the
+integer such that $m=l(N-1)$, which is at least~$2$. In this situation the
+subalgebra~$A^G$ is generated by the $m$th homo\-geneous component of~$A$,
+which has dimension $l+1$, so that that $A^G$ can be generated by~$l+1$
+elements. On the other hand, $A^G$ cannot be generated by~$l$ elements:
+indeed, if there existed $l$ elements~$a_1$,~\dots,~$a_l$ in~$A^G$ that
+generate it as an algebra, the homogeneous components of those elements of
+degree~$m$ would generate the $m$th homo\-geneous component of~$A$, and
+this is absurd. We thus see that $A^G$ is minimally generated by~$l+1$
+elements and that therefore the subalgebras that we obtain in this way are
+pairwise non-isomorphic and, since $l\geq2$, also non-isomorphic to any of
+the algebras that we found in~\ref{it:ag:1}.
+
+\end{thmlist}
+The smallest case not covered by these considerations is that in which
+$N=3$ and $m=3$.

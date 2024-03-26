@@ -1,0 +1,292 @@
+\section{Hochschild cohomology}
+\label{sect:cohomology}
+
+In this section we present a rather effortless calculation of the
+Hochschild cohomology of the algebra~$A$. Our approach is directly targeted
+at obtaining completely explicit representatives of cohomology classes.
+As before, we suppose throughout that $N\geq1$. The Hochschild cohomology
+of the first Weyl algebra, the algebra we get when $N=0$, is
+well-know to be the same as that of the ground field --- this was computed
+originally by Ramaiyengar Sridharan in~\cite{Sridharan}.
+
+\bigskip
+
+Let $V$ be the subspace of~$A$ spanned by~$x$ and~$y$, let $V^*$ be its
+dual vector space, and let $(\hat x,\hat y)$ be the ordered basis of~$V ^*$
+dual to~$(x,y)$. There is a projective resolution~$P_*$ of~$A$ as an $A$-bimodule
+of the form
+  \[ \label{eq:res}
+  \begin{tikzcd}
+  0 \arrow[r]
+    & A\otimes\Lambda^2V\otimes A\arrow[r, "d_2"]
+    & A\otimes V\otimes A\arrow[r, "d_1"]
+    & A\otimes A
+  \end{tikzcd}
+  \]
+with differentials such that
+  \begin{align}
+  d_1(1\otimes x\otimes 1) 
+        &= x\otimes 1-1\otimes x, \\
+  d_1(1\otimes y\otimes 1) 
+        &= y\otimes 1-1\otimes y, \\
+  d_2(1\otimes x\wedge y\otimes 1) 
+        &= 
+         \begin{multlined}[t][0.6\displaywidth]
+          y\otimes x\otimes 1 + 1\otimes y\otimes x
+          - x\otimes y\otimes 1 - 1\otimes x\otimes y \\
+          - \sum_{s+1+t=N}x^s\otimes x\otimes x^t
+         \end{multlined}
+  \end{align}
+and augmentation $\epsilon:A\otimes A\to A$ given by the multiplication
+of~$A$. Clearly, $V$ is a homogeneous subspace of~$A$, and if we endow it
+with the induced grading, and in turn $\Lambda^2V$ with the grading induced
+by that of~$V$ and each component of the complex~\eqref{eq:res} with the
+obvious tensor product gradings, that complex becomes a complex of graded
+$A$-bimodules. Applying to it the functor~$\hom_{A^e}(-,A)$ we obtain, up
+to standard identifications, the cochain complex
+  \[ \label{eq:comp}
+  \begin{tikzcd}
+    & A \arrow[r, "\delta_0"]
+    & A\otimes V^* \arrow[r, "\delta_1"]
+    & A\otimes \Lambda^2V^* \arrow[r]
+    & 0
+  \end{tikzcd}
+  \]
+with differentials such that
+  \begin{align}
+  \delta_0(a) &= [x,a]\otimes\hat x+[y,a]\otimes\hat y, \\
+  \delta_1(b\otimes\hat x+c\otimes\hat y) &=
+    \left([y,b] + [c,x] - \sum_{s+1+t=N}x^sbx^t\right)
+    \otimes\hat x\wedge\hat y
+  \end{align}
+for all choices of~$a$, $b$ and~$c$ in~$A$. The cohomology of this complex
+is canonically isomorphic to the Hochschild cohomology~$\HH^\bullet(A)$
+of~$A$, and we \emph{identify} the two. If we grade~$V^*$ so that $\hat x$
+and~$\hat y$ have degrees~$-1$ and~$-(N-1)$, respectively, then the
+complex~\eqref{eq:comp} is one of graded vector spaces and homogeneous maps
+of degree~$0$, and, consequently, its cohomology~$\HH^\bullet(A)$ is also
+graded. This grading on Hochschild cohomology coincides with the canonical
+grading it gets from the fact that the algebra~$A$ is graded and has a free
+resolution as a graded bimodule over itself by finitely generated free
+bimodules --- we will not belabor this point, but it is important that the
+grading we found is \emph{the} grading on~$\HH^\bullet(A)$.
+
+\bigskip
+
+The hardest part of the calculation is that of~$\HH^1(A)$, and we will
+leave it for the end, as we will do it in a rather indirect way. As for
+that of~$\HH^0(A)$, we have actually already done it:
+
+\begin{Lemma}
+The $0$th cohomology space $\HH^0(A)$, the kernel of the map~$\delta_0$, is
+$\kk$, and its Hilbert series is therefore $h_{\HH^0(A)}(t) = 1$.
+\end{Lemma}
+
+\begin{proof}
+We established in Proposition~\ref{prop:center} that the center of~$A$,
+which coincides with the kernel of the map~$\delta_0$, is~$\kk$ and then
+that its Hilbert series is~$1$ is clear. 
+\end{proof}
+
+We know from Lemma~\ref{lemma:normal} that $x^N$ is a normal element
+in~$A$, so that the right ideal~$x^NA$ is a bilateral ideal. Moreover, that
+ideal is related to commutators in the following way:
+
+\begin{Lemma}\label{lemma:xN}
+We have $[A,x]=[A,A]=x^NA$.
+\end{Lemma}
+
+\begin{proof}
+If $i$,~$j\geq0$, then 
+  \[
+  [x^iy^j,x] 
+        = \sum_{s+1+t=j}x^iy^s[y,x]y^t
+        = \sum_{s+1+t=j}x^iy^sx^Ny^t
+        \in x^NA
+  \]
+because~$x^NA$ is an ideal, and this implies that $[A,x]\subseteq x^NA$.
+
+To prove the reverse inclusion, we will show that $x^{i+N}y^j\in[A,x]$ for
+all $i$,~$j\geq0$ by induction on~$j$. If $j\geq0$ and
+$x^{i+N}y^k\in[A,x]$ for all $i\geq0$ and all $k\in\{0,\dots,j-1\}$ ---~this
+hypothesis is vacuous when $j=0$, and this starts the induction~--- then
+there is an $u\in F_{j-1}$ such that $[x^iy^{j+1},x] = (j+1)x^{i+N}y^j +
+u$ and, because of the hypothesis, a $v\in A$ such that $u=[v,x]$: we then
+have that $x^{i+N}y^j=[(j+1)^{-1}x^iy^{j+1}-v,x]\in[A,x]$. The induction is
+thus complete.
+
+If $i$,~$j$,~$k$,~$l\geq0$, then we have
+  \[
+  [x^iy^j,x^ky^l]
+        = x^i[y^j,x^k]y^l + x^k[x^i,y^l]y^j,
+  \]
+so to prove that $[A,A]$ is contained in~$x^NA$, and thus the rest of the
+equalities asserted by the lemma, it is enough to compute
+that
+  \[
+  [y^j,x^k]
+        = \sum_{\substack{s+1+t=j\\u+1+v=k}}
+                y^sx^u[y,x]x^vy^t
+        \in x^NA
+  \]
+because~$[y,x]=x^N$ and $x^NA$ is a bilateral ideal.
+\end{proof}
+
+The description of~$[A,A]$ that we have now allows us to compute~$\HH^2(A)$
+easily.
+
+\begin{Lemma}
+The image of the map~$\delta_1$ is $x^{N-1}A\otimes\hat x\wedge\hat y$, and
+therefore 
+  \[
+  \HH^2(A)\cong A/x^{N-1}A\otimes\hat x\wedge\hat y.
+  \]
+If $N=1$ then this is of course~$0$, and if $N\geq2$, so that $\HH^2(A)$ is
+graded with finite-dimensional homogeneous components, then the
+Hilbert series if this space is
+  \[
+  h_{\HH^2(A)}(t) = \frac{t^{-N}}{1-t}.
+  \]
+\end{Lemma}
+
+\begin{proof}\allowdisplaybreaks
+For all $c\in A$ we have $\delta_1(c\otimes\hat y)=[c,x]\otimes\hat
+x\wedge\hat y$, and this, together with Lemma~\ref{lemma:xN}, tells us that
+$x^NA\otimes\hat x\wedge\hat y=\delta_1(A\otimes\hat
+y)\subseteq\img\delta_1$. On the other hand, if $i$,~$j\geq0$, we have that
+  \begin{align}
+  \delta_1(x^iy^j\otimes\hat x)
+        &= \left([y,x^iy^j] - \sum_{s+1+t=N}x^{s+i}y^jx^t\right)
+           \otimes\hat x\wedge\hat y \\
+        &= \left(ix^{i+N-1}y^j - \sum_{s+1+t=N}x^{s+i}y^jx^t\right)
+           \otimes\hat x\wedge\hat y \\
+        &= \left((i-N)x^{i+N-1}y^j - \sum_{s+1+t=N}x^{s+i}[y^j,x^t] \right)
+           \otimes\hat x\wedge\hat y. 
+  \end{align}
+According to Lemma~\ref{lemma:xN}, the sum appearing in this last
+expression is an element of~$x^NA$: it follows from this that
+$\delta_1(x^iy^j\otimes\hat x)\subseteq x^{N-1}A$, and then that
+  \[
+  x^NA 
+        \subseteq \img\delta_1 
+        = \delta_1(A\otimes\hat x)+\delta_1(A\otimes\hat y)
+        \subseteq x^{N-1}A + x^{N}A = x^{N-1}A.
+  \]
+Moreover, for each $j\geq0$ we have that
+  \[
+  \delta_1(y^j\otimes\hat x)
+        = \left(-Nx^{N-1}y^j - \sum_{s+1+t=N}x^s[y^j,x^y] \right)
+           \otimes\hat x\wedge\hat y.
+  \]
+Since the sum appearing here is in~$x^NA$ it is equal to~$[b,x]$ for
+some~$b\in A$ and therefore
+  \[
+  -Nx^{N-1}y^j\otimes\hat x\wedge\hat y = \delta_1(y^j\otimes\hat x+b\otimes\hat y) 
+        \in \img\delta_1.
+  \]
+Putting everything together we conclude that $\img\delta_1=x^{N-1}A$, as
+we want. Finally, the quotient $A/x^{N-1}A$ is freely spanned by the
+classes of the monomials~$x^iy^j$ with $0\leq i<N-1$ and $j\geq0$, and
+there is exactly one such monomial of each degree in~$\NN_0$: the Hilbert
+series of~$A/x^{N-1}A$ is thus $(1-t)^{-1}$, and the Hilbert series
+of~$\HH^2(A)$ is as described in the lemma, because of the factor~$\hat
+x\wedge\hat y$.
+\end{proof}
+
+At this point we know the Hilbert series of~$\HH^0(A)$ and of~$\HH^2(A)$,
+and we can use the invariance of the Euler characteristic of a complex
+under the operation of taking cohomology to determine the Hilbert series
+of~$\HH^1(A)$.
+
+\begin{Proposition}\label{prop:hh1-series}
+If $N\geq2$, then
+the Hilbert series of~$\HH^1(A)$ is
+  \[
+  h_{\HH^1(A)}(t) = 1 + \frac{t^{-N+1}}{1-t},
+  \]
+so that for all integers~$l$ we have that
+  \[
+  \dim\HH^1(A)_l =
+    \begin{cases*}
+    2 & if $l=0$; \\
+    1 & if $l\geq-N+1$ and $l\neq0$; \\
+    0 & if $l\leq -N$.
+    \end{cases*}
+  \]
+\end{Proposition}
+
+\begin{proof}
+The Hilbert series
+of~$A$ is
+  \[
+  h_A(t) = \frac{1}{(1-t)(1-t^{N-1})},
+  \]
+and then the Euler characteristic of the complex~\eqref{eq:comp} is
+  \[
+  h_A(t) - (t^{-1}+t^{-(N-1)})h_A(t)+t^{-N}h_A(t) = t^{-N}.
+  \]
+The invariance of the Euler characteristic when passing to cohomology
+implies now that
+  \[
+  t^{-N} = h_{\HH^0(A)}(t) - h_{\HH^1(A)}(t) + h_{\HH^2(A)}(t),
+  \]
+and one can compute~$h_{\HH^1(A)}(t)$ from this equality, since we know the
+values of both $h_{\HH^0(A)}(t)$ and~$h_{\HH^2(A)}(t)$, finding the formula
+given in the proposition.
+\end{proof}
+
+In Proposition~\ref{prop:hh1-series} we excluded the case in which $N=1$,
+which is special --- for one thing, the graded algebra~$A_N$ is not locally
+finite-dimensional in that case, so we cannot even talk about its Hilbert
+series! Let us deal with it now for the sake of completeness.
+
+\begin{Proposition}\label{prop:hh1-n1}
+If $N=1$, then there is a derivation~$d_0:A\to A$ such that $d_0(x)=0$
+and~$d_0(y)=1$. It is homogeneous of degree~$0$, and its cohomology class
+freely spans the vector space~$\HH^1(A)$, which is thus $1$-dimensional and
+concentrated in degree~$0$.
+\end{Proposition}
+
+When $N=1$ the map $\ad(y):u\in A\mapsto [y,u]\in A$ acts on elements of
+each degree~$l\in\ZZ$ by multiplication by~$l$. We will use this fact in
+the proof.
+
+\begin{proof}
+A trivial calculation shows that there is indeed a derivation~$d_0:A\to A$
+with $d_0(x)=0$ and $d_0(y)=1$, and it is clearly homogeneous of
+degree~$0$. Were it inner, we would have an element~$c$ such that $[x,c]=0$
+and $[y,c]=1$: the first equality implies that $c\in\kk[x]$, and then the
+second one that $x^Nc'=1$, which is absurd.
+
+Let now $d:A\to A$ be an arbitrary homogeneous derivation and let $l$ be
+its degree. If~$a\coloneqq d(x)$ and~$b\coloneqq d(y)$, then $a$ and~$b$
+are homogeneous of~$A$ of degree~$l+1$ and~$l$, respectively. As $d$ is a
+derivation, we have that
+  \[ \label{eq:zero}
+  0 = d([y,x]-x) = [b,x] + [y,a] - a = [b, x] + la.
+  \]
+If $l\neq0$ this tells us that $a=-\frac{1}{l}[b,x]$, and using this we see
+at once that $d$ is the inner derivation~$\tfrac{1}{l}\ad(b)$. Let us then
+suppose that $l=0$. Now the equality above tells us that $b$
+commutes with~$x$, so that is an homogeneous element of~$\kk[x]$ of
+degree~$0$: in other words, we have $b\in\kk$. On the other hand, since $a$
+has degree~$1$, there is an $f\in\kk[y]$ such that $a=xf$. There exists a
+$g\in\kk[y]$ such that $f=g(y+1)-g(y)$, and then $[g,x]=a$. The
+derivation~$d'\coloneqq d-\ad(g)$ is therefore homogeneous of degree~$0$,
+cohomologous to~$d$, and has $d'(x)=0$ and $d'(y)=b$. We can thus conclude
+that every homogeneous derivation is cohomologous lo a multiple of the
+derivation~$d_0$. This proves the proposition.
+\end{proof}
+
+If we are asked for a reason explaining the difference between the case in
+which $N=1$ and that in which $N\geq2$ exhibited by the last two results, a
+good candidate for an answer is the following. Whatever the value of~$N$,
+the algebra~$A$ has a grading, $A=\bigoplus_{j\geq0}A_j$, and there is
+therefore a derivation $E:A\to A$ such that for all $j\geq0$ the
+component~$A_j$ is invariant under~$E$ and the restriction~$E|_{A_j}:A_j\to
+A_j$ is simply multiplication by the scalar~$j$. This is a diagonalizable
+derivation and the homogeneous components of~$A$ are precisely its
+eigenspaces. Now a difference arises: if $N=1$, the derivation~$E$ is
+inner, since it coincides with~$\ad(y)$, while if~$N\geq2$ the derivation
+not inner. This is behind the collapse of~$\HH^1(A)$ that occurs when
+$N=1$.

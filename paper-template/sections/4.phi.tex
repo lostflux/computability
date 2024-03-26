@@ -1,0 +1,333 @@
+\section{A sequence of special elements in our algebra}
+\label{sect:phi}
+
+In the next section we will exhibit explicit derivations that freely span
+the first cohomology vector space of our algebra,~$\HH^1(A)$, and to do
+that we will need some calculations that we carry out in this one.
+Despite the fact that we will use these results there only when $N\geq2$,
+in this section we work with an arbitrary $N$ in~$\NN$, because when $N=1$
+something interesting happens.
+
+\begin{Lemma}\label{lemma:phi}
+For each $j\geq1$ there exists a unique element~$\Phi_j$ in~$Ay$
+homogeneous of degree $j(N-1)$ such that $[\Phi_j,x]=x^Ny^{j-1}$, and it is
+such that 
+  \[
+  \Phi_j\equiv\frac{1}{j}y^{j}-\frac{N}{2}x^{N-1}y^{j-1}\mod F_{j-2}
+  \]
+when $j\geq2$ and $\Phi_1=y$ when $j=1$.
+\end{Lemma}
+
+\begin{proof}
+The existence and uniqueness of the elements~$\Phi_j$ is an immediate
+consequence of the exactness of the sequence of graded vector spaces
+  \[
+  \begin{tikzcd}
+  0 \arrow[r]
+    & \kk[x] \arrow[r, hook]
+    & A \arrow[r, "\ad(x)"]
+    & x^NA \arrow[r]
+    & 0
+  \end{tikzcd}
+  \]
+together with the fact that $Ay$ is a complement for~$\kk[x]$ in~$A$. 
+It is clear that $\Phi_1=y$. Suppose now that $j\geq2$.
+Since $\Phi_j$ is homogeneous of degree~$k(N-1)$
+there are scalars $a_0$,~$a_1$,~\dots,~$a_{j}$ in~$\kk$ such that
+$\Phi_j=\sum_{i=0}^{j}a_ix^{i(N-1)}y^{j-i}$, and then working
+modulo~$F_{j-3}$ we have that
+  \begin{align}
+  x^Ny^{j-1} 
+       &= [\Phi_j,x]
+        = \sum_{i=0}^{j-1}a_ix^{i(N-1)}[y^{j-i},x]
+        \equiv a_0[y^j,x]+a_1x^{N-1}[y^{j-1},x] \\
+       &\equiv ja_0x^Ny^{j-1} 
+               +(j-1)\left(\frac{a_0Nj}{2}+a_1\right)x^{2N-1}y^{j-2}
+  \end{align}
+so that $\alpha_0=1/j$ and $a_1=-N/2$. The last claim of the lemma follows
+from this.
+\end{proof}
+
+Let us consider a variable~$q$ and the sequence~$(c_i)_{i\geq0}$ of
+elements of $\QQ[q]$ such that
+  \[ \label{eq:ci}
+  \sum_{i=0}^j\frac{(1)_{q,j+1-i}}{(j+1-i)!}  \frac{c_i(q)}{i!}
+        = \delta_{j,0}
+  \]
+for all $j\in\NN_0$. This condition recursively determines the
+sequence starting with $c_0=1$. 
+
+\begin{table}
+\small\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{\hskip2em}r@{\hskip3pc}c@{\hskip2em}}
+$i$ & $c_i(q)$ \\ \toprule
+$0$ & $1$ 
+		\\ \midrule
+$1$ & $-\frac{1}{2} q - \frac{1}{2}$ 
+		\\ \midrule
+$2$ & $-\frac{1}{6} q^{2} + \frac{1}{6}$ 
+		\\ \midrule
+$3$ & $-\frac{1}{4} q^{3} + \frac{1}{4} q$ 
+		\\ \midrule
+$4$ & $-\frac{19}{30} q^{4} + \frac{2}{3} q^{2} - \frac{1}{30}$ 
+		\\ \midrule
+$5$ & $-\frac{9}{4} q^{5} + \frac{5}{2} q^{3} - \frac{1}{4} q$ 
+		\\ \midrule
+$6$ & $-\frac{863}{84} q^{6} + 12 q^{4} - \frac{7}{4} q^{2} 
+        + \frac{1}{42}$ 
+		\\ \midrule
+$7$ & $-\frac{1375}{24} q^{7} + 70 q^{5} - \frac{105}{8} q^{3} 
+        + \frac{5}{12} q$ 
+		\\ \midrule
+$8$ & $-\frac{33953}{90} q^{8} + 480 q^{6} - \frac{1624}{15} q^{4} 
+        + \frac{50}{9} q^{2} - \frac{1}{30}$ 
+		\\ \midrule
+$9$ & $-\frac{57281}{20} q^{9} + 3780 q^{7} - \frac{9849}{10} q^{5} 
+        + 70 q^{3} - \frac{21}{20} q$ 
+		\\ \midrule
+$10$ & $-\frac{3250433}{132} q^{10} + 33600 q^{8} - \frac{29531}{3} q^{6} 
+        + \frac{5345}{6} q^{4} - \frac{91}{4} q^{2} + \frac{5}{66}$ 
+		\\ \midrule
+$11$ & $-\frac{1891755}{8} q^{11} + 332640 q^{9} - \frac{214995}{2} q^{7} 
+        + \frac{47025}{4} q^{5} - \frac{3465}{8} q^{3} + \frac{15}{4} q$ 
+		\\ \bottomrule
+\end{tabular}
+\caption{The polynomials $c_i(q)$ for small values of~$i$.}
+\label{tbl:ciq}
+\end{table}
+
+We want to give a few properties of these polynomials, and in order to do
+that we need two classical sequences of rational numbers: that of the
+Bernoulli numbers $(B_j)_{j\geq0}$ and of the Gregory
+coefficients~$(G_i)_{i\geq1}$. The first one is uniquely characterized by
+the equalities
+  \[
+  \sum_{i=0}^j\binom{j+1}{i}B_i = \delta_{j,0}, \qquad\forall j\geq0
+  \]
+and the second one by the equalities
+  \[
+  G_1 = \frac{1}{2},
+  \qquad
+  \sum_{i=1}^j (-1)^{i+1}\frac{G_i}{j+1-i} = \frac{1}{j+1}, 
+  \qquad\forall j\geq2.
+  \]
+For convenience we put additionally~$G_0=1$. The second sequence is not
+particularly famous, but quite a bit of information about it can be found
+in the article \cite{MSV} that deals with the sequence of Cauchy numbers
+$(C_j)_{j\geq0}$, which has $C_j=G_j/j!$ for all $j\geq0$. The numbers in
+our sequence appear in the  formula for approximate integration discovered
+by James Gregory in~1668, and that is why they are named after him ---
+there is also a crater in the Moon (located at
+\href{https://trek.nasa.gov/moon/#v=0.1&x=127.2&y=2.2&z=5&p=urn%3Aogc%3Adef%3Acrs%3AEPSG%3A%3A104903&d=&locale=&b=moon}{N$2^\circ12'0''$
+E$127^\circ12'0''$}) that carries his name: his work was mostly on
+Astronomy. One of the ways these numbers enter the theory of approximate
+integration is through the fact for all non-negative integers~$j$ we have
+  \[
+  G_j = \int_0^1\binom{x}{j}\,\d x.
+  \]
+
+The exponential generating function of the Bernoulli numbers and the
+ordinary generating function of the Gregory coefficients are, respectively, 
+ \[ \label{eq:gen:b}
+ \sum_{j\geq0}B_j\frac{t^j}{j!} = \frac{t}{e^t-1},
+ \qquad
+ \sum_{j\geq0}G_jt^j = \frac{z}{\ln(1+z)}.
+ \]
+It can be checked that none of the Gregory coefficients vanish.
+
+\begin{table}
+  \small\centering
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{@{}c@{\hspace{2em}}*{11}{c}@{}}
+  $n$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 
+    \\ \toprule
+  $B_n$ 
+    & $1$ 
+    & $-\frac{1}{2}$ 
+    & $\frac{1}{6}$ 
+    & $0$ 
+    & $-\frac{1}{30}$ 
+    & $0$ 
+    & $\frac{1}{42}$ 
+    & $0$ 
+    & $-\frac{1}{30}$ 
+    & $0$ 
+    & $\frac{5}{66}$ 
+    \\ \midrule
+  $G_n$ 
+    & $1$ 
+    & $\frac{1}{2}$ 
+    & $-\frac{1}{12}$ 
+    & $\frac{1}{24}$ 
+    & $-\frac{19}{720}$ 
+    & $\frac{3}{160}$ 
+    & $-\frac{863}{60480}$ 
+    & $\frac{275}{24192}$ 
+    & $-\frac{33953}{3628800}$ 
+    & $\frac{8183}{1036800}$ 
+    & $-\frac{3250433}{479001600}$ 
+  \end{tabular}
+\caption{The first Bernoulli numbers and Gregory coefficients.}
+\end{table}
+
+\begin{Lemma}\label{lemma:cj}
+For each $j\geq0$ the polynomial~$c_j(q)$ has degree~$j$, leading
+coefficient $(-1)^jj!G_j$ and constant term $B_j$.
+The exponential generating series of the sequence $(c_j(q))_{j\geq0}$ is
+  \[ \label{eq:gen}
+  \sum_{j\geq0}c_j(q)\frac{t^j}{j!} = \frac{t}{(1-qt)^{-1/q}-1}.
+  \]
+\end{Lemma}
+
+The limit as $q$ approaches~$0$ (taken in~$\CC$, of course) of the function
+that appears in the right hand side of this last equality is the
+exponential generating function for the Bernoulli numbers that we wrote
+in~\eqref{eq:gen:b}.
+
+\begin{proof}
+Setting~$q$ to~$0$ in~\eqref{eq:ci} we see that for all $j\in\NN_0$ we have
+that
+  \[
+  \sum_{i=0}^j c_i(0)\binom{j+1}{i} = \delta_{j,0},
+  \]
+and comparing this with the defining recurrence equation for the Bernoulli
+numbers shows that for all~$j\in\NN_0$ the constant term of~$c_j$ is~$B_j$.
+As $c_0(q)=1$ and $c_1(q)$ is the constant polynomial~$1$, it is clear that
+its degree and its leading coefficient are~$0$ and~$(-1)^00!G_0$,
+respectively. On the other hand, if $j>0$, then according to~\eqref{eq:ci}
+we have that
+  \[
+  \frac{c_j(q)}{j!} 
+    = -\sum_{i=0}^{j-1} \frac{(1)_{q,j+1-i}}{(j+1-i)!}\frac{c_i(q)}{i!}
+  \]
+and, since $(1)_{q,j+1-i}$ is a polynomial of degree~$j-i$ and leading
+coefficient~$(j-i)!$, the first claim of the lemma follows by induction
+from the definition of the Gregory coefficients and the fact that they are
+all non-zero.
+
+Finally, the left hand side of the defining equation~\eqref{eq:ci} is the
+coefficient of~$t^j$ in the product
+  \[
+  \sum_{j\geq0}c_j(q)\frac{t^j}{j!}
+  \cdot
+  \sum_{j\geq0}\frac{(1)_{q,j+1}}{(j+1)!}t^j,
+  \]
+whose second factor sums to $((1-qt)^{-1/q}-1)/t$: the
+equality~\eqref{eq:gen} follows from this.
+\end{proof}
+
+Using the polynomials~$c_j(q)$ we are able to write down explicitly the
+elements~$\Phi_j$ from Lemma~\ref{lemma:phi}.
+
+\begin{Proposition}\mbox{}\label{prop:phi}
+For each $j\geq1$ we have 
+  \[ \label{eq:psi}
+  \Phi_j = 
+        \frac{1}{j}
+        \sum_{i=0}^{j-1}
+        \binom{j}{i}
+        c_i(N-1)
+        x^{i(N-1)}y^{j-i}.
+  \]
+\end{Proposition}
+
+\begin{proof}
+Let us work in the algebra~$A[[t]]$ of formal power series with
+coefficients in~$A$. An easy induction shows that
+$\ad(y)^j(x) = (1)_{N-1,j}x^{1+j(N-1)}$
+for all $j\in\NN_0$, so that
+  \[
+  e^{yt}xe^{-yt} 
+        = \sum_{j\geq0}\ad(y)^j(x)\frac{t^j}{j!} 
+        = \sum_{j\geq0}(1)_{N-1,j}x^{1+j(N-1)}t^j 
+        = x\,(1-(N-1)x^{N-1}t)^{-\frac{1}{N-1}}
+  \]
+and
+  \[ \label{eq:exp}
+  [e^{yt},x] 
+        = \bigl(e^{yt}xe^{-yt}-x\bigr)e^{yt}
+        = x\left(
+                \left(1-(N-1)x^{N-1}t)^{-\frac{1}{N-1}}\right)
+                -1
+           \right)e^{yt}.
+  \]
+If we write~$\Psi_j$ the right hand side of the equality~\eqref{eq:psi}
+that we want to prove, we have that
+  \begin{align}
+  \sum_{j\geq1}\Psi_j\frac{t^{j-1}}{(j-1)!}
+  &= \sum_{j\geq0}c_j(N-1)\frac{x^{j(N-1)}t^j}{j!}
+      \cdot
+      \sum_{j\geq1} \frac{y^jt^j}{j!} \\
+  &= \frac{x^{N-1}t}{(1-(N-1)x^{N-1}t)^{-1/(N-1)}-1}
+     \cdot
+     \frac{e^{yt}-1}{t}, 
+  \end{align}
+so that
+  \begin{align}
+  \sum_{j\geq1}[\Psi_j,x]\frac{t^{j-1}}{(j-1)!}
+   = \frac{x^{N-1}t}{(1-(N-1)x^{N-1}t)^{-1/(N-1)}-1}
+     \cdot
+     \left[\frac{e^{yt}-1}{t},x\right]
+   = x^{N}e^{yt},
+  \end{align}
+using~\eqref{eq:exp} to obtain the last equality. Looking at the
+coefficients in these series, we see that $[\Psi_j,x]=x^Ny^{j-1}$ for all
+$j\in\NN$. Since $\Psi_j$ is homogeneous of degree~$j(N-1)$ and belongs
+to~$Ay$, we can conclude that $\Psi_i=\Phi_j$, as the proposition claims.
+\end{proof}
+
+Let us single out three special cases of this proposition.
+\begin{itemize}
+
+\item If $N=1$, then for all~$j\geq1$ we have
+  \[ \label{eq:bern}
+  \Phi_j = \frac{1}{j}\sum_{i=0}^{j-1}\binom{j}{i}B_iy^{j-i}
+        = \frac{B_j(y)-B_j}{j}, 
+  \]
+with $B_j(t)\coloneqq\sum_{i=0}^j\binom{j}{i}B_it^{j-i}\QQ[t]$, the usual
+$j$th Bernoulli polynomial. The last member of this equality appears in the
+famous Faulhaber formula for the sums of powers of the first integers: for
+any $n$,~$p\in\NN$ we have
+  \[
+  \frac{B_p(n) - B_p}{p} = \sum_{k=0}^{n-1} k^{p-1}.
+  \]
+It would be interesting to know what is behind this.
+
+\item If $N=2$, then the right hand side of the equality~\eqref{eq:gen}
+that appears in
+Lemma~\ref{lemma:cj} with $q=N-1=1$ is simply $1-t$, so that
+  \[
+  c_0(1) = 1, 
+  \qquad
+  c_1(1) = -1,
+  \qquad
+  c_j(1) = 0 \quad\text{if $j\geq2$.}
+  \]
+It follows from this and the proposition that for all $j\in\NN$ we have
+  \[
+  \Phi_j
+        = \frac{y^j-jxy^{j-1}}{j}.
+  \]
+
+\item If $N=3$, then the right hand side of~\eqref{eq:gen}  with $q=N-1=2$
+simplifies to 
+  \[
+  \frac{\sqrt{1-2t}-(1-2t)}{2},
+  \]
+and we obtain its Taylor series at once from Newton's binomial series,
+getting
+  \[
+  c_0(2) = 1, 
+  \qquad
+  c_1(2) = -\frac{3}{2},
+  \qquad
+  c_j(2) = -\frac{(2j-3)!!}{2} \quad\text{if $j\geq2$.}
+  \]
+From this we can get explicit yet unenlightening  descriptions of the
+elements~$\Phi_j$.
+
+\end{itemize}
+If $N\geq4$ and we put $q=N-1$ in~\eqref{eq:gen}, then the coefficients of
+the series do not seem to have a simple form --- they do not appear in the
+OEIS \cite{OEIS}. 

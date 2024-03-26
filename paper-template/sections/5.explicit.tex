@@ -1,0 +1,224 @@
+\section{Explicit representatives for classes in
+\texorpdfstring{$\HH^1(A)$}{HH1(A)}}
+\label{sect:explicit}
+
+In this section, as promised, we will give explicit derivations
+representing the elements of~$\HH^1(A)$ when $N\geq2$. We start with a
+simple observation that allows us to show that some derivations are not
+inner.
+
+\begin{Lemma}\label{lemma:not-inner}
+Let $d:A\to A$ be a derivation.
+\begin{thmlist}
+
+\item If $d(x)=0$, then $d(y)\in\kk[x]$.
+
+\item If $d$ is inner, then $d(x)\in x^NA$. If additionally $d(x)=0$, then
+also $d(y)\in x^N\kk[x]$.
+
+\end{thmlist}
+\end{Lemma}
+
+\begin{proof}
+\thmitem{1} If $d(x)=0$, then $0 = d([y,x]-x^N) = [d(y),x]$, and $d(y)$ is
+in the centralizer of~$x$ in~$A$, which we know to be equal to~$\kk[x]$.
+
+\thmitem{1} If $d$ is inner, then there is an $u\in A$ such
+that $d(a)=[u,a]$ for all $a\in A$ and, in particular, $d(x)=[u,x]\in
+[A,x]=x^NA$. If additionally $d(x)=0$, then $[u,x]=0$ and therefore
+$u\in\kk[x]$: it follows from this that $d(y)=[u,y]=x^Nu'\in  x^N\kk[x]$.
+\end{proof}
+
+The simplest derivations of our algebra are those of non-positive degree.
+We describe them in the following result.
+
+\begin{Proposition}\label{prop:hh1-low}
+Suppose that $N\geq2$. For each $l\in\inter{-N+1,0}$ there is a derivation
+$\partial_l:A\to A$ of degree~$l$ such that
+  \begin{align}
+  \partial_l(x) &= 0, 
+  &
+  \partial_l(y) &= x^{l+N-1},
+\intertext{and there is a derivation $E:A\to A$ of degree~$0$ such that}
+  E(x) &= x, 
+  &
+  E(y) &= (N-1)y.
+  \end{align}
+For each $l\in\inter{-N+1,-1}$ the space~$\HH^1(A)_l$ is freely
+spanned by the class of~$\partial_l$, and $\HH^1(A)_0$ is freely spanned
+by~$\partial_0$ and~$E$. 
+\end{Proposition}
+
+The derivation~$\partial_0$ is the same one we encountered in
+Corollary~\ref{coro:expp0}.
+
+\begin{proof}
+A very simple calculation shows that there are indeed derivations of~$A$ as
+described in the statement of the proposition, and they manifestly have the
+degrees given there. None of the derivations
+$\partial_{-N+1}$,~\dots,~$\partial_0$ and~$E$ is inner ---~this follows
+immediately from the second part of Lemma~\ref{lemma:not-inner}, because
+$N\geq2$~--- and then, in view of Proposition~\ref{prop:hh1-series}, we see
+that second claim of the proposition holds.
+\end{proof}
+
+To deal with classes in~$\HH^1(A)$ of positive degree, we start by showing
+that they have a representative with a useful normalization:
+
+\begin{Lemma}\label{lemma:normalization}
+Suppose that $N\geq2$. Let $l$ be a positive integer, and let $i$ and $j$
+be the integers such that $l+1=i+j(N-1)$, $j\geq0$, and $1\leq i\leq
+N-1$. There exists a derivation $d:A\to A$ that is homogeneous of
+degree~$l$, is not inner, and has $d(x)  = x^iy^j$.
+\end{Lemma}
+
+\begin{proof}
+Let $l$ be a positive integer. The vector space $\HH^1(A)_l$ has
+dimension~$1$. We pick a derivation~$d:A\to A$ homogeneous of degree~$l$
+whose cohomology class spans that vector space. The element~$d(x)$ of~$A$
+is then homogeneous of degree~$l+1$, and we can write it in the form
+$u+x^Nv$ with $u$ an homogeneous element of
+$P\coloneqq\sum_{k=0}^{N-1}x^k\kk[y]$ of degree~$l+1$, and $v$ a
+homogeneous element of~$A$ of degree~$l+1-N$. There is a $w\in A$ such that
+$[w,x]=x^Nv$, and it can be taken to be homogeneous of degree~$l$: the
+derivation $d'\coloneqq d-\ad(w)$ is then homogeneous of degree~$l$,
+cohomologous to~$d$, and has $d'(x)\in P$. The upshot of all this is that
+we could have simply chosen our original derivation~$d$ so that $d(x)$ is
+in~$P$ from the start, and we do so now.
+
+An homogeneous element of degree~$l+1$ in~$P$, such as $d(x)$, is a linear
+combination of the monomials of the form $x^ry^s$ with $r+s(N-1)=l+1$ and
+$0\leq r<N$. We consider now two cases.
+\begin{itemize}
+
+\item Suppose first that $N-1\nmid l+1$, so that in each such monomial we
+have in fact that $1\leq r<N-1$, and therefore that~$r$ and~$s$ are
+necessarily equal to~$i$ and~$j$, respectively: in particular, there is
+exactly one such monomial, $x^iy^j$, and there is thus a scalar~$\alpha$
+such that $d(x)=\alpha x^iy^j$.
+
+\item Suppose next that $N-1\mid l+1$, so that $i=N-1$. There are
+now two monomials of degree~$l+1$ in~$P$, namely $x^{N-1}y^{j}$ and
+$y^{j+1}$, and there are scalars~$\alpha$ and~$\beta$ such that $d(x) = \alpha
+x^{N-1}y^{j} + \beta y^{j+1}$. As
+  \begin{align}
+  0 &= d([y,x]-x^N)
+     = [d(y),x] + [y,d(x)] - \sum_{s+1+t=N}x^sd(x)x^t \\
+    &= [d(y),x] + \alpha(N-1)x^{2N-2}y^{j} 
+         - \alpha \sum_{s+1+t=N}x^{s+N-1}y^{j}x^t  
+         - \beta\sum_{s+1+t=N}x^sy^{j+1}x^t
+       \\
+    &\equiv -\beta Nx^{N-1}y^{j+1} \mod(F_{j}+x^NA),
+  \end{align}
+the scalar~$\beta$ is actually~$0$.
+\end{itemize}
+The end result of all this is that in any case there is a scalar~$\alpha$
+such that $d(x) = \alpha x^iy^j$. If $\alpha$ is~$0$, then the first part
+of Lemma~\ref{lemma:not-inner} tells us that $d(y)\in\kk[x]$ and, since
+$d(y)$ is a homogeneous element of degree~$l+N-1$, that in fact there is a
+scalar~$\gamma$ such that $d(y)=\gamma x^{l+N-1}$: this is impossible,
+since in that case we have $d=\gamma\ad(x^l)$, and the derivation~$d$ is
+not inner. The derivation $\alpha^{-1}d$ thus satisfies the condition we
+want.
+\end{proof}
+
+With the same idea that we used in the end of this proof we can also obtain
+the following criterion that allows us to prove a derivation is inner:
+
+\begin{Lemma}\label{lemma:cut}
+Suppose that $N\geq2$. Let $l$ be a positive integer, and let $i$ and $j$
+be the integers such that $l+1=i+j(N-1)$, $j\geq0$, and $1\leq i\leq N-1$.
+A homogeneous derivation $d:A\to A$ of degree~$l$ such that $d(x)\in
+F_{j-1}$ is inner.
+\end{Lemma}
+
+\begin{proof}
+Let $d:A\to A$ be a homogeneous derivation of degree~$l$ such that $d(x)$
+belongs to~$F_{j-1}$. There are then scalars $a_1$,~\dots,~$a_j$ in~$\kk$
+such that $d(x)=\sum_{k=1}^ja_kx^{i+k(N-1)}y^{j-k}$ and therefore $d(x)\in
+x^NA$. As we know, this implies that there is an element~$u$ in~$A$, which
+can be chosen of degree~$l$, such that $d(x)=[u,x]$, and therefore the
+derivation $d'\coloneqq d-\ad(u)$ is homogeneous of degree~$l$ and vanishes
+on~$x$. According to the first part of Lemma~\ref{lemma:not-inner}, we have
+$d'(y)\in k[x]$, so that in view of the homogeneity of~$d'$ there is a
+scalar~$b$ in~$\kk$ such that $d'(y)=bx^{l+N-1}=-\frac{b}{l}[x^{l},y]$.
+It follows from this that $d=\ad(u)-\frac{b}{l}\ad(x^{l})$, and this
+proves the lemma.
+\end{proof}
+
+We need yet one more commutation identity. We promise it is the last one.
+
+\begin{Lemma}\label{lemma:identity}
+For each element $u$ of $A$ we have that
+  \begin{equation*}
+  \sum_{s+1+t=N}x^sux^t - Nx^{N-1}u
+        = \left[
+          \sum_{s+2+t=N}(s+1)x^sux^t,x
+          \right].
+  \end{equation*}
+\end{Lemma}
+
+\begin{proof}
+The identity can be proved by expanding the commutators
+appearing in its right hand side and simplifying.
+\end{proof}
+
+Using all these results, we can finally exhibit representatives for classes
+in~$\HH^1(A)$:
+
+\begin{Proposition}\label{prop:hh1-high}
+Suppose that $N\geq2$. Let $l$ be a positive integer, and let $i$ and~$j$
+be the integers such that $l+1=i+j(N-1)$, $j\geq0$, and $1\leq i\leq N-1$.
+The vector space~$\HH^1(A)_l$ is spanned by a derivation $\partial_l:A\to
+A$ that is homogeneous of degree~$l$ and such that
+  \[
+  \partial_l(x) = x^iy^j,
+  \qquad
+  \partial_l(y) = \sum_{s+2+t=N}(s+1)x^{s+i}y^jx^t + (N-i)x^{i-1}\Phi_{j+1}.
+  \]
+\end{Proposition}
+
+The element~$\Phi_j$ appearing here is the one from
+Proposition~\ref{prop:phi} of Section~\ref{sect:phi}. In this proposition
+the integer~$l$ is assumed to be positive: we can observe that if we allow
+it to be~$0$, then the formulas in the statement actually do also produce a
+derivation of degree~$0$ that maps~$x$ and~$y$ to~$x$ and to
+$N(N-1)x^{N+1}/2+(N-1)y$, and that this is the derivation
+$E+N(N-1)\partial_0/2$ that we have already found in
+Proposition~\ref{prop:hh1-low}.
+
+\begin{proof}
+Let $d:A\to A$ be a derivation that is homogeneous of degree~$l$
+and not inner, and that satisfies the condition of
+Lemma~\ref{lemma:normalization}, so that $d(x)=x^iy^j$. As $[y,x]-x^N=0$
+in~$A$, we have, using the result of Lemma~\ref{lemma:identity}, that
+  \begin{align}
+  [d(y),x] 
+        &= \sum_{s+1+t=N}x^sd(x)x^t - [y,d(x)]  \\
+        &= \left[
+           \sum_{s+2+t=N}(s+1)x^{s+i}y^jx^t,x
+           \right] 
+           + (N-i)x^{i+N-1}y^j,
+  \end{align}
+and therefore that
+  \[
+  \left[
+  d(y) - \sum_{s+2+t=N}(s+1)x^{s+i}y^jx^t - (N-i)x^{i-1}\Phi_{j+1},
+  x
+  \right]
+  = 0.
+  \]
+If follows from this that there exists an $f\in\kk[x]$ such that
+  \[
+  d(y) = \sum_{s+2+t=N}(s+1)x^{s+i}y^jx^t + (N-i)x^{i-1}\Phi_{j+1}+ f.
+  \]
+Clearly $f$ has to be homogeneous of degree~$l+N-1$, so equal to
+$(l+N-1)\lambda x^{l+N-1}$ for some~$\lambda\in\kk$. The derivation
+$\partial_l\coloneqq d-\lambda\ad(x^{l-1}y)$, which is cohomologous to~$d$,
+is as in the statement of the theorem.
+\end{proof}
+
+We remark the nice fact that we were able exhibit the derivation
+in~Proposition~\ref{prop:hh1-high} without needing to prove that it
+actually is a derivation ---~which is probably a very unpleasant
+calculation! 

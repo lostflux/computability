@@ -1,0 +1,62 @@
+\begin{problem}
+  Let $f : \R \to \R$ with
+    \[
+      f(x) = \begin{cases}
+        0 & \text{ if } x \in \R \setminus \Q \text{ (i.e. not rational).}\\
+        \frac{1}{q} & \text{ if } x \colonequals \frac{p}{q} \in \Q
+        \text{ with $p, q$ coprime and $q > 0$}.
+      \end{cases}
+    \]
+  Show that $\displaystyle \int\limits_0^1 f(x) \d x$ exists and is equal to $0$.\\
+  \underline{Hint:} Use the Lebesgue criterion for integrability.
+    In particular, you need to determine at what points $f$ is continuous.
+\end{problem}
+
+% \begin{answer}
+  \begin{claim}
+    $\displaystyle \int\limits_0^1 f(x) \d x$ exists.
+  \end{claim}
+  \begin{proof}
+    We are given that $f$ is only nonzero for rational numbers of the form $p/q$,
+    where $p, q \in \N$ and $p, q$ are coprime.
+    Since the rational numbers are countable, $\Q$ has Lebesgue measure zero,
+    meaning that the set of points where $f$ is nonzero,
+    which is a subset of $\Q$, also has measure zero.
+    By the Lebesgue criterion, $f$ is Riemann integrable on $[0, 1]$
+    since the set of points where $f$ is discontinuous has measure zero,
+    so $\displaystyle \int\limits_0^1 f(x) \d x$ exists.
+  \end{proof}
+
+  \begin{claim}
+    $\displaystyle \int\limits_0^1 f(x) \d x = 0$.
+  \end{claim}
+  \begin{proof}
+    Given a partition $P_n$ of $[0, 1]$ into $n$ subintervals,
+    \blue{\[
+      L(f, P) = \sum_{i=1}^n m_i \Delta x_i
+              \leq \int \limits_0^1 f(x) \d x
+              \leq \sum_{i=1}^n M_i \Delta x_i
+              = U(f, P),
+    \]}
+    where $m_i = \inf\set{f(x) : x \in [x_{i-1}, x_i]}$ and
+    $M_i = \sup\set{f(x) : x \in [x_{i-1}, x_i]}$.
+    Furthermore;
+    \begin{equation}
+      L(f, P) = \sum_{i=1}^n m_i \Delta x_i
+              = \sum_{i=1}^n 0 \cdot \Delta x_i
+              = 0
+    \end{equation}
+    and
+    \begin{equation}
+      U(f, P) = \sum_{i=1}^n M_i \Delta x_i.
+    \end{equation}
+    Since the set of points where $f$ is nonzero has measure zero,
+    as we make the partitions finer and finer, $M_i \Delta x_i$ will
+    approach $0$ for all $i$, so $U(f, P)$ will also approach $0$
+    (since only a smaller subset will have nonzero $M_i$).
+    On the other hand, $L(f, P)$ will always be $0$.
+    For any $\epsilon > 0$, take $P_\epsilon$ to be a partition such that
+    $U(f, P_\epsilon) < \epsilon$, then $U(f, P_\epsilon) - L(f, P_\epsilon) < \epsilon$.
+    Therefore, $\displaystyle \int\limits_0^1 f(x) \d x = 0$.
+  \end{proof}
+  % \end{answer}
