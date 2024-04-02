@@ -1,0 +1,28 @@
+\begin{problem}
+  Prove that the set of ordered pairs of natural numbers $(x, y)$
+  such that $x \leq y$ is computable by providing a register machine
+  which takes $n$ and $m$ as imputs in $R_0$ and $R_1$ respectively
+  and outputs $1$ if $n \leq m$ and $0$ in $R_2$ otherwise.
+
+  \begin{answer}
+    % draw tikz picture
+
+    \begin{figure}[H]
+      \centering
+      \begin{tikzpicture}
+        \node[state, initial] (q0) at (0, 0) {start};
+        \node[state, right of=q0] (q1) {stop};
+        % \node[subtraction] (sub) {$R_0 - R_1$};
+        \node (sub1) [subtraction, right of=q1] {$R_0^-$};
+        \node (add1) [addition, right of=sub1] {$R_1^+$};
+
+
+        % EDGES
+        \draw (q0) edge[above] node {$0, 1$} (q1)
+              (q1) edge[loop above, above] node {$0, 1$} (q1);
+      \end{tikzpicture}
+      \caption{Only accept the empty string.}
+      \label{fig:empty}
+    \end{figure}
+  \end{answer}
+\end{problem}
