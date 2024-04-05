@@ -7,6 +7,63 @@
   $n \cdot m$ in $R_2$ --- as a black box function labeled $M$.
 
   \begin{answer}
-    
+    \begin{figure}[H]
+      \centering
+      \begin{tikzpicture}
+        \node[state, initial] (start) at (0, 0) {start};
+
+        \node (sub0) [subtraction, right of=start] {$R_0^-$};
+        \node (add1) [addition, right of=sub0] {$R_1^+$};
+        \node (add2) [addition, right of=add1] {$R_2^+$};
+        \node (sub2) [subtraction, below of=sub0] {$R_2^-$};
+        \node (add0) [addition, right of=sub2] {$R_0^+$};
+        \node (mult) [blackbox,  below of=sub2] {$M$};
+        \node (sub1) [subtraction, below of=mult] {$R_1^-$};
+        \node (sub2-2) [subtraction, below of=sub1] {$R_2^-$};
+        \node (add1-2) [addition, right of=sub2-2] {$R_1^+$};
+        \node (stop) [state, below of=sub2-2] {stop};
+        % \node[state, right of=q0] (q1) {stop};
+
+        % EDGES
+        \draw (start) edge[above] node {} (sub0)
+              (sub0) edge[above] node {} (add1)
+              (add1) edge[above] node {} (add2)
+              (add2) edge[bend right, above] node {} (sub0)
+              
+              (sub0) edge[left] node {$e$} (sub2)
+              (sub2) edge[bend right, above] node {} (add0)
+              (add0) edge[bend right, above] node {} (sub2)
+              (sub2) edge[left] node {$e$} (mult)
+              (mult) edge[left] node {} (sub1)
+              (sub1) edge[loop right, left] node {} (sub1)
+              (sub1) edge[left] node {$e$} (sub2-2)
+              (sub2-2) edge[bend right, above] node {} (add1-2)
+              (add1-2) edge[bend right, above] node {} (sub2-2)
+              (sub2-2) edge[left] node {$e$} (stop);
+      \end{tikzpicture}
+      \caption{Calculate $f: n \mapsto n^2$ for $n \in \omega$.}
+      \label{fig:square}
+    \end{figure}
+
+    \newpage
+    % write algorithm
+    \begin{algorithm}[H]
+      \caption{Calculate $f: n \mapsto n^2$ for $n \in \omega$.}
+        \While(\comment*[f]{Copy $n$ to $R_1$ and $R_2$, which sets $R_0 = 0$}){$(\newterm{status} \coloneq R_0 - 1) \neq e$}{
+          $R_1 \gets R_1 + 1$ \\
+          $R_2 \gets R_2 + 1$
+        }
+        \While(\comment*[f]{Move $n$ from $R_2$ back to $R_0$}) {$(\newterm{status} \coloneq R_2 - 1) \neq e$}{
+          $R_0 \gets R_0 + 1$
+        }
+        \textbf{call} $M$ \comment*[f]{Call $M$ to populate $R_2$ with $n^2 \coloneq R_0 \cdot R_1$} \\
+        \While(\comment*[f]{Set $R_1 \gets 0$}) {$(\newterm{status} \coloneq R_1 - 1) \neq e$}{
+          % $R_1 \gets R_1 - 1$
+          $\mathbf{continue}$
+        }
+        \While(\comment*[f]{Move $n^2$ from $R_2$ to $R_1$}) {$(\newterm{status} \coloneq R_2 - 1) \neq e$}{
+          $R_1 \gets R_1 + 1$
+        }
+    \end{algorithm}
   \end{answer}
 \end{problem}

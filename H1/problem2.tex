@@ -3,7 +3,40 @@
   and diverges otherwise.
 
   \begin{answer}
-    % draw tikz picture
+    \begin{figure}[H]
+      \centering
+      \begin{tikzpicture}
+        \node[state, initial] (start) at (0, 0) {start};
+        \node[subtraction, right of=start] (sub0-1) {$R_0^-$};
+        \node[subtraction, right of=sub0-1] (sub0-2) {$R_0^-$};
+        \node[subtraction, right of=sub0-2] (sub0-3) {$R_0^-$};
+        \node[addition, below of=sub0-2] (add2) {$R_2^+$};
+        \node[state, right of=add2] (stop) {stop};
+
+        % EDGES
+        \draw (start) edge[above] node {} (sub0-1)
+              (sub0-1) edge[above] node {} (sub0-2)
+              (sub0-2) edge[above] node {} (sub0-3)
+              (sub0-2) edge[left] node {$e$} (add2)
+              (sub0-1) edge[left] node {$e$} (add2)
+              (sub0-3) edge[below] node {} (add2)
+              (add2) edge[loop below, below] node {} (add-2)
+              (sub0-3) edge[left] node {$e$} (stop);
+      \end{tikzpicture}
+      \caption{Converge if there is a $2$ in $R_0$ and diverge otherwise.}
+      \label{fig:diverge}
+    \end{figure}
+
+    % write algorithm
+    \begin{algorithm}[H]
+      \caption{Converge if there is a $2$ in $R_0$ and diverge otherwise.}
+        \While(\comment*[f]{Decrement $n$}){$R_0 \neq 0$}{
+          $R_0 \gets R_0 - 1$
+        }
+        \If(\comment*[f]{If $n = 0$, then $m \geq n$}){$R_0 = 0$}{
+          $R_2 \gets R_2 + 1$
+        }
+    \end{algorithm}
     
   \end{answer}
 \end{problem}
