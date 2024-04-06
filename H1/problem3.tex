@@ -7,10 +7,11 @@
   $n \cdot m$ in $R_2$ --- as a black box function labeled $M$.
 
   \begin{answer}
+    \subsection*{Register Machine}
     \begin{figure}[H]
       \centering
       \begin{tikzpicture}
-        \node[state, initial] (start) at (0, 0) {start};
+        \node[state, initial] (start) at (0, 0) {\newterm{start}};
 
         \node (sub0) [subtraction, right of=start] {$R_0^-$};
         \node (add1) [addition, right of=sub0] {$R_1^+$};
@@ -21,7 +22,7 @@
         \node (sub1) [subtraction, below of=mult] {$R_1^-$};
         \node (sub2-2) [subtraction, below of=sub1] {$R_2^-$};
         \node (add1-2) [addition, right of=sub2-2] {$R_1^+$};
-        \node (stop) [state, below of=sub2-2] {stop};
+        \node (stop) [state, below of=sub2-2] {\newterm{stop}};
         % \node[state, right of=q0] (q1) {stop};
 
         % EDGES
@@ -41,14 +42,33 @@
               (add1-2) edge[bend right, above] node {} (sub2-2)
               (sub2-2) edge[left] node {$e$} (stop);
       \end{tikzpicture}
-      \caption{Calculate $f: n \mapsto n^2$ for $n \in \omega$.}
+      \caption{Calculate $f: n \mapsto n^2$ for $n \in \N$.}
       \label{fig:square}
     \end{figure}
 
     \newpage
+    \subsection*{Idea}
+    I found it useful to categorize the machine into five general parts
+    (by height in Figure~\ref{fig:square}):
+
+    \begin{enumarabic}
+      \item \newterm{start}
+      \item Copy $n$ to $R_1$ and $R_2$, which sets $R_0 \gets 0$.
+      \item Copy $n$ from $R_2$ back to $R_0$.
+      \item Call $M$ to calculate $R_2 \gets R_0 \cdot R_1 = n \cdot n = n^2$.
+      \item Set $R_1 \gets 0$.
+      \item Move $n^2$ from $R_2$ to $R_1$.
+      \item \newterm{stop}
+    \end{enumarabic}
     % write algorithm
+    \subsection*{Algorithm}
+    I wrote this to convince myself that the machine works as I intended. \\
+    Please disregard if irrelevant.
+
+    \step
     \begin{algorithm}[H]
-      \caption{Calculate $f: n \mapsto n^2$ for $n \in \omega$.}
+      \caption{Calculate $f: n \mapsto n^2$ for $n \in \N$.}
+        \newterm{start} \\
         \While(\comment*[f]{Copy $n$ to $R_1$ and $R_2$, which sets $R_0 = 0$}){$(\newterm{status} \coloneq R_0 - 1) \neq e$}{
           $R_1 \gets R_1 + 1$ \\
           $R_2 \gets R_2 + 1$
@@ -59,11 +79,12 @@
         \textbf{call} $M$ \comment*[f]{Call $M$ to populate $R_2$ with $n^2 \coloneq R_0 \cdot R_1$} \\
         \While(\comment*[f]{Set $R_1 \gets 0$}) {$(\newterm{status} \coloneq R_1 - 1) \neq e$}{
           % $R_1 \gets R_1 - 1$
-          $\mathbf{continue}$
+          $\mathbf{loop}$
         }
         \While(\comment*[f]{Move $n^2$ from $R_2$ to $R_1$}) {$(\newterm{status} \coloneq R_2 - 1) \neq e$}{
           $R_1 \gets R_1 + 1$
         }
+        \newterm{stop}
     \end{algorithm}
   \end{answer}
 \end{problem}

@@ -4,10 +4,55 @@
   The Gaussian rationals are complex nunbers of the form
   $\set{ r + si \given r, s \in \Q}$.
   Provide a bijection between the Gaussian rationals
-  and $\omega$. \\
+  and $\N$. \\
   \emph{Prove that it is a bijection}.
 
   \begin{answer}
-    This... is a bijection.
+    We can provide a bijection between the Gaussian rationals
+    and $\N$ by using the Cantor Pairing Function.
+    The Cantor Pairing Function is defined as $p: \N \times \N \to \N$ with
+    \[
+      p(x, y) = \frac{1}{2}(x + y)(x + y + 1) + y.
+    \]
+    $p$ is a bijection~\footnote{We used this in class. Do I need to show that it is a bijection?}.
+    We can construct a correspondence between the Gaussian rationals
+    to $\N$ as follows.
+
+    First, write $r + si$ in the form $\displaystyle \frac{a}{b} + \frac{c}{d}i$
+    where $a, b, c, d \in \Z$ such that $b, d > 0$,
+    $a, b$ are coprime, and $c, d$ are coprime.
+    Since $r, s \in \Q$, this is possible. Define the map $\psi: \Q[i] \to \N$ as follows:
+    \begin{align*}
+      \psi: \Q[i] &\to \N \\
+      \frac{a}{b} + \frac{c}{d}i &\mapsto p\parens{p(a, b), p(c, d)}.
+    \end{align*}
+        To show \newterm{bijectivity}, we must show that $\psi$ is
+        both \newterm{injective} and \newterm{surjective}.
+  
+        \begin{enumarabic}
+          \item \newterm{$\psi$ is injective}: \\
+            Suppose $\displaystyle \psi\parens{\frac{a_1}{b_1} + \frac{c_1}{d_1}i}
+            = \psi\parens{\frac{a_2}{b_2} + \frac{c_2}{d_2}i}$. \\
+            This means that $p\parens{p(a_1, b_1), p(c_1, d_1)} = p\parens{p(a_2, b_2), p(c_2, d_2)}$.
+            However, the Cantor Pairing Function is a bijection,
+            meaning that $p\parens{ \crim{p(a_1, b_1)}, \zaff{p(c_1, d_1)}} = p\parens{\crim{p(a_2, b_2)}, \zaff{p(c_2, d_2)}}$
+            \emph{if and only if} $\crim{p(a_1, b_1)} = \crim{p(a_2, b_2)}$ and $\zaff{p(c_1, d_1)} = \zaff{p(c_2, d_2)}$,
+            which in turn implies that $a_1 = a_2$, $b_1 = b_2$, $c_1 = c_2$, and $d_1 = d_2$.
+            Therefore,
+            \[ 
+                \psi\parens{\frac{a_1}{b_1} + \frac{c_1}{d_1}i}
+                  = \psi\parens{\frac{a_2}{b_2} + \frac{c_2}{d_2}i}
+                  \quad \implies \quad
+                  \frac{a_1}{b_1} + \frac{c_1}{d_1}i = \frac{a_2}{b_2} + \frac{c_2}{d_2}i.
+            \]
+  
+          \item \newterm{$\psi$ is surjective}: \\
+            Let $n \in \N$. Since the Cantor Pairing Function is surjective,
+            $\exists x, y \in \N$ such that $n = p(x, y)$.
+            Likewise, $\exists a, b, c, d \in \N$ such that $x = p(a, b)$ and $y = p(c, d)$.
+            Therefore, there exists some $\displaystyle \gamma \coloneq \frac{a}{b} + \frac{c}{d}i$ in $\Q[i]$
+            such that
+            \[ \psi(\gamma) = \psi\parens{\frac{a}{b} + \frac{c}{d}i} = p(p(a, b), p(c, d)) = p(x, y) = n. \]
+        \end{enumarabic}
   \end{answer}
 \end{problem}

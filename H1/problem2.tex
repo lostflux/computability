@@ -6,12 +6,12 @@
     \begin{figure}[H]
       \centering
       \begin{tikzpicture}
-        \node[state, initial] (start) at (0, 0) {start};
+        \node[state, initial] (start) at (0, 0) {\newterm{start}};
         \node[subtraction, right of=start] (sub0-1) {$R_0^-$};
         \node[subtraction, right of=sub0-1] (sub0-2) {$R_0^-$};
         \node[subtraction, right of=sub0-2] (sub0-3) {$R_0^-$};
         \node[addition, below of=sub0-2] (add2) {$R_2^+$};
-        \node[state, right of=add2] (stop) {stop};
+        \node[state, right of=add2] (stop) {\newterm{stop}};
 
         % EDGES
         \draw (start) edge[above] node {} (sub0-1)
@@ -27,16 +27,30 @@
       \label{fig:diverge}
     \end{figure}
 
-    % write algorithm
-    \begin{algorithm}[H]
-      \caption{Converge if there is a $2$ in $R_0$ and diverge otherwise.}
-        \While(\comment*[f]{Decrement $n$}){$R_0 \neq 0$}{
-          $R_0 \gets R_0 - 1$
-        }
-        \If(\comment*[f]{If $n = 0$, then $m \geq n$}){$R_0 = 0$}{
-          $R_2 \gets R_2 + 1$
-        }
-    \end{algorithm}
+    \subsection*{Idea}
     
+    The register machine in Figure~\ref*{fig:diverge} runs as follows:
+    \begin{enumarabic}
+      \item Start at the \newterm{start} state. Let the initial value of $R_0$ be $n$.
+      \item Decrement $R_0$ by $1$.~\label{step:decrement-1}
+        \begin{itemize}
+          \item If impossible, go to the looping state.
+          \item If possible, the current value of $R_0$ is $n - 1$.
+        \end{itemize}
+      \item If step \ref{step:decrement-1} was possible, decrement $R_0$ by $1$ again.~\label{step:decrement-2}
+        \begin{itemize}
+          \item If impossible, this means the value of $R_0$ before the decrement was $n - 1 = 0$, therefore $n = 1$,
+            so $n \neq 2$. Go to the looping state.
+          \item If possible, the current value of $R_0$ is $n - 2$.
+        \end{itemize}
+      \item If step \ref{step:decrement-2} was possible, decrement $R_0$ by $1$ again.~\label{step:decrement-3}
+        \begin{itemize}
+          \item If impossible, this means the value of $R_0$ before the decrement was $n - 2 = 1$, therefore $n = 2$.
+            Go to the \newterm{stop} state.
+          \item If possible, the current value of $R_0$ is $n - 3 \geq 0$, meaning $n \geq 3 > 2$.
+            Therefore, $n \neq 2$. Go to the looping state.
+        \end{itemize}
+      \item Finally, the looping node just increments $R_2$ \emph{ad-infinitum}.
+    \end{enumarabic}
   \end{answer}
 \end{problem}

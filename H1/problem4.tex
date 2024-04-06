@@ -7,14 +7,16 @@
   \begin{answer}
     % draw tikz picture
 
+    \subsection*{Register Machine}
+
     \begin{figure}[H]
       \centering
       \begin{tikzpicture}
-        \node[state, initial] (start) at (0, 0) {start};
+        \node[state, initial] (start) at (0, 0) {\newterm{start}};
         \node[subtraction, right of=start] (sub0) {$R_0^-$};
         \node[subtraction, right of=sub0] (sub1) {$R_1^-$};
         \node[addition, below of=sub0] (add2) {$R_2^+$};
-        \node[state, right of=add2] (stop) {stop};
+        \node[state, right of=add2] (stop) {\newterm{stop}};
 
         % EDGES
         \draw (start) edge[above] node {} (sub0)
@@ -31,19 +33,28 @@
       \label{fig:leq}
     \end{figure}
 
-    % write algorithm
-    \begin{algorithm}[H]
-      \caption{Calculate $\displaystyle f: (x, y) \mapsto \begin{cases}
-        1 &\text{ if } x \leq y.\\
-        0 &\text{otherwise.}
-      \end{cases}$}
-        \While(\comment*[f]{Decrement $n$}){$R_0 \neq 0$}{
-          $R_0 \gets R_0 - 1$ \\
-          $R_1 \gets R_1 - 1$
-        }
-        \If(\comment*[f]{If $n = 0$, then $m \geq n$}){$R_1 = 0$}{
-          $R_2 \gets R_2 + 1$
-        }
-    \end{algorithm}
+    \subsection*{Idea}
+
+    The register machine in Figure~\ref{fig:leq} runs as follows:
+
+    \begin{enumarabic}
+      \item \newterm{start}
+      \item Deduct $1$ from $R_0$~\label{step:4.1}
+        \begin{itemize}
+          \item If impossible, $R_0 = 0$. Since we have deducted the same times
+            from $R_1$ as we have from $R_0$ and $R_1$ has not run out before now,
+            $R_1 \geq R_0$, meaning $R_0 \leq R_1$. \\
+            Increment $R_2$ and go to the \newterm{stop} state.
+          \item If possible, go to step~\ref{step:4.2}
+        \end{itemize}
+      \item Deduct $1$ from $R_1$~\label{step:4.2}
+        \begin{itemize}
+          \item If impossible, $R_1 = 0$. Since $R_0 \geq 0$ (as we have not branched out in the previous
+            deduction from $R_0$ and gone to the \newterm{stop} state), $R_1 < R_0$, meaning $R_0 \nleq R_1$. \\
+            Go to the \newterm{stop} state (leavng the default value of $0$ in $R_2$).
+          \item If possible, go to step~\ref{step:4.1}
+        \end{itemize}
+    \end{enumarabic}
+
   \end{answer}
 \end{problem}
