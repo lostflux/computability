@@ -5,5 +5,98 @@
 
   \begin{answer}
 
+    \subsection*{Idea}
+    
+    The register machine in Figure~\ref*{fig:fibonacci} works using
+    bottom-up \newterm{dynamic programming}.
+    At the start, we set $R_1$ to $1$. We then iterate $n$ times,
+    at each step setting $R_1$ to contain a new value equal to the previous values
+    of $R_1$ and $R_2$ added together, and setting $R_2$ to previous value of $R_1$.
+    After iterating $n$ times (i.e. when deducting $1$ from $R_0$ is impossible),
+    we stop and $R_1$ contains the value of $f(n)$.
+
+    \step
+    \emph{
+      Note: for the register machine and the more-detailed algorithm below,
+      I used $R_{11}$ and $R_{12}$ to store intermediate values
+      for $R_1$ and $R_2$ respectively. This is to avoid overwriting
+      the values of $R_1$ and $R_2$ while they are still being used in
+      the current iteration.
+    }
+    
+    \step
+    \begin{algorithm}[H]
+      \caption{Compute $f(0) = f(1) = 1$ and $f(n + 2) = f(n + 1) + f(n)$ }
+        \newterm{start} \\
+        $R_1 \gets 1$ \\
+        \While(\comment*[f]{iterate $n$ times}){$(\newterm{status} \coloneq R_0 - 1) \neq e$}{
+          
+        \While(\comment*[f]{add $R_1$ to $R_{11}$ and $R_{12}$}){$(\newterm{status} \coloneq R_1 - 1) \neq e$}{
+            $R_{11} \gets R_{11} + 1$ \\
+            $R_{12} \gets R_{12} + 1$
+          }
+
+          \While(\comment*[f]{add $R_2$ to $R_{11}$}){$(\newterm{status} \coloneq R_2 - 1) \neq e$}{
+            $R_{11} \gets R_{11} + 1$
+          }
+
+          \While(\comment*[f]{move value from $R_{11}$ to $R_1$}){$(\newterm{status} \coloneq R_{11} - 1) \neq e$}{
+            $R_1 \gets R_1 + 1$
+          }
+
+          \While(\comment*[f]{move value from $R_{12}$ to $R_2$}){$(\newterm{status} \coloneq R_{12} - 1) \neq e$}{
+            $R_2 \gets R_2 + 1$
+          }
+        }
+        \newterm{stop}
+    \end{algorithm}
+
+    \subsection*{Register Machine}
+    \begin{figure}[H]
+      \centering
+      \begin{tikzpicture}
+        \node[state, initial] (start) at (0, 0) {\newterm{start}};
+        \node[addition, right of=start] (add1-1) {$R_1^+ $};
+        \node[subtraction, right of=add1-1] (sub0) {$R_0^-$};
+        \node[state, right of=sub0] (stop) {\newterm{stop}};
+        \node[subtraction, below of=sub0] (sub1) {$R_1^-$};
+        \node[subtraction, below of=sub1] (sub2) {$R_2^-$};
+        \node[subtraction, below of=sub2] (sub11) {$R_{11}^-$};
+        \node[subtraction, below of=sub11] (sub12) {$R_{12}^-$};
+        \node[addition, right of=sub1] (add11-1) {$R_{11}^+$};
+        \node[addition, right of=add11-1] (add12-1) {$R_{12}^+$};
+        \node[addition, right of=sub2] (add11-2) {$R_{11}^+$};
+        \node[addition, right of=sub11] (add1-2) {$R_1^+$};
+        \node[addition, right of=sub12] (add2) {$R_2^+$};
+
+        % % EDGES
+        \draw (start) edge[above] node {} (add1-1)
+              (add1-1) edge[above] node {} (sub0)
+              (sub0) edge[above] node {$e$} (stop)
+
+              (sub0) edge[left] node {} (sub1)
+              (sub1) edge[left] node {$e$} (sub2)
+              (sub2) edge[left] node {$e$} (sub11)
+              (sub11) edge[left] node {$e$} (sub12)
+              (sub12) edge[left, bend left] node {$e$} (sub0)
+
+              (sub1) edge[above] node {} (add11-1)
+              (add11-1) edge[above] node {} (add12-1)
+              (add12-1) edge[above, bend right] node {} (sub1)
+              
+              (sub2) edge[below, bend right] node {} (add11-2)
+              (add11-2) edge[above, bend right] node {} (sub2)
+              
+              (sub11) edge[below, bend right] node {} (add1-2)
+              (sub12) edge[below, bend right] node {} (add2)
+              (add1-2) edge[above, bend right] node {} (sub11)
+              (add2) edge[above, bend right] node {} (sub12);
+      \end{tikzpicture}
+      \caption{Compute $f : n \mapsto \begin{cases}
+        1 & \text{if } n \in \set{0, 1} \\
+        f(n - 1) + f(n - 2) & \text{otherwise.}
+      \end{cases}$}
+      \label{fig:fibonacci}
+    \end{figure}
   \end{answer}
 \end{problem}

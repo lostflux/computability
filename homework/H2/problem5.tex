@@ -6,6 +6,29 @@
   \emph{You do not need to provide a machine which runs your process.}
 
   \begin{answer}
+    The encoding of nodes is done as follows:
+    \begin{enumroman}
+      \item If $N_i$ is an addition node $R_j^+$ with output node $N_k$,
+        then $\#N_i = 3^j \times 5^k$.
+      \item If $N_i$ is a subtraction node $R_j^-$ with output node $N_k$
+        and empty output node $N_l$, then $\#N_i = 2 \times 3^j \times 5^k \times 7^l$.
+      \item The encoding of $M$ is then computed as $\displaystyle \#M = \prod_{i=1}^n p_i^{\#N_i}$.
+    \end{enumroman}
+
+    In particular, a node $N_i$ is a subtraction node \emph{if and only if}
+    its encoding $\#N_i$ is divisible by $2$.
+
+    Given an encoding $\#M$ of a register machine $M$,
+    we can determine if $M$ contains a subtraction node as follows:
+    
+    \begin{enumarabic}
+      \item Compute the prime factorization of $\#M$.
+      \item Iterate through each prime factor $p_i$ and check if its exponent,
+        equivalent to $\#N_i$, is divisible by $2$.
+        If it is, then node $N_i$ is a subtraction node.
+      \item If none of the prime factors have an exponent divisible by $2$,
+        then the register machine $M$ does not contain a subtraction node.
+    \end{enumarabic}
     
   \end{answer}
 \end{problem}

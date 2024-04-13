@@ -5,6 +5,70 @@
   \emph{(Do NOT multiply it out into decimal!)}
 
   \begin{answer}
-    
+    \subsection*{Register Machine}
+    \begin{figure}[H]
+      \centering
+      \begin{tikzpicture}
+        \node[state, initial] (start) at (0, 0) {\newterm{start} (\crim{$N_0$})};
+        \node[subtraction, right of=start] (sub1-1) {$R_1^- $ (\crim{$N_1$})};
+        \node[addition, right of=sub1-1] (add2-1) {$R_2^+$ (\crim{$N_3$})};
+        
+        % \node[state, right of=sub0] (stop) {\newterm{stop}};
+
+        \node[subtraction, below of=sub1-1] (sub0-1) {$R_0^-$ (\crim{$N_2$})};
+        \node[subtraction, below of=add2-1] (sub3-1) {$R_3^-$ (\crim{$N_5$})};
+
+        % add-3 node below sub-0
+        \node[addition, below of=sub0-1] (add3-1) {$R_3^+$ (\crim{$N_4$})};
+
+        % add-1 node below sub-3
+        \node[addition, below of=sub3-1] (add1-1) {$R_1^+$ (\crim{$N_6$})};
+
+        % stop node left of ub-0
+        \node[state, left of=sub0-1] (stop) {\newterm{stop} (\crim{$N_7$})};
+
+        % EDGES
+        \draw (start) edge[above] node {} (sub1-1)
+              
+              (sub1-1) edge[above] node {$e$} (add2-1)
+              (sub1-1) edge[left] node {} (sub0-1)
+
+              (add2-1) edge[above] node {} (sub3-1)
+              (sub3-1) edge[below] node {$e$} (sub1-1)
+
+              (sub3-1) edge[above, bend right] node {} (add1-1)
+              (add1-1) edge[above, bend right] node {} (sub3-1)
+
+              (sub0-1) edge[right] node {} (add3-1)
+              (sub0-1) edge[above] node {$e$} (stop)
+
+              (add3-1) edge[right, bend right] node {} (sub1-1);
+      \end{tikzpicture}
+      \caption{
+        Register machine $M$ that computes division.
+        }
+        \emph{The numbers in parentheses are the references for each node.}
+      \label{fig:division}
+    \end{figure}
+
+    \subsection*{Code}
+
+    \begin{align*}
+      \#N_1 &\mapsto 2 \times 3^1 \times 5^2 \times 7^3 \\
+      \#N_2 &\mapsto 2 \times 3^0 \times 5^4 \times 7^7 \\
+      \#N_3 &\mapsto 3^2 \times 5^5 \\
+      \#N_4 &\mapsto 3^3 \times 5^1 \\
+      \#N_5 &\mapsto 2 \times 3^3 \times 5^6 \times 7^1 \\
+      \#N_6 &\mapsto 3^1 \times 5^5 \\
+    \end{align*}
+    \begin{align*}
+      \#M &= \prod_{i=1}^n p_i^{\#N_i} \\
+          &= 3^{2 \times 3^1 \times 5^2 \times 7^3}
+            \times 5^{2 \times 5^4 \times 7^7}
+            \times 7^{3^2 \times 5^5}
+            \times 11^{3^3 \times 5^1}
+            \times 13^{2 \times 3^3 \times 5^6 \times 7^1}
+            \times 17^{3^1 \times 5^5}
+    \end{align*}
   \end{answer}
 \end{problem}
