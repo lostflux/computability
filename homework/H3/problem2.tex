@@ -1,0 +1,38 @@
+\begin{problem}
+  Use a diagonalization argument to show that there is no
+  uniform listing of all characteristic functions
+  of the computable sets.
+
+  \begin{answer}
+    Suppose, for the sake of contradiction, that there is a uniform listing of all characteristic functions of the computable sets.
+    Let $\varphi_e$ be the $e$-th characteristic function in this listing.
+    We will construct a new characteristic function $\varphi$ that is not in this listing.
+
+    Define $\varphi$ as follows:
+    \[
+      \varphi(n) = \begin{cases}
+        1 & \text{if } \varphi_n(n) = 0 \\
+        0 & \text{otherwise}
+      \end{cases}
+    \]
+
+    We claim that $\varphi$ is a characteristic function of a computable set.
+    \begin{itemize}
+      \item $\varphi$ is total computable because it is defined by a finite number of operations.
+      \item $\varphi$ is characteristic because it is defined in terms of the characteristic function $\varphi_n$.
+    \end{itemize}
+
+    We will show that $\varphi$ is not in the listing.
+    Suppose, for the sake of contradiction, that $\varphi = \varphi_e$ for some $e$.
+    By definition of $\varphi$, we have:
+    \begin{align*}
+      \varphi(e) = 1 &\iff \varphi_e(e) = 0 \\
+      \varphi(e) = 0 &\iff \varphi_e(e) = 1
+    \end{align*}
+    This means that $\varphi$ and $\varphi_e$ disagree at $e$.
+    Therefore, $\varphi \neq \varphi_e$, contradicting the assumption that $\varphi = \varphi_e$.
+    Therefore, $\varphi$ is not in the listing, meaning
+    there is no uniform listing of all characteristic functions of the computable sets
+    since we can always, find a characteristic function not included in the listing.
+  \end{answer}
+\end{problem}

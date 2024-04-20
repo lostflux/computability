@@ -1,0 +1,46 @@
+\begin{problem}
+  Prove that every infinite c.e. set contains an infinite computable subset.
+
+  \begin{answer}
+    Let $X$ be an infinite c.e. set.
+    This means that $X = W_e$ for some $e$.
+    Precisely, running $\varphi_e$ on input $n$ will \emph{always}
+    halt if $n \in X$, but it may diverge if $n \not \in X$.
+
+    We will construct a computable subset $Y$ of $X$,
+    \[ Y \coloneq \set{ x \in X \given \varphi_e(x) \text{ halts in $x$ or less steps}}. \]
+
+    \step
+    \begin{algorithm}[H]\label{alg:Y}
+      \SetAlgorithmName{$\mathsf{T} \mathsf{M}$}{}{}
+      \caption{Compute $\chi_Y$}
+      On input $n$: \\
+      \For{$i = 0, 1, \ldots, n$}{
+        Run $\varphi_e$ on $n$ for $n$ steps. \\
+        \If{$\varphi_e$ halts}{
+          \textbf{output} $1$
+        }
+      }
+      \textbf{output} $0$
+    \end{algorithm}
+
+    \step
+    \emph{
+      NOTE: For non-integer inputs,
+      let $\varphi_e$ run for as many steps as the index of the input
+      in some ordering system.
+    }
+
+    \step
+    We claim that the machine always halts for any $n$,
+    and outputs either $1$ or $0$.
+    For any fixed $n$, the loop eventually either halts for some $i \leq \abs{n}$
+    and outputs $1$, or halts on the $\abs{n}$-th iteration and outputs $0$.
+
+    \crim{
+      I got stuck on showing that $Y$ is infinite,
+      which made me realize that I might have been heading in the wrong direction
+      but I didn't have time to correct my approach.
+    }
+  \end{answer}
+\end{problem}

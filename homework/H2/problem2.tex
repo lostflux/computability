@@ -1,34 +1,31 @@
-\begin{problem}
+\begin{problem}[2]
   Show that the set of powers of $2$ is computable
   by building a Turing machine.
 
   \begin{answer}
     \subsection*{Idea}
     A number (in binary) is a power of $2$ if and only if it has exactly one $1$ bit.
-    Therefore, we can construct a Turing machine as follows: that scans the input tape from left to right,
-    counting the number of $1$ bits it encounters.
+    To show that the set is computable, we can construct a Turing machine that computes
+    the characteristic function $\chi_{\text{pow}_2}(x)$, which is $1$ if $x$ is a power
+    of $2$ and $0$ otherwise:
+
+    \step
+    To show that the 
     \begin{enumarabic}
-      \item The Turing Machine starts in state $q_0$.
-      \item While in $q_0$, it reads the tape at the current position.
+      \item \newterm{start} in state $q_0$.
+      \item While in $q_0$, read the tape at the current position.
         \begin{enumalph}
-          \item If it reads a $0$, it moves right and remains in $q_0$.
-          \item If it reads a $1$, it moves right and transitions to $q_1$.
+          \item If a $\sfzero$ is read, move right and remain in $q_0$.
+          \item If a $\sfone$ is read, move right and transition to $q_1$.
+          \item If tape is blank at current position, move left and transition to $q_3$.
         \end{enumalph}
-      \item While in $q_1$, it reads the tape at the current position.
+      \item While in $q_1$, read the tape at the current position.
         \begin{enumalph}
-          \item If it reads a $0$, it moves right and remains in $q_1$.
-          \item If it reads a $1$, it moves right and transitions to $q_2$.
-          \item If it reads a blank symbol, it halts in $q_1$. \\
-            \emph{
-              This is an accepting scenario since the Turing machine has encountered \\
-              exactly one $1$ bit in the entire binary string.
-            }
+          \item If a $\sfzero$ is read, it move right and remain in $q_1$.
+          \item If a $\sfone$ is read, input cannot be a power of $2$. \textsc{Halt} and output $\sfzero$.
+          \item If tape is blank at current position, input is a power of $2$.
+            \textsc{Halt} and output $\sfone$.
         \end{enumalph}
-      \item $q_2$ is a non-accepting state without any transitions. If in $q_2$,
-        it does not matter what the Turing machine reads---the string is
-        not a power of $2$ since it already has more than one $1$ bit.
-        Thus, reading any symbol while in $q_2$ would cause it to halt
-        and not accept the input as a power of $2$.
     \end{enumarabic}
 
     \subsection*{Turing Machine}

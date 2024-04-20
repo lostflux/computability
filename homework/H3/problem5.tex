@@ -1,0 +1,47 @@
+\begin{problem}
+  Prove that every total computable function has
+  infinitely many fixed points.
+
+  \begin{answer}
+
+    We will show that every total computable function has infinitely many fixed points
+    using the Recursion Theorem with Parameters.
+
+    \begin{theorem}{Recursion Theorem with Parameters} \\
+      Let $f : \N^{k+1} \to \N$ be a total computable function.
+      Then there exists a total computable function $r : \N^k \to \N$ such that
+      \[
+        \varphi_{r(x_0, x_1, \ldots, x_l)} = \varphi_{f(r(x_0, x_1, \ldots, x_k), x_0, x_1, \ldots, x_k)}.
+      \]
+    \end{theorem}
+
+
+    \begin{definition}
+      For a function $f : \N \to \N$, $e$ is a \emph{fixed point} of $f$
+      if \[ \varphi_e = \varphi_{f(e)}. \]
+    \end{definition}
+
+    % \begin{theorem}{s-m-n Theorem} \\
+    %   For any $n$ and $m$, there is an injective, total computable function
+    %   $s^m_n : \N^{n+1} \to \N$ such that, for all $e$,
+    %   \[
+    %     \varphi_e(y_0, \ldots, y_{m-1}, x_0, \ldots, x_{n-1}) = \varphi_{s^m_n(e, x_0, \ldots, x_n)}(y_0, \ldots, y_{m-1}).
+    %   \]
+    % \end{theorem}
+
+    \begin{proof}
+      Let $f : \N^{k+1} \to \N$ be a total computable function.
+      Pick $r : \N^k \to \N$ per the Recursion Theorem with Parameters,
+      so that for all $x_0, x_1, \ldots, x_{k-1}$,
+      \[
+        \varphi_{r(x_0, \ldots, x_{k-1})} = \varphi_{f(r(x_0, \ldots, x_{k-1}), x_0, x_1, \ldots, x_{k-1})},
+      \]
+      and $r$ is injective and total computable.
+
+      Since $x_0, \ldots, x_{k-1}$ occur as free parameters, this means that
+      there are infintely many combinations of $x_0, \ldots, x_{k-1}$ that
+      $\varphi_{r(x_0, x_1, \ldots, x_{k-1})} = \varphi_{f(r(x_0, x_1, \ldots, x_{k-1}), x_0, x_1, \ldots, x_{k-1})}$,
+      hence $f$ has infinitely many fixed points.
+    \end{proof}
+  \end{answer}
+\end{problem}

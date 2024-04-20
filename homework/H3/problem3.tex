@@ -1,0 +1,121 @@
+\begin{problem}
+  Prove that a set $X$ is computable \emph{if and only if}
+  it and its complement (that is, $\set{n : n \not \in X}$)
+  are c.e.
+
+  \begin{answer}
+    \begin{definition}
+      A set $X$ is computable if and only if its characteristic function $\chi_X : \N \to \set{0, 1}$
+      or its principal function $\chi_X : \N \to \set{0, 1}$ is Turing computable.
+    \end{definition}
+
+    \begin{definition}
+      A set $X$ is said to be \emph{computably enumerable} (or c.e.) if it is the domain
+      of $\varphi_e$ for some $e$. Then we write $X = W_e$.
+    \end{definition}
+
+    \step
+    We shall show that $X$ is computable if and only if
+    $X$ and its complement are computably enumerable (c.e.)
+    in two steps;
+    first, by showing that if $X$ is computable then $X$ and its complement are c.e.,
+    then by showing that if $X$ and its complement are c.e. then $X$ is computable.
+
+    % \begin{claim}
+      \subsection*{1. If $X$ is computable then $X$ and $X^\sfC$ are c.e.}
+
+      \begin{proof}
+        Suppose $X$ is computable.
+        Then we can construct a Turing machine $M_X$ that computes $\chi_X : \N \to \set{0, 1}$,
+        the characteristic function of $X$.
+
+        Consider these two universal machines:
+
+        \begin{algorithm}[H]\label{alg2:X}
+          \SetAlgorithmName{$\mathsf{T} \mathsf{M}$}{}{}
+          \caption{Compute $f_1 : n \mapsto \begin{cases}
+            1 & \text{if } M_X(n) = 1 \\
+            \uparrow & \text{otherwise.}
+          \end{cases}$}
+          On input $n$: \\
+          Run $M_X$ on $n$. \\
+          \If{$M_X$ outputs $1$}{
+            \textbf{output} $1$
+          }
+          \ElseIf{$M_X$ outputs $0$}{
+            \textbf{$\mathbf{diverge}$}
+          }
+        \end{algorithm}
+
+        \step
+        $\sfT \sfM$ ~\ref{alg2:X} halts and outputs $1$ on input $n$ when
+        $M_X$ halts and outputs $1$ on input $n$.
+        For all other values of $n$, it diverges.
+        Thus, $X = W_e$ where $e$ is the index of $\sfT \sfM~\ref{alg2:X}$.
+        
+        \begin{algorithm}[H]\label{alg2:XC}
+          \SetAlgorithmName{$\mathsf{T} \mathsf{M}$}{}{}
+          \caption{Compute $f_2 : n \mapsto \begin{cases}
+            1 & \text{if } M_X(n) = 0 \\
+            \uparrow & \text{otherwise.}
+          \end{cases}$.}
+          On input $n$: \\
+          Run $M_X$ on $n$. \\
+          \If{$M_X$ outputs $1$}{
+            \textbf{$\mathbf{diverge}$}
+          }
+          \ElseIf{$M_X$ outputs $0$}{
+            \textbf{output} $1$
+          }
+        \end{algorithm}
+
+        \step
+        $\sfT \sfM$ ~\ref{alg2:XC} halts and outputs $1$ on input $n$ when
+        $M_X$ halts and outputs $0$ on input $n$.
+        For all other values of $n$, it diverges.
+        Thus, $X^\sfC = W_{e'}$ where $e'$ is the index of $\sfT \sfM~\ref{alg2:XC}$.
+
+        \step
+        Therefore, $X$ and $X^\sfC$ are c.e.
+      \end{proof}
+
+
+    % \begin{claim}
+    \subsection*{2. If $X$ and its complement are c.e. then $X$ is computable.}
+
+      \begin{proof}
+        Suppose $X$ and its complement are c.e.
+        Then $X = W_e$ and $X^\sfC = W_{e'}$ for some $e, e'$.
+
+        We will construct a Turing machine $M_X$ that computes $\chi_X : \N \to \set{0, 1}$,
+        the characteristic function of $X$.
+
+        \begin{algorithm}[H]\label{alg2:chiX}
+          \SetAlgorithmName{$\mathsf{T} \mathsf{M}$}{}{}
+          \caption{Compute $\chi_X : n \mapsto \begin{cases}
+            1 & \text{if } n \in X \\
+            0 & \text{otherwise.}
+          \end{cases}$}
+          On input $n$: \\
+          Initialize $\varphi_e$ and $\varphi_{e'}$ on input $n$. \\
+          \Loop{
+            Run $\varphi_e$ on $n$ for one more incremental step. \\
+            Run $\varphi_{e'}$ on $n$ for incremental step. \\
+            \If {$\varphi_e$ \newterm{halts}}{
+              \textbf{output} $1$
+            }
+            \ElseIf{$\varphi_{e'}$ \newterm{halts}}{
+              \textbf{output} $0$
+            }
+          }
+        \end{algorithm}
+      \end{proof}
+
+    Note that since $X$ and $X^\sfC$ are c.e.,
+    for any given input $n$, either $\varphi_e$ or $\varphi_{e'}$ will \emph{eventually} halt.
+    Therefore, $\sfT \sfM$ ~\ref{alg2:chiX} eventaully halts and output $1$ if $n \in X$,
+    or $0$ if $n \not \in X$.
+    Therefore, $\sfT \sfM$ ~\ref{alg2:chiX} computes $\chi_X$,
+    so $X$ is computable.
+  \end{answer}
+\end{problem}

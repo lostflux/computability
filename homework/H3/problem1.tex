@@ -1,0 +1,51 @@
+\begin{problem}
+  Is there a fastest growing total computable function,
+  i.e. a function $f : \N \to \N$ such that
+  \[ f(n + 1) - f(n) \geq \varphi_e(n + 1) - \varphi_e(n) \]
+  for all $e$ such that $\varphi_e$ is total and all $n$?
+  Prove that your answer is correct.
+
+  \begin{answer}
+    No, there is no fastest growing total computable function.
+    
+    \begin{proof}
+      Suppose, for the sake of contradiction, that there exists such a fastest growing total computable function $f$.
+      This implies:
+      \begin{enumarabic}
+        \item $f$ is total computable.\label{1:computable}
+        \item For all $e$ such that $\varphi_e$ is total computable and for all $n \in \N$,
+          $f(n + 1) - f(n) \geq \varphi_e(n + 1) - \varphi_e(n)$.~\label{1:fastest}
+      \end{enumarabic}
+
+      We'll show that for any such $f$, we can construct a new total computable function $g$ that grows faster than $f$.
+      Define $g$ as follows:
+      \begin{align*}
+        g : \N &\to \N \\
+        n &\mapsto f(n)^2
+      \end{align*}
+
+      \begin{enumarabic}
+        \item $g$ is total computable because $f$ is total computable 
+          and squaring a natural number is total computable,
+          so their composition is also total computable.
+        \item We claim that $g$ grows faster than $f$ for all $n \in \N$.
+
+          Given the assumption that $f$ is the fastest growing function,
+          we see that $f(n+1) - f(n) \geq 2$ since it has to outgrow the total computable function
+          $\mathbf{double}(n) = 2n$. \\
+          \emph{Since $f(n) \geq 0$ for all $n \in \N$, this implies that $f(n+1) + f(n) \geq 2$.}
+          Therefore:
+          \begin{align*}
+            g(n + 1) - g(n) &= f(n + 1)^2 - f(n)^2 \\
+                            &= \crim{(f(n + 1) + f(n))}\zaff{(f(n + 1) - f(n))} \\
+                            &\geq 2 \parens{f(n + 1) - f(n)} \\
+                            &> f(n + 1) - f(n)
+          \end{align*}
+      \end{enumarabic}
+      Since $g$ is total computable there exists some $e$ such that
+      $\varphi_e(n+1) - \varphi_e(n) > f(n+1) - f(n)$
+      for all $n \in \N$.
+      This contradicts the assumption that $f$ was the fastest growing function.
+    \end{proof}
+  \end{answer}
+\end{problem}
