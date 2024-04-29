@@ -1,7 +1,55 @@
 \begin{problem}
-  Show thaet if $P$ is productive then $P$ contains the infinite c.e. set.
+  Show that if $P$ is productive then $P$ contains an infinite c.e. set.
+
+  \begin{definition}
+    A set $P$ is productive if it has a productive function ---
+    a (partial) computable function $\psi$ such that, whenever
+    $W_e \subseteq P$, $\psi(e) \converges$ and $\psi(e) \in P \setminus W_e$.
+    That is, a productive function is able to
+    produce a witness to the fact that $P \neq W_e$ whenever $W_e \subseteq P$.
+    Then it is immediate that productive sets are not c.e., so finding a c.e. set whose complement
+    is productive will necessarily be a noncomputable c.e. set.
+  \end{definition}
 
   \begin{answer}
-    
+    Let $P$ be a productive function, with $\psi$ as its productive function.
+    We shall enumerate an infinite set
+    $Y = \set{y_0, y_1, y_2, \ldots } \subseteq P$ as follows:
+
+    \begin{enumarabic}
+      \item Take $e_0$ to be the smallest index with $W_{e_0} = \emptyset \subseteq P$.
+        Then $\psi(e_0) \converges = y$ for some $y \in P \setminus \emptyset = P$. \\
+        Set $y_0 = y$.
+
+      \item Inductively, for $n \geq 1$, find a function $\psi_{e_n}$
+        select $e_n$ to be the smallest index
+        such that $W_{e_n} = \set{y_0, y_1, \ldots, y_{n-1}} \subseteq Y$.
+        
+        Then $\psi(e_n) \converges = y$ for some $y \in P \setminus \set{y_0, y_1, \ldots, y_{n-1}}$.
+        Thus, $y \neq y_i$ for any $i < n$.\\
+        Set $y_n = y$.
+    \end{enumarabic}
+
+    To show that $Y$ is c.e., we need to show that $Y = W_e$ for some $e$.
+    Consider the following turing machine $\E_Y$ that enumerates $Y$:
+
+    \step
+    \begin{algorithm}[H]~\label{tm:5.1}
+      \SetAlgorithmName{$\mathsf{T} \mathsf{M}$}{}{}
+      \caption{Compute $f(y) : Y \to \N$}
+      Initialize $Y \gets \emptyset$ \\
+      \For{$n = 0, 1, 2, \ldots$}{
+        Compute $y_n = \psi(e_n)$ \\
+        \If{$y_n = y$}{
+          \textbf{output} $1$
+        }
+      }
+    \end{algorithm}
+
+    The turing machine halts and outputs $1$ only when the input $y$ is a member of $Y$.
+    If not, it will continue to search loop, ad infinitum.
+
+    Let $e$ be the code of the turing machine.
+    Then $Y = W_{\epsilon}$, so $Y$ is c.e.
   \end{answer}
 \end{problem}

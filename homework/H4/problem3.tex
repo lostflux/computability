@@ -3,6 +3,56 @@
   range of an increasing, total computable function.
 
   \begin{answer}
-    
+    \subsubsection*{$\implies$}
+      Suppose $X$ is c.e. and computable.
+      Then $X = W_e$ for some $e$.
+      Since $X$ is computable, we can specify a turing machine to print
+      the elements of $X$ in increasing order:
+
+      \step
+      \begin{algorithm}[H]
+        \SetAlgorithmName{$\mathsf{T} \mathsf{M}$}{}{}
+        \caption{Enumerate $X$ in increasing order}
+        \For{$i = 0, 1, 2, \ldots$}{
+          \If{$\chi_X(i) = 1$}{
+            \textbf{print} $i$
+          }
+        }
+      \end{algorithm}
+
+      \step
+      Define a function $f$ that, given input $n$, outputs the $n$th element
+      listed in the increasing-order enumeration of $X$.
+      Then $f$ is an increasing, total computable function whose
+      range is $X$.
+
+    \subsubsection*{$\impliedby$}
+      Suppose $X$ is the range of an increasing, total, computable function $f: \N \to \N$.
+      We shall show that $X$ is computable.
+
+      Since $f$ is total and increasing, we have
+      \[ \forall n_1, n_2 \in \N,\; n_1 \leq n_2 \implies f(n_1) \leq f(n_2). \]
+
+      Furthermore, since $f$ is computable, $f = \varphi_e$ for some $e$.
+
+      We can compute the characteristic function of $X$, $\chi_X$, as follows:
+
+      \begin{algorithm}[H]
+        \SetAlgorithmName{$\mathsf{T} \mathsf{M}$}{}{}
+        \caption{Compute $\chi_{X}(n)$}
+        \For{$x = 0, 1, 2, \ldots$}{
+          \If{$f(x) = n$}{
+            \textbf{output} $1$
+          }
+          \ElseIf{$f(x) > n$}{
+            \textbf{output} $0$
+          }
+        }
+      \end{algorithm}
+
+      Since $f$ is total and increasing, the turing machine will eventually either
+      reach an $x$ such that $f(x) = n$ and output $1$, or encounter a value
+      of $x$ such that $f(x) > n$ and output $0$.
+      Therefore, $X$ is computable.
   \end{answer}
 \end{problem}

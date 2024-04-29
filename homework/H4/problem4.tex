@@ -1,7 +1,47 @@
 \begin{problem}
   Prove that $K$ (the halting set) is \newterm{not} an index set.
 
+  \begin{enumarabic}
+    \item $K = \set{ e \given \varphi_e(e) \converges }$.
+    \item An index set is a set $X$ such that, for all $e$ and $k$,
+      if $\varphi_e = \varphi_k$ then $e \in X$ if and only if $k \in X$.
+  \end{enumarabic}
+
+  % rice's theorem
+
+
   \begin{answer}
-    
+
+    To show that $K$ is not an index set,
+    we shall find a code $e \in K$ and show that $k \not \in K$
+    for some $\varphi_k = \varphi_e$.
+
+    \step
+    Define a function $f$ that converges only on its own code and diverges
+    for all other $n \in \N$. That is, if $e$ is the code of $f$, then
+
+    \[
+      f(n) = \begin{cases}
+        1 & \text{if } n = e \\
+        \diverges & \text{otherwise.}
+      \end{cases}
+    \]
+
+    \step
+    Note that $e \in K$ since $\varphi_e(e) \converges$.
+
+    By the \newterm{Padding Lemma}, for any $e$, there are infinitely
+    many $k \neq e$ such that $\varphi_e = \varphi_k$.
+    Pick one such $k$.
+    What happens when we run $\varphi_k(k)$?
+    Since $k \neq e$, $\varphi_e(k) \diverges$.
+    Therefore, $\varphi_k = \varphi_e$ since $\varphi_k(k) \diverges$.
+    Therefore, $k \not\in K$.
+
+    \step
+    This means that $K$ must not be an index set, since
+    the condition that
+    \[ \varphi_e = \varphi_k \implies \parens{e \in K \iff k \in K} \]
+    does not hold for $K$.
   \end{answer}
 \end{problem}
