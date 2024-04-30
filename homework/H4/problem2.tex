@@ -17,6 +17,15 @@
       \begin{proof}
         Let $X$ be c.e. so that $X = W_e$ for some $e$.
 
+        Then, we can define a total, computable, injective function
+        $f : \N \to \N$ as follows:
+        \[
+          f(n) = \begin{cases}
+            \varphi_e(n) & \text{if $\varphi_e(n) \converges$} \\
+            0 & \text{otherwise}
+          \end{cases}
+        \]
+
         Then there exists a turing machine $\E_X$ that enumerates $X$ without repeating elements.
         Define $f : \N \to \N$ to be the function that pairs each input $n$ with
         the $n$th element of $X$ that is enumerated by $\E_X$.
