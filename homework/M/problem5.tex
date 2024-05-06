@@ -3,6 +3,25 @@
   then prove that $H \leq_1 K$.
 
   \begin{answer}
-    
+    Let $e$ be given.
+    Define the function $f : \N \to \N$ by
+    \[
+      f(n) = \begin{cases}
+        n & \text{if $n \in W_e$} \\
+        0 & \text{otherwise}.
+      \end{cases}
+    \]
+    Then $f$ is computable, and $W_e = f^{-1}(\N)$.
+    Therefore, $W_e \leq_1 H$.
+
+    Now, let $f : \N \to \N$ be the function defined by
+    \[
+      f(n) = \begin{cases}
+        n & \text{if $n \in K$} \\
+        0 & \text{otherwise}.
+      \end{cases}
+    \]
+    Then $f$ is computable, and $K = f^{-1}(\N)$.
+    Therefore, $H \leq_1 K$.
   \end{answer}
 \end{problem}

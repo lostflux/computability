@@ -1,10 +1,46 @@
 \begin{problem}
-  SHow that there is an $e$ such that
+  Show that there is an $e$ such that
   \[
     W_e = \set{ e+1, e^2+4, e^3+9, \ldots }.
   \]
 
   \begin{answer}
-    
+    % The set $W_e = \set{ e+1, e^2+4, e^3+9, \ldots }$ is the set of outputs
+    % of the function
+    Let $f$ be the function defined by
+    \begin{align*}
+      f : \N^2 &\to \N \\
+      (a, b) &\mapsto a^b + b^2.
+    \end{align*}
+
+    Since $f$ is computable, $f = \varphi_k$ for some $k$.
+
+    Consider the following Turing Machine:
+
+    \step
+    \begin{algorithm}[H]\label{tm:7.1}
+      \SetAlgorithmName{$\mathsf{T} \mathsf{M}$}{}{}
+      \caption{Compute $\psi(n) : \N \to \N$}
+      Let $e$ be the code for this machine. \\
+      \For{$i = 1, 2, 3, \ldots$}{
+        $y_i \gets \varphi_k(e, i)$ \\
+        \If{$y_i = n$}{
+          \textbf{output} $1$
+        }
+      }
+    \end{algorithm}
+
+    The machine passes its own code to $\varphi_k$,
+    with successive integers $1, 2, 3, \ldots$ as the second argument.
+    It converges and outputs $1$ \emph{if and only if} $\varphi_k(e, i)$
+    returns some value equal to $n$, meaning $n \in \set{ e+1, e^2+4, e^3+9, \ldots}$.
+    Otherwise, it diverges as it will keep searching forever.
+
+    \[
+      \varphi_e(n) = \psi(n) = \begin{cases}
+        1 & \text{if $n = \varphi_k(e, i)$ for some $i \in \N_{> 0}$} \\
+        \uparrow & \text{otherwise}.
+      \end{cases}
+    \] Then $W_e = \set{ e+1, e^2+4, e^3+9, \ldots }$.
   \end{answer}
 \end{problem}

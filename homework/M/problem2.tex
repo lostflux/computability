@@ -1,7 +1,26 @@
 \begin{problem}
   Prove that no index set is immune.
 
+  % \begin{definition}
+  %   A set $S$ is an \emph{index set} if it contains the codes of
+  %   partial computable functions.
+  % \end{definition}
+
+  \begin{definition}
+    A set $S$ is \emph{immune} if $A$ is infinite but contains no
+    infinite c.e. subset.
+  \end{definition}
+
   \begin{answer}
-    
+    To show that no index set is immune, we will show that every index set
+    must contain some infinite c.e. subset.
+
+    Let $I$ be an index set. Here are some facts about $I$:
+    \begin{enumarabic}
+      \item Since $I$ is an index set, $I$ is either empty or infinite.
+      \item For all $e, f \in \N$, if $\varphi_e = \varphi_f$,
+        then $e \in I \Iff f \in I$.
+    \end{enumarabic}
+
   \end{answer}
 \end{problem}
