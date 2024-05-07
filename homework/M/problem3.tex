@@ -10,13 +10,39 @@
   Why does $i(x, y)$ not contradict Homework 3, Question 2?
 
   \begin{answer}
-    \subsection*{Definition of $i(x, y)$}
+    \subsection*{Construction of $i(x, y)$}
     Let $i(x, y)$ be the following partial computable function:
     \[
       i(x, y) = \begin{cases}
         1 & \text{if } \varphi_x(y) \converges= 1 \\
         0 & \text{if } \varphi_x(y) \converges= 0 \\
+        \diverges & \text{otherwise}.
       \end{cases}
     \]
+
+    \begin{enumarabic}
+      \item Whenever $i(x, y) \converges$, then $i(x, y) = 0$ or $i(x, y) = 1$.
+      \item When $A$ is computable, then there exists some index $e$
+        such that $\varphi_e = \chi_A$.
+        Then $i(e, n) = \varphi_e(n) = \chi_A(n)$ for all $n$.
+      \item $I_x = \set{ y \given i(x, y) \converges > 0 }$
+        $=\blue{\set{y \given \varphi_x(y) = 1}}$.
+        For any fixed $x$, we can compute $I_x$ by iterating
+        through all $y \in \N$ and checking if
+        $i(x, y) = 1$.
+    \end{enumarabic}
+
+    \subsection*{Comparison with Homework 3, Question 2}
+
+    Homework 3, Question 2 used a diagonalization argument
+    to show that there is no uniform listing of all 
+    characteristic functions of the computable sets.
+
+    The function $i(x, y)$ does not contradict this fact because
+    it does not exclusively list all characteristic functions
+    of computable sets.
+    Instead, it simulates every other function, althogh it only
+    converges if the simulated function converges to $i \in \set{0, 1}$
+    and diverges otherwise.
   \end{answer}
 \end{problem}

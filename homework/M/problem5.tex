@@ -3,25 +3,71 @@
   then prove that $H \leq_1 K$.
 
   \begin{answer}
-    Let $e$ be given.
+    \[ M = \set{ \vector{e, k, n} \given \varphi_e(k) \converges = n } \]
+    \[ H = \set{ \vector{e, k} \given \varphi_e(k) \converges } \]
+    \[ K = \set{ e \given \varphi_e(e) \converges } \]
+
+    \subsection{$W_e \leq_1 H$ for all $e$}
+
     Define the function $f : \N \to \N$ by
     \[
-      f(n) = \begin{cases}
-        n & \text{if $n \in W_e$} \\
-        0 & \text{otherwise}.
+      f(k) = \begin{cases}
+        \vector{e, k} & \text{if $\varphi_e(k) \converges$} \\
+        \diverges & \text{otherwise}.
       \end{cases}
     \]
-    Then $f$ is computable, and $W_e = f^{-1}(\N)$.
-    Therefore, $W_e \leq_1 H$.
+    \begin{enumarabic}
+      \item When $n \in W_e$, then $\varphi_e(n) \converges$,
+        so $f(n) = \vector{e, n} \in H$.
+      \item When $n \notin W_e$, then $\varphi_e(n) \diverges$,
+        so $f(n) \diverges$.
+      \item $f$ is an injection from $W_e$ to $H$ since $e$ is fixed
+        after the definition of $f$, and every each $k' \in W_e$
+        is mapped to a unique element $\vector{e, k'} \in H$.
+    \end{enumarabic}
 
-    Now, let $f : \N \to \N$ be the function defined by
+    Therefore, $n \in W_e$ \emph{if and only if} $f(n) \in H$,
+    so $W_e \leq_1 H$ with witness $f$.
+    
+    \subsection{$H \leq_1 K$}
+
+    For any $e \in \N$ with $W_e \subseteq \N$ being the domain
+    of $\varphi_e$, we can define the function $g : \N^2 \to \N$
+    as follows:
+
+    First, for each $(i, j) \in \N^2$, let $e_{(i, j)}$ be the code of
+    $h_{(i, j)}$, where $h_{(i, j)} : \N \to \N$ is defined as:
     \[
-      f(n) = \begin{cases}
-        n & \text{if $n \in K$} \\
-        0 & \text{otherwise}.
+      h_{(i, j)}(n) = \begin{cases}
+        e_{(i, j)} & \text{ if $n = e_{(i,j)}$ and $\varphi_i(j) \converges$ } \\
+        \diverges & \text{otherwise}.
       \end{cases}
     \]
-    Then $f$ is computable, and $K = f^{-1}(\N)$.
-    Therefore, $H \leq_1 K$.
+    Then define the function $g : \N^2 \to \N$ by
+    \[
+      g(e, k) = \begin{cases}
+        h_{(e, k)}(e_{(e, k)}) & \text{if $h_{e, k}(e_{(e, k)}) \converges$} \\
+        \diverges & \text{otherwise}.
+      \end{cases}
+    \]
+
+    \begin{enumarabic}
+      \item When $\vector{e, k} \in H$, then
+        $h_{(e, k)}(e_{(e, k)})$ simulates
+        $\varphi_e(k)$, and $\varphi_e(k) \converges$,
+        so it returns its own code $e_{(e, k)}$.
+        Thus, $g(e, k) = e_{(e, k)} \in K$ when $\vector{e,, k} \in H$.
+      \item When $\vector{e, k} \notin H$, then
+        $h_{(e, k)}(e_{(e, k)})$ simulates
+        $\varphi_e(k)$, and $\varphi_e(k) \diverges$,
+        so $g(e, k) \diverges$.
+        Thus, $g(e, k) = \diverges$ when $\vector{e, k} \notin H$.
+      \item $g$ is an injection from $H$ to $K$ since
+        $\vector{e, k} \in H$ is mapped to a unique element $e_{(e, k)} \in K$.
+    \end{enumarabic}
+
+    Therefore, $\vector{e, k} \in H$ \emph{if and only if} $g(e, k) \in K$,
+    so $H \leq_1 K$ with witness $g$.
+
   \end{answer}
 \end{problem}

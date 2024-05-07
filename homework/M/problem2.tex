@@ -6,21 +6,44 @@
   %   partial computable functions.
   % \end{definition}
 
-  \begin{definition}
-    A set $S$ is \emph{immune} if $A$ is infinite but contains no
-    infinite c.e. subset.
-  \end{definition}
-
   \begin{answer}
+    A set $S$ is \emph{immune} if $A$ is infinite but has no
+    infinite c.e. subset.
+
     To show that no index set is immune, we will show that every index set
-    must contain some infinite c.e. subset.
+    contains some infinite c.e. subset.
 
-    Let $I$ be an index set. Here are some facts about $I$:
+    Let $I$ be an non-empty index set.
+    By the properties of index sets,
+    whenever $\varphi_i = \varphi_j$, then $i \in I$
+    \emph{if and only if} $j \in I$.
+    The padding lemma tells us that any such element $i \in I$
+    has infinitely many indices $j \in I$ such that
+    $\varphi_i = \varphi_j$.
+
+    We can construct a c.e. set $S \subseteq I$ as follows.
+
     \begin{enumarabic}
-      \item Since $I$ is an index set, $I$ is either empty or infinite.
-      \item For all $e, f \in \N$, if $\varphi_e = \varphi_f$,
-        then $e \in I \Iff f \in I$.
-    \end{enumarabic}
+      \item Find an arbitrary index $e \in I$ having
+        $\varphi_e(n) \converges$ some specific input $n \in \N$.
+        Since index sets contain codes of (partial) computable functions,
+        such an $e$ and $n$ exists.
+      \item Define $S$ as;
+        \begin{align*}
+          S &= \set{ i \in I \given \varphi_i(n) \converges = \varphi_e(n) }
+        \end{align*}
+        That is --- $S$ is the set of indices in $I$ that converge to the same
+        output as $\varphi_e$ on input $n$.
 
+      \item We claim that $S$ is c.e.
+        We can construct a bijection $f : \N \to S$ as follows:
+        \begin{enumroman}
+          \item Let $s_0 = \varphi_e$ and $S_0 = \set{ s_0 }$.
+          \item For each $i \in \set{1, 2, 3, \ldots}$,
+            let \[ s_i = k \text{ such that } \varphi_k \in S \land \varphi_k \not \in S_{i-1} \]
+             \[ S_i = \set{ s_i } \cup S_{i-1}.\]
+          \item Define $f : \N \to S$ as $f(n) = s_n$.
+        \end{enumroman}
+    \end{enumarabic}
   \end{answer}
 \end{problem}

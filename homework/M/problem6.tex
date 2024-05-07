@@ -6,9 +6,24 @@
   to a unique machine. 
 
   \begin{answer}
-    Since $C$ is c.e.,
-    we can enumerate it as $C = \set{ e_1, e_2, e_3, \ldots }$.
-    Define the function $f : \N \to C$ by $f(n) = e_n$.
-    Then $f$ is total, computable, and bijective.
+    The set of all valid codes, $C$, is is c.e.
+    and can be enumerated by iterating through
+    all possible codes $1, 2, 3, \ldots$ and checking if
+    $\varphi_i$ is a valid machine.
+    List the code for the first valid machine as $c_1$,
+    the code for the second valid machine as $c_2$, and so on.
+    Then define $f : \N \to C$ with $f(n) = c_n$.
+    
+    \step
+    Since there are infinite machines, given any $n \in \N$,
+    eventually a unique code $c_n$ will be listed in $C$.
+    Therefore, every $n \in \N$ is associated with a unique code
+    for a valid machine, so $f$ is total and bijective.
+
+    \step
+    The function $f$ is also computable since it can be
+    simulated by a Turing Machine that, on input $n$,
+    enumerates through all codes $1, 2, 3, \ldots$
+    until it finds the $n$-th valid code $c_n$ and returns it.
   \end{answer}
 \end{problem}

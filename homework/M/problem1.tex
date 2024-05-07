@@ -5,6 +5,51 @@
   and returns $0$ otherwise.
 
   \begin{answer}
-    
+    First, let's rewrite and simplify the equation.
+
+    \begin{align*}
+      x^2 + n^2 &= 2nx \\
+      x^2 - 2nx + n^2 &= 0 \\
+      (x - n)^2 &= 0 \\
+      x &= n.
+    \end{align*}
+
+    Thus, it is equivalent to create a machine that,
+    given an integer $n$ in $R_0$ at \newterm{start},
+    halts and outputs $n + 1$ in $R_1$.
+
+    \begin{figure}[H]
+      \centering
+      \begin{tikzpicture}
+        \node[state, initial] (start) at (0, 0) {\newterm{start}};
+        \node[addition, right of=start] (addr1) {$R_1^+$};
+        \node[subtraction, right of=addr1] (subr0) {$R_0^-$};
+        \node[state, below of=subr0] (stop) {\newterm{stop}};
+
+        % EDGES
+        \draw (start) edge[above] node {} (addr1)
+              (addr1) edge[bend left, above] node {} (subr0)
+              (subr0) edge[bend left, left] node {} (addr1)
+              (subr0) edge[left] node {$e$} (stop);
+      \end{tikzpicture}
+      \caption{$f(n) \converges = x+1$ if $x^2 + n^2 = 2nx$.}
+      \label{fig:plus1}
+    \end{figure}
+
+    \emph{
+      Note that the machine never returns $0$
+      because for any input $n \in \N$,
+      there is always a solution $x = n$
+      that satisfies the equation
+      $n^2 + x^2 = 2nx$.
+    }
+
+    \step
+    The register machine starts by putting $1$ in $R_1$.
+    It then repeatedly subtracts $1$ from $R_0$ and
+    adds $1$ from $R_1$ until $R_0$ is zero.
+    Thus, if $R_0$ contained $n$ at the start,
+    then $R_1$ will contain $n + 1$ at the end
+    (which is equivalent to $x+1$ given $x = n$).
   \end{answer}
 \end{problem}

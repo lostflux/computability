@@ -10,37 +10,57 @@
     Let $f$ be the function defined by
     \begin{align*}
       f : \N^2 &\to \N \\
-      (a, b) &\mapsto a^b + b^2.
+      (e, n) &\mapsto e^n + n^2.
     \end{align*}
 
-    Since $f$ is computable, $f = \varphi_k$ for some $k$.
+    $f$ is total computable since polynomial functions,
+    exponential functions, and addition are computable.
 
-    Consider the following Turing Machine:
+    Construct a self-referential turing machine $M$
+    as follows:
 
     \step
     \begin{algorithm}[H]\label{tm:7.1}
       \SetAlgorithmName{$\mathsf{T} \mathsf{M}$}{}{}
-      \caption{Compute $\psi(n) : \N \to \N$}
+      \caption{Turing machine $M$ with domain $W_e$}
+      On input $n$; \\
       Let $e$ be the code for this machine. \\
       \For{$i = 1, 2, 3, \ldots$}{
-        $y_i \gets \varphi_k(e, i)$ \\
+        $y_i \gets f(e, i)$ \\
         \If{$y_i = n$}{
           \textbf{output} $1$
         }
       }
     \end{algorithm}
 
-    The machine passes its own code to $\varphi_k$,
+    \step
+    The machine passes its own code as the first argument to $f$,
     with successive integers $1, 2, 3, \ldots$ as the second argument.
-    It converges and outputs $1$ \emph{if and only if} $\varphi_k(e, i)$
-    returns some value equal to $n$, meaning $n \in \set{ e+1, e^2+4, e^3+9, \ldots}$.
-    Otherwise, it diverges as it will keep searching forever.
+    Accordingly, $f$ computes values
 
+    \begin{itemize}
+      \item $f(e, 1) = e^1 + 1^2 = e+1$,
+      \item $f(e, 2) = e^2 + 2^2 = e^2 + 4$,
+      \item $f(e, 3) = e^3 + 3^2 = e^3 + 9$,
+      \item and so on.
+    \end{itemize}
+
+    Finally, $M$ checks the outputs of $f$ against the input $n$,
+    halting and outputting $1$ if it finds a match.
+
+    $M$ will only halt if an input $n$ is in the set
+    $\set{ e+1, e^2+4, e^3+9, \ldots }$,
+    so \[ W_e = \set{ e+1, e^2+4, e^3+9, \ldots }. \]
+
+    More succinctly, $M$ computes the function $h : \N \to \N$
+    defined by
     \[
-      \varphi_e(n) = \psi(n) = \begin{cases}
-        1 & \text{if $n = \varphi_k(e, i)$ for some $i \in \N_{> 0}$} \\
-        \uparrow & \text{otherwise}.
+      h(x) = \varphi_e(x) = \begin{cases}
+        1 & \text{if $x \in \set{ e+1, e^2+4, e^3+9, \ldots }$} \\
+        \diverges & \text{otherwise}.
       \end{cases}
-    \] Then $W_e = \set{ e+1, e^2+4, e^3+9, \ldots }$.
+    \]
+    
+
   \end{answer}
 \end{problem}
