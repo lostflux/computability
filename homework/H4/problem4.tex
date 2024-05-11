@@ -1,4 +1,4 @@
-\begin{problem}
+\begin{problem}[4]
   Prove that $K$ (the halting set) is \newterm{not} an index set.
 
   \begin{enumarabic}
@@ -18,7 +18,8 @@
 
     \step
     Define a function $f$ that converges only on its own code and diverges
-    for all other $n \in \N$. That is, if $e$ is the code of $f$, then
+    for all other $n \in \N$. That is, if $e$ is the code of the
+    machine that computes $f$, then
 
     \[
       f(n) = \begin{cases}
@@ -28,20 +29,19 @@
     \]
 
     \step
+    We can do this because of he recursion theorem.
     Note that $e \in K$ since $\varphi_e(e) \converges$.
-
-    By the \newterm{Padding Lemma}, for any $e$, there are infinitely
+    By the \emph{padding lemma}, for any $e$, there are infinitely
     many $k \neq e$ such that $\varphi_e = \varphi_k$.
     Pick one such $k$.
     What happens when we run $\varphi_k(k)$?
-    Since $k \neq e$, $\varphi_e(k) \diverges$.
-    Therefore, $\varphi_k = \varphi_e$ since $\varphi_k(k) \diverges$.
+    Since $k \neq e$, $\varphi_e(k) \diverges$ since $\varphi_e(k) \diverges$.
     Therefore, $k \not\in K$.
 
     \step
     This means that $K$ must not be an index set, since
-    the condition that
+    the condition
     \[ \varphi_e = \varphi_k \implies \parens{e \in K \iff k \in K} \]
-    does not hold for $K$.
+    does not hold.
   \end{answer}
 \end{problem}

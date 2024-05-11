@@ -1,4 +1,4 @@
-\begin{problem}
+\begin{problem}[5]
   Show that if $P$ is productive then $P$ contains an infinite c.e. set.
 
   \begin{definition}
@@ -18,38 +18,40 @@
 
     \begin{enumarabic}
       \item Take $e_0$ to be the smallest index with $W_{e_0} = \emptyset \subseteq P$.
-        Then $\psi(e_0) \converges = y$ for some $y \in P \setminus \emptyset = P$. \\
-        Set $y_0 = y$.
+        Then $\psi(e_0) \converges = y_0$ for some $y_0 \in P \setminus \emptyset = P$.
 
-      \item Inductively, for $n \geq 1$, find a function $\psi_{e_n}$
+      \item Inductively, for $n \geq 1$,
         select $e_n$ to be the smallest index
         such that $W_{e_n} = \set{y_0, y_1, \ldots, y_{n-1}} \subseteq Y$.
         
-        Then $\psi(e_n) \converges = y$ for some $y \in P \setminus \set{y_0, y_1, \ldots, y_{n-1}}$.
-        Thus, $y \neq y_i$ for any $i < n$.\\
-        Set $y_n = y$.
+        Then $\psi(e_n) \converges = y_n$ for some
+        $y_n \in P \setminus \set{y_0, y_1, \ldots, y_{n-1}}$.
+        Particularly, $y_n \neq y_i$ for any $i < n$.
     \end{enumarabic}
 
+    \step
     To show that $Y$ is c.e., we need to show that $Y = W_e$ for some $e$.
     Consider the following turing machine $\E_Y$ that enumerates $Y$:
 
     \step
-    \begin{algorithm}[H]~\label{tm:5.1}
+    \begin{algorithm}[H]\label{tm:5.1}
       \SetAlgorithmName{$\mathsf{T} \mathsf{M}$}{}{}
-      \caption{Compute $f(y) : Y \to \N$}
+      \caption{$\varphi_e : Y \to \N$}
+      On input $n$: \\
       Initialize $Y \gets \emptyset$ \\
-      \For{$n = 0, 1, 2, \ldots$}{
-        Compute $y_n = \psi(e_n)$ \\
-        \If{$y_n = y$}{
+      \For{$i = 0, 1, 2, \ldots$}{
+        Select $e_i$ as above \\
+        Compute $y_i = \psi(e_i)$ \\
+        \If{$y_i = n$}{
           \textbf{output} $1$
         }
       }
     \end{algorithm}
 
-    The turing machine halts and outputs $1$ only when the input $y$ is a member of $Y$.
-    If not, it will continue to search loop, ad infinitum.
+    On input $n$, the turing machine
+    halts and outputs $1$ if $n \in Y$.
+    If $n \not\in Y$, the turing machine will continue to loop, ad infinitum.
 
-    Let $e$ be the code of the turing machine.
-    Then $Y = W_{\epsilon}$, so $Y$ is c.e.
+    Therefore, $\dom{\varphi_e} = Y$, so $Y$ is c.e.
   \end{answer}
 \end{problem}
