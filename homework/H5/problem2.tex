@@ -4,6 +4,34 @@
   Justify your answer.
 
   \begin{answer}
-    
+    \emph{No, there is no immune set $I$ such that $B \leq_1 I$.}
+
+    Suppose for the sake of contradiction that there is an immune set
+    $I$ such that $B \leq_1 I$,
+    with $f_I : \omega \to \omega$ being an computable, injective function that
+    witnesses the reduction.
+    Since $B$ is c.e., there exists a total, computable, injective function
+    $f_B : \omega \to \omega$ such that $B = \range(f_B)$
+    (\emph{we proved this result in a previous assignment}).
+
+    Consider the composition $f \coloneq f_B \circ f_I$.
+    \begin{enumarabic}
+      \item Since both $f_B$ and $f_I$ are injective, so is $f$.
+      \item Since $f_B$ is total and computable, and $f_I$ is total and computable,
+        so is $f$.
+      \item Since $\range{f_B} = B$ and $f_I$ is injective
+        from $B$ to $I$;
+        \[ \range{f} = f_I(\range{f_B}) f_I(B) = I \]
+    \end{enumarabic}
+
+    Thus, $I$ is the range of $f$, which implies that $I$ is c.e., hence not immune.
+    This contradicts the fact that $I$ is immune.
+    Therefore, the assumption that such an $I$ exists must be wrong.
+
+    \step
+    \crim{
+      Notation wise, given a set $S$, we denote by $f(S)$ to be the image of $S$ under $f$:
+      \[ f(S) = \set{f(n) \mid n \in S}. \]
+    }
   \end{answer}
 \end{problem}

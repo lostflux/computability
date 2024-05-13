@@ -1,13 +1,13 @@
 \begin{problem}
   Given a countable sequence of sets $\set{A_i}_{i \in \omega}$,
   define the \emph{infinite join}
-  $A = \join_{i \in \omega} A_i$ by
+  $A = \bigjoin_{i \in \omega} A_i$ by
   \[
     A = \set{\vector{i, n} \mid n \in A_i}.  
   \]
 
   Prove that there are sequences $\set{A_i}_{i \in \omega}$ and $\set{B_i}_{i \in \omega}$
-  such that $A_i \equiv_T B_i$ for all $i$< but $A \not\equiv_T B$.
+  such that $A_i \equiv_T B_i$ for all $i$ but $A \not\equiv_T B$.
   In other words, this operation is defined on sets, but not on
   degrees (unlike the finite joins). \\
   \emph{
@@ -15,6 +15,51 @@
   }
 
   \begin{answer}
-    
+    For each $i \in \omega$, let
+    \[ A_i = \set{i} \] and
+    \[ B_i = \set{ e \given \varphi_{e, i}(e) \converges}. \]
+
+    First, we show that each $A_i \equiv_T B_i$.
+    \begin{enumarabic}
+      \item $A_i \leq_T B_i$.
+        Note that each $A_i$ is computable,
+        since it is a singleton set containing $i$.
+        Thus, for any $A_i$ and $B_i$, we can define $\Phi_e^{B_i}$
+        to be an oracle machine that,
+        given $n$, ignores $B_i$ and computes $f : \omega \to \omega$
+        as follows:
+        % returns $1$ if $n = i$ or $0$ otherwise.
+        \[ 
+          f(n) = \begin{cases}
+            1 & \text{if } n = i, \\
+            0 & \text{otherwise}.
+          \end{cases}
+        \]
+
+      \item $B_i \leq_T A_i$.
+        Each $B_i$ is also computable since we limit the number of
+        execution steps to a maximum of $i$.
+        We can define $\Phi_e^{A_i}$ to be an oracle machine that,
+        given $n$, ignores $A_i$ and simulates $\varphi_{n,i}(n)$
+        up to a maximum of $i$ steps, computing the following function:
+        \[
+          f(n) = \begin{cases}
+            1 & \text{if } \varphi_{n,i}(n) \converges, \\
+            0 & \text{otherwise}.
+          \end{cases}
+        \]
+    \end{enumarabic}
+
+    Next, we show that $A \not\equiv_T B$.
+
+    Let \[ A = \set{\vector{i, n} \mid n \in A_i} = \set{\vector{i, i} \given i \in \omega} \]
+    and \[ B = \set{\vector{i, n} \mid n \in B_i} = \set{\vector{i, n} \given \varphi_{n,i}(n) \converges}. \]
+
+    Since the number of execution steps in $B$ is not restricted to
+    a specific $i$, $B$ has the capability to solve the halting
+    problem, which is known to be non-computable.
+    Thus, $B$ is not computable, while $A$ is computable.
+    Therefore, $A \not\equiv_T B$.
+
   \end{answer}
 \end{problem}

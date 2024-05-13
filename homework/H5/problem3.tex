@@ -3,6 +3,16 @@
   Justify your answer.
 
   \begin{answer}
-    
+    \emph{Yes, there are uncountably many Turing degrees.}
+
+    \step
+    For any set $A$, there are countably many sets $B$ such that $B \equiv_T A$
+    since for each $B$, $\chi_A = \Phi_e^B$ for some $e \in \omega$,
+    and there are countably many such $e$.
+    Thus, each Turing degree contains countably many sets,
+    yet there are $2^{\abs{\omega}} = 2^{\aleph_0}$ subsets of $\omega$.
+    Since $2^{\aleph_0}$ is uncountable,
+    and each Turing degree can only contain countably many sets,
+    there must be uncountably many Turing degrees.
   \end{answer}
 \end{problem}

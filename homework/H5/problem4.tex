@@ -1,16 +1,82 @@
 \begin{problem}
   $A \join B$, ``$A$ join $B$'', is defined as
   \[
-    A \join B = \{ 2x \mid x \in A \} \cup \{ 2x+1 \mid x \in B \}.
+    A \join B = \set{ 2x \given x \in A } \cup \set{ 2x+1 \given x \in B }.
   \]
 
-  Prove that thfe Turing degree of $A \join B$ is a least upper bound
+  Prove that the Turing degree of $A \join B$ is a least upper bound
   of the Turing degrees of $A$ and $B$.
   In other words, show that it computes both $A$ and $B$,
   and that any $C$ which computes both $A$ and $B$
   also computes $A \join B$.
 
   \begin{answer}
-    
+    Let $A, B \subseteq \omega$ be sets.
+    We will show that $A \join B$ is the least upper bound of $A$ and $B$.
+    \begin{enumarabic}
+      \item \emph{We claim that $A \join B$ computes $A$ and $B$.}
+      
+        \step
+        Let $x \in A$.
+        Then $2x \in A \join B$.
+        Let $y \in B$.
+        Then $2y+1 \in A \join B$.
+        Thus, $A \leq_T A \join B$ and $B \leq_T A \join B$.
+        Specifically, we can compute $\chi_A$ and $\chi_B$ as follows:
+
+        \step
+        Let $\varphi_e$ be the machine that computes $\chi_{A \join B}$.
+        \begin{enumroman}
+          \item To compute $\chi_A(x)$, Define $\Phi_k^B$ to be the oracle machine
+            that, given $x$, simulates $\varphi_e(2x)$ and returns the result.
+            \emph{
+              If $2x \in A \join B$, then $x \in A$.
+              Otherwise, $x \not\in A$.
+            }
+
+            In other words, we compute
+            \[
+              \chi_A(x) = \Phi_k^B(x) = \varphi_e(2x).
+            \]
+          \item To compute $\chi_B(x)$, Define $\Phi_\ell^B$ to be the oracle machine
+            that, given $x$, simulates $\varphi_e(2x+1)$ and returns the result.
+            \emph{
+              If $2x+1 \in A \join B$, then $x \in B$.
+              Otherwise, $x \not\in B$.
+            }
+
+            In other words, we compute
+            \[
+              \chi_B(x) = \Phi_\ell^B(x) = \varphi_e(2x+1).
+            \]
+
+          \end{enumroman}
+          Thus, $A \leq_T A \join B$ and $B \leq_T A \join B$.
+
+
+      \step
+      \item \emph{We claim that any set $C$ which computes both $A$ and $B$ also computes $A \join B$.}
+
+        \step
+        Let $C$ be a set such that $A \leq_T C$ and $B \leq_T C$.
+        We will show that $A \join B \leq_T C$.
+
+        Let $x \in A \join B$.
+        By definition of $A \join B$, for every $x \in A \join B$,
+        either $x = 2y$ for some $y \in A$
+        or $x = 2z+1$ for some $z \in B$.
+
+        \begin{enumroman}
+          \item Suppose $x = 2y$ for some $y \in A$.
+            Since $A \leq_T C$, $C$ can compute $y$. \\
+            Thus, $C$ can compute $2y = x$.
+          \item Suppose $x = 2z+1$ for some $z \in B$.
+            Since $B \leq_T C$, $C$ can compute $z$. \\
+            Thus, $C$ can compute $2z + 1 = x$.
+        \end{enumroman}
+        
+        Therefore, $C$ can compute all $x \in A \join B$,
+        hence $A \join B \leq_T C$.
+    \end{enumarabic}
   \end{answer}
 \end{problem}

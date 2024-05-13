@@ -1,8 +1,25 @@
 \begin{problem}
   Show that if $C$ is a computable set, then $C \leq_m X$ for any set
-  which is empty and has nonempty complement.
+  $X$ which is nonempty and has nonempty complement.
 
   \begin{answer}
-    
+    Let $C$ be a computable set and $X$ be a set which is nonempty and
+    has nonempty complement.  Since $X$ is nonempty and has nonempty complement,
+    there is some $x \in X$ and some $y \not\in X$.
+    Define the function $f$ by
+    \[
+      f(n) = \begin{cases}
+        x & \text{if } n \in C, \\
+        y & \text{if } n \not\in C.
+      \end{cases}
+    \]
+    Since $C$ is computable, there is some Turing machine $\varphi_e$
+    which computes $\chi_C$, hence given any input $n$, $\varphi_e$
+    can determine whether $n \in C$ or $n \not \in C$.
+    Therefore, $f$ is computable. We claim that $C
+    \leq_m X$ via $f$.  To see this, note that $n \in C$ if and only
+    if $f(n) = x \in X$, and $n \not\in C$ if and only if $f(n) = y
+    \not\in X$.  Thus, $n \in C$ if and only if $f(n) \in X$, which
+    shows that $C \leq_m X$.
   \end{answer}
 \end{problem}
