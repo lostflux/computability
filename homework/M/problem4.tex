@@ -24,61 +24,23 @@
 
         \subsection*{Simplicity}
         A set is simple if it is c.e. and its complement is immune.
-
-        $M$ is not simple since it is not c.e.
-        Suppose it was c.e., let $f : \N \to M$ be a computable bijection.
-        Then by the recursion theorem, there exists a fixed point $e$
-        of $f$ such that $\varphi_e = \varphi_{f(e)}$.
-        Then $f(e) \in M$ since $f$ is a bijection unto $M$,
-        implying that either $e$ is not minimal or $f(e)$ is not minimal,
-        and each case contradicts the constitution of $M$.
+        Since no immune set is c.e., $M$ cannot be simple.
         
       \end{answer}
-    \newpage
+
     \item Is $M$ productive? Creative?
       \begin{answer}
 
-        \crim{
-          I got stuck on proving productive/creative properties for $M$. 
-          I am still trying to figure it out.
-          Are you open you giving hints?
-          That could be helpful.
-        }
+        \subsection*{Productivity}
+        Since $M$ is immune, $M$ is not productive. \\
+        Given a productive set $P$,
+        the productive function $\psi$
+        can be used to generate a c.e. subset of of $P$,
+        so no productive set can be immune.
 
-        % \subsection*{Productivity}
-        % A set $P$ is productive if there exists a \emph{productive} function
-        % --- a (partial) computable function $f$ such that whenever
-        % $W_e \subseteq P$, $f(e) \converges$ and $f(e) \in P \setminus W_e$.
-
-        % \step
-        % $M$ is not productive.
-        % Suppose for the sake of contradiction $M$ is productive,
-        % let $f$ be its productive function.
-        % Then for any $e$ with $W_e \subseteq M$,
-        % $f(e) \converges$ and $f(e) \in M \setminus W_e$.
-        % This means that $M \setminus W_e$ is nonempty.
-
-        
-        % then there would exist
-        % a productive function $f$ such that whenever $W_e \subseteq M$,
-        % $f(e) \converges$ and $f(e) \in M \setminus W_e$.
-
-        % \subsection*{Creativity}
-        % A set is creative if it is c.e. and its complement is productive.
-
-        % $M$ is creative.
-        % Since $M$ is c.e., we need to show that $M^c$ is productive.
-        % Define a productive function for $M^c$ as:
-
-        % \[
-        %   p(e) = \begin{cases}
-        %     e & \text{if $W_e \subseteq M^c$} \\
-        %     \diverges & \text{otherwise}.
-        %   \end{cases}
-        % \]
-
-
-
+        \subsection*{Creativity}
+        Since $M$ is immune, $M$ is not c.e.,
+        hence not creative.
       \end{answer}
   \end{enumalph}
 \end{problem}

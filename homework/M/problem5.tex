@@ -7,14 +7,11 @@
     \[ H = \set{ \vector{e, k} \given \varphi_e(k) \converges } \]
     \[ K = \set{ e \given \varphi_e(e) \converges } \]
 
-    \subsection{$W_e \leq_1 H$ for all $e$}
+    \subsection*{$W_e \leq_1 H$ for all $e$}
 
-    Define the function $f : \N \to \N$ by
+    Define the function $f : \N \to \N^2$ by
     \[
-      f(k) = \begin{cases}
-        \vector{e, k} & \text{if $\varphi_e(k) \converges$} \\
-        \diverges & \text{otherwise}.
-      \end{cases}
+      f(k) = \vector{e, k}
     \]
     \begin{enumarabic}
       \item When $n \in W_e$, then $\varphi_e(n) \converges$,
@@ -29,39 +26,62 @@
     Therefore, $n \in W_e$ \emph{if and only if} $f(n) \in H$,
     so $W_e \leq_1 H$ with witness $f$.
     
-    \subsection{$H \leq_1 K$}
+    \subsection*{$H \leq_1 K$}
 
     For any $e \in \N$ with $W_e \subseteq \N$ being the domain
     of $\varphi_e$, we can define the function $g : \N^2 \to \N$
     as follows:
 
     First, for each $(i, j) \in \N^2$, let $e_{(i, j)}$ be the code of
-    $h_{(i, j)}$, where $h_{(i, j)} : \N \to \N$ is defined as:
+    the machine that computes $h_{(i, j)}$, where $h_{(i, j)} : \N \to \N$ is defined as:
+    % \[
+    %   h_{(i, j)}(n) = \begin{cases}
+    %     e_{(i, j)} & \text{ if $n = e_{(i,j)}$ and $\varphi_i(j) \converges$ } \\
+    %     \diverges & \text{otherwise}.
+    %   \end{cases}
+    % \]
     \[
       h_{(i, j)}(n) = \begin{cases}
-        e_{(i, j)} & \text{ if $n = e_{(i,j)}$ and $\varphi_i(j) \converges$ } \\
+        1 & \text{ if $n = e_{(i,j)}$ and $\varphi_i(j) \converges$ } \\
         \diverges & \text{otherwise}.
       \end{cases}
     \]
-    Then define the function $g : \N^2 \to \N$ by
+    The recursion theorem with parameters tells us that
+    such a function $h_{(i, j)}$ exists and can be obtained computably.
+
+    \begin{proof}
+      To see this, let $f(y, x_0, x_1)$ be a total computable function,
+      then the recursion theorem tells us that there exists an injective,
+      total computable function $r(x_0, x_1)$ such that
+      \[
+        \varphi_{r(x_0, x_1)} = \varphi_{f(r(x_0, x_1), x_0, x_1)}.
+      \]
+      Let $e$ be an index for $f(r(x_0, x_1), x_0, x_1)$,
+      and define $r$ via $r(x_0, x_1) = d(e, x_0, x_1)$.
+      Then $r(x_0, x_1)$ is a fixed point.
+    \end{proof}
+
+    Define the function $g : \N^2 \to \N$ by
+    % \[
+    %   g(e, k) = h_{(e, k)}(e_{(e, k)})
+    % \]
     \[
-      g(e, k) = \begin{cases}
-        h_{(e, k)}(e_{(e, k)}) & \text{if $h_{e, k}(e_{(e, k)}) \converges$} \\
-        \diverges & \text{otherwise}.
-      \end{cases}
+      g(e, k) = e_{(e,k)}
     \]
 
     \begin{enumarabic}
-      \item When $\vector{e, k} \in H$, then
-        $h_{(e, k)}(e_{(e, k)})$ simulates
+      \item When $\vector{e, k} \in H$, $\varphi_e(k) \converges$.
+        Note that $\varphi_{(e, k)}(e_{(e, k)})$ simulates
         $\varphi_e(k)$, and $\varphi_e(k) \converges$,
-        so it returns its own code $e_{(e, k)}$.
-        Thus, $g(e, k) = e_{(e, k)} \in K$ when $\vector{e,, k} \in H$.
+        and since it received $\varphi_{(e, k)}$ as input,
+        it halts and outputs $1$.
+        Thus, $g(e, k) = e_{(e, k)} \in K$ when $\vector{e, k} \in H$.
       \item When $\vector{e, k} \notin H$, then
-        $h_{(e, k)}(e_{(e, k)})$ simulates
+        $\varphi_{(e, k)}(e_{(e, k)})$ simulates
         $\varphi_e(k)$, and $\varphi_e(k) \diverges$,
         so $g(e, k) \diverges$.
-        Thus, $g(e, k) = \diverges$ when $\vector{e, k} \notin H$.
+        Thus, when $\vector{e, k} \notin H$,
+        $g(e, k) = \varphi_{(e, k)} \notin K$.
       \item $g$ is an injection from $H$ to $K$ since
         $\vector{e, k} \in H$ is mapped to a unique element $e_{(e, k)} \in K$.
     \end{enumarabic}

@@ -34,9 +34,11 @@
     \end{algorithm}
 
     \step
-    The machine passes its own code as the first argument to $f$,
-    with successive integers $1, 2, 3, \ldots$ as the second argument.
-    Accordingly, $f$ computes values
+    The machine passes its own code as the first argument to $f$
+    (the recursion theorem guarantees that such a machine
+    exists and can be constructed computably).
+    The machine passes successive integers $1, 2, 3, \ldots$ as the second argument.
+    Accordingly, it computes values
 
     \begin{itemize}
       \item $f(e, 1) = e^1 + 1^2 = e+1$,
@@ -45,14 +47,14 @@
       \item and so on.
     \end{itemize}
 
-    Finally, $M$ checks the outputs of $f$ against the input $n$,
+    Finally, $M$ checks successive outputs of $f$ against $n$,
     halting and outputting $1$ if it finds a match.
 
     $M$ will only halt if an input $n$ is in the set
     $\set{ e+1, e^2+4, e^3+9, \ldots }$,
     so \[ W_e = \set{ e+1, e^2+4, e^3+9, \ldots }. \]
 
-    More succinctly, $M$ computes the function $h : \N \to \N$
+    Specifically, $M$ computes the function $h : \N \to \N$
     defined by
     \[
       h(x) = \varphi_e(x) = \begin{cases}
@@ -60,7 +62,5 @@
         \diverges & \text{otherwise}.
       \end{cases}
     \]
-    
-
   \end{answer}
 \end{problem}
