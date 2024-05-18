@@ -1,0 +1,61 @@
+\begin{problem}
+  Prove that, for all $n$ and $f : \omega \to \omega$,
+  there is a computable function $g : \omega^{n+1} \to \omega$
+  such that
+  \[
+    f(x) =
+      \lim_{s_0 \to \inf}
+      \lim_{s_1 \to \inf}
+      \cdots
+      \lim_{s_{n-1} \to \inf}
+      g(x, s_0, s_1, \ldots, s_{n-1})
+  \]
+  if and only if $f \leq_T \emptyset^{(n)}$.
+
+  \begin{answer}
+    We will use the \newterm{limit lemma},
+    which states that a function $f : \omega \to \omega$
+    is limit computable if and only if $f \leq_T \emptyset'$.
+    
+    Suppose
+    $\displaystyle f(x) = \lim_{s_0 \to \inf} \lim_{s_1 \to \inf} \cdots \lim_{s_{n-1} \to \inf} g(x, s_0, s_1, \ldots, s_{n-1})$.
+
+    First, we see that $f$ is $\Sigma^0_{n+1}$:
+    \begin{alignat*}{10}
+      &\exists s_0 \forall \parens{s_{0'} > s_0} \\
+      &\qquad \exists s_1 \forall \parens{s_{1'} > s_1} \\
+      &\qquad \qquad \ddots \\
+      &\qquad \qquad \qquad \exists s_{n-1} \forall \parens{s_{n-1'} > s_{n-1}} \\
+      &\qquad \qquad \qquad \qquad g(x, s_{0'}, s_{1'}, \ldots, s_{(n-1)'}) = f(x).
+    \end{alignat*}
+
+    \step
+    Similarly, $f$ is $\Pi^0_{n+1}$:
+    \begin{alignat*}{10}
+      &\forall s_0 \exists \parens{s_{0'} > s_0} \\
+      &\qquad \forall s_1 \exists \parens{s_{1'} > s_1} \\
+      &\qquad \qquad \ddots \\
+      &\qquad \qquad \qquad \forall s_{n-1} \exists \parens{s_{n-1'} > s_{n-1}} \\
+      &\qquad \qquad \qquad \qquad g(x, s_{0'}, s_{1'}, \ldots, s_{(n-1)'}) = f(x).
+    \end{alignat*}
+
+    \step
+    Thus, $f(x)$ is $\Delta^0_{n+1}$.
+
+    By the limit lemma (Lemma 4),
+    $f$ is computable from $\varnothing'$
+    \emph{if and only if} $f$ is $\Delta^0_2$.
+    Since the limit lemma relativizes,
+    $f$ is computable from $\varnothing^{(n)}$
+    \emph{if and only if} $f$ is $\Delta^0_{n+1}$.
+
+    \step
+    Furthermore, since every computable function is c.e.,
+    and every c.e. function is limit computable,
+    $f$ is $n$-limit computable
+
+    \step
+    Finally, by relativizing Lemma 2. of the limit lemma,
+    $f$ is $n$-limit computable \emph{if and only if} $f \leq_T \varnothing^{(n)}$.
+  \end{answer}
+\end{problem}

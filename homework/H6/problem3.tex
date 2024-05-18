@@ -1,0 +1,35 @@
+\begin{problem}
+  Give an example of a set $X$ such that $X \bot_T \emptyset^{(n)}$
+  for all $n > 1$. \\
+  \emph{
+    Hint: we are only required to perform
+    (priority) constructions computably.
+  }
+
+  \begin{answer}
+    We use a priority construction to define $X$.
+
+    % First, define $\displaystyle \emptyset^{(\omega_{>1})} = \bigcup_{n = 2, 3, 4, \ldots} \emptyset^{(n)}$.
+
+    Define the requirements $R_e$ and $Q_e$ as follows:
+    \[
+      R_e : \chi_X \neq \Phi_e^{\emptyset^{(e)}}
+    \]
+    % \[
+    %   Q_e : \chi_{\emptyset^{(\omega_{>1})}} \neq \Phi_e^X
+    % \]
+
+    Let $X_0 = \emptyset$.
+    At each step $s+1$, pick $x \not \in X_s$.
+    Simulate $\Phi_x^{\emptyset^{(s)}}(x)$.
+    If $\Phi_x^{\emptyset^{(s)}}(x) \convergesto 0$, then
+    set $X_{s+1} = X_s \cup \set{x}$.
+    Otherwise, repeat this step until such an $x$ is found.
+
+    \step
+    For each $n > 1$, let $x_n$ be the $n$-th element that wasadded to $X$,
+    then $\Phi_x^{\emptyset^{(n)}}(x_n) \convergesto 0$, so
+    $\chi_X(x_n) = 1 \neq \Phi_x^{\emptyset^{(n)}}(x_n)$.
+    Thus, $X \bot_T \emptyset^{(n)}$ for all $n > 1$.
+  \end{answer}
+\end{problem}

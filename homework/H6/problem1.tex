@@ -1,0 +1,37 @@
+\begin{problem}
+  Define a set $X$ such that $X$ computes $\varnothing^{(n)}$
+  for all $n$ uniformly, i.e. there is an $e$ such that
+  \[ \Phi_e^X(n, k) = \chi_{\varnothing^{(n)}}(k) \] for all $n, k$.
+  Justify your answer.
+
+  \begin{answer}
+    We define $X$ to be the set of all possible turing jumps
+    of $\varnothing$:
+    \[
+      X = \set{ \vector{n, k} \given n \in \omega, k \in \varnothing^{(n)} }.
+    \]
+
+    \step
+    We claim that $X$ computes $\varnothing^{(n)}$ for all $n$.
+    Define
+    \[
+      \Phi_e^X(n, k) = 
+      \begin{cases}
+        1 & \text{if } \vector{n, k} \in X \\
+        0 & \text{otherwise}.
+      \end{cases}
+    \]
+
+    \step
+    For all $n, k$;
+    \begin{enumarabic}
+      \item If $k \in \varnothing^{(n)}$, then $\vector{n, k} \in X$,
+        so $\Phi_e^X(n, k) = 1 = \chi_{\varnothing^{(n)}}(k)$.
+      \item If $k \not\in \varnothing^{(n)}$, then $\vector{n, k} \not\in X$,
+        so $\Phi_e^X(n, k) = 0 = \chi_{\varnothing^{(n)}}(k)$.
+      \item Therefore, $\chi_{\varnothing^{(n)}}(k)$ is
+        $X$-computable.
+    \end{enumarabic}
+
+  \end{answer}
+\end{problem}

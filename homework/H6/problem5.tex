@@ -1,0 +1,98 @@
+\begin{problem}
+  Show that HW3 Q5 relativizes.
+  That is, show that $A$ is $X$-computable
+  if and only if $A$ and $A^c$ are both $X$-ce.
+
+  \begin{answer}
+    \subsection*{($\Longrightarrow$)}
+    Suppose $A$ is $X$-computable.
+    Then there is an $e$ such that $\Phi_e^X = \chi_A$.
+    This means that for each $n$,
+    \[
+      \Phi_e^X(n) = \begin{cases}
+        1 & \text{if } n \in A \\
+        0 & \text{if } n \not\in A \qquad \text{ (hence $n \in A^c$)}
+      \end{cases}
+    \]
+
+    $A$ can be computably enumerated by a turing machine
+    that goes through all $n = 1, 2, 3, \ldots$ and
+    outputs $n$ if $\Phi_e^X(n) = 1$.
+
+    \step
+    \begin{algorithm}[H]
+      \SetAlgorithmName{$\mathsf{T} \mathsf{M}$}{}{}
+      \caption{Enumerate $A$}
+      \For{$n = 0, 1, 2, \ldots$}{
+        \If{$\Phi_e^X(n) = 1$}{
+          \textbf{output} $n$
+        }
+      }
+    \end{algorithm}
+
+    \step
+    Similarly, $A^c$ can be computably enumerated by a turing machine
+    that goes through all $n = 1, 2, 3, \ldots$ and
+    outputs $n$ if $\Phi_e^X(n) = 0$.
+
+    \step
+    \begin{algorithm}[H]
+      \SetAlgorithmName{$\mathsf{T} \mathsf{M}$}{}{}
+      \caption{Enumerate $A^c$}
+      \For{$n = 0, 1, 2, \ldots$}{
+        \If{$\Phi_e^X(n) = 0$}{
+          \textbf{output} $n$
+        }
+      }
+    \end{algorithm}
+
+    \step
+    Therefore, $A$ and $A^c$ are both $X$-ce.
+
+    \clearpage
+
+    \subsection*{($\Longleftarrow$)}
+    Suppose $A$ and $A^c$ are both $X$-ce.
+    Then $A$ is the domain of some $X$-computable function $f$,
+    and $A^c$ is the domain of some $X$-computable function $g$.
+    We can define a function $h$ that computes $A$ as follows:
+    \[
+      h(n) = \begin{cases}
+        1 & \text{if } f(n) \text{ is defined} \\
+        0 & \text{if } g(n) \text{ is defined}
+      \end{cases}
+    \]
+
+    Specifically, let $f = \Phi_i^X$ and $g = \Phi_j^X$.
+
+    Then we can define $\Phi_h^X$ as follows:
+
+    \step
+    \begin{algorithm}[H]
+      \SetAlgorithmName{$\mathsf{TM}$}{}{}
+      \caption{Compute $A$}
+      On input $n$: \\
+      \For{$k = 1, 2, 3, \ldots$}{
+        \If{$\Phi_{i,k}^X(n) \downarrow$}{
+          \textbf{output} $1$
+        }
+        \If{$\Phi_{j,k}^X(n) \downarrow$}{
+          \textbf{output} $0$
+        }
+      }
+    \end{algorithm}
+
+    \step
+    Since \emph{both} $A$ and $A^c$ are $X$-ce
+    and $A \cup A^c = \omega$,
+    for any $n \in \omega$, eventually either one of
+    $\Phi_i^X(n)$ or $\Phi_j^X(n)$, simulated for some finite $k$ steps,
+    will halt.
+    Thus, the $\mathsf{TM}$ eventually halts and outputs either
+    $1$ or $0$ for any $n \in \omega$, effectively computing
+    $\chi_A$.
+
+    \step
+    Therefore, $A$ is $X$-computable.
+  \end{answer}
+\end{problem}
