@@ -1,0 +1,66 @@
+\phantomsection
+\addcontentsline{toc}{section}{Introduction}%
+\section*{Introduction}
+
+A Turing category is a category $C$ equipped with:
+\begin{itemize}
+  \item cartesian products --- to pair (the codes of) data and programs,
+  \item a notion of partiality --- to represent programs (morphisms)
+    which do not necessarily halt,
+  \item and a \newterm{Turing object} $A$ --– to represent the
+    ``codes'' of all programs.
+    A Turing object is an object $A$ such that for any $X, Y \in C$,
+    there is a universal application morphism
+    $\tau_{X, Y} : A \times X \to Y$
+    that represents the application of a program (in $A$) to data (in $X$)
+    to produce a result (in $Y$).~\cite{TURING-CATEGORIES}
+\end{itemize}
+
+Turing categories provide an abstract framework for computability:
+a ``category with partiality'' equipped with a ``universal computer'',
+whose programs and codes thereof constitute the objects of interest.
+\cite{TURING-CATEGORIES}
+
+I am interested in doing an expository study on
+Turing categories with the goal of explaining
+the main ideas it builds on
+and demonstrating some of the main
+results it achieves.
+
+My main references will be:
+
+\begin{enumarabic}
+  \item \newterm{Basic category theory}~\cite{CATEGORY-THEORY-TEXT},
+    a textbook by Tom Leinster accessible on the internet
+    \href{https://arxiv.org/abs/1612.09375}{here}.
+  \item Introductory paper on \newterm{Turing Categories}
+    ~\cite{TURING-CATEGORIES},
+    accessible on the internet \href{https://doi.org/10.1016/j.apal.2008.04.005}{here}.
+  \item Introductory notes on
+    \newterm{Effective Applicative Structures}~\cite{APPLICATIVE-STRUCTURES},
+    accessible on the internet
+    \href{https://link.springer.com/chapter/10.1007/3-540-60164-3_21#citeas}{here}.
+  \item Enderton's textbook on mathematical logic~\cite{ENDERTON},
+    accessible on the internet \href{https://doi.org/10.1007/978-3-319-20451-2}{here}
+    and discussed \href{https://www.logicmatters.net/tyl/booknotes/enderton/}{here}.
+\end{enumarabic}
+
+The final deliverable will be a paper (\LaTeX)
+that explains the main ideas of Turing categories and
+demonstrates how it can be used to derive some of the main results
+in computability.
+
+I am thinking of two possible directions for the presentation:
+\begin{enumarabic}
+  \item A video presentation of the paper using \verb|manim|,
+    a Python library for making mathematical animations
+    (developed by Grant Sanderson of \verb|3Blue1Brown|)..
+    I've experimented a little with the library and
+    I think it could be an exciting challenge.
+    More information on \verb|manim| can be found
+    \href{https://docs.manim.community/en/stable/tutorials/quickstart.html}{here}.
+  \item If the video doesn't work out, my alternative will be presenting
+    the paper in class.
+\end{enumarabic}
+
+\clearpage
