@@ -1,0 +1,135 @@
+\section{Preliminaries}
+
+% In mathematics, it often pays to study constucts and results from
+
+
+
+% a construct or result from one field
+% has surprising utility in a different field. For example;
+
+% \begin{itemize}
+
+%   % non-euclidean geometry and relativity
+
+%   % galois theory unsolvability of quintic
+%   \item Galois 
+% \end{itemize}
+
+\subsection{Categories}
+
+\begin{definition}
+  A \newterm{category} $\cat{A}$ consists of:
+  \begin{enumarabic}
+    \item A collection $\ob{\cat{A}}$ of objects;
+    \item For each pair of objects $A,B\in\ob{\cat{A}}$, a set
+      $\cat{A}(A,B)$ of \newterm{arrows} or \newterm{morphisms}
+      or \newterm{maps} from $A$ to $B$;
+    \item For each $A, B, C \in \ob{\cat{A}}$, a function
+      \begin{align*}
+        \circ_{A,B,C} : \cat{A}(B,C) \times \cat{A}(A,B) &\to \cat{A}(A,C) \\
+        (f,g) &\mapsto f \circ g
+      \end{align*}
+      called \newterm{composition};
+      where $(f \circ g)(x) = f(g(x))$ for all $x \in A$.
+    \item For each $A \in \ob{\cat{A}}$, an arrow
+      $\id_A \in \cat{A}(A,A)$ called the \newterm{identity} on $A$;
+  \end{enumarabic}
+  such that the following axioms hold:
+  \begin{enumarabic}
+    \item \textbf{associativity}: for all $f \in \cat{A}(A,B)$,
+      $g \in \cat{A}(B,C)$, and $h \in \cat{A}(C,D)$,
+      $(h \circ g) \circ f = h \circ (g \circ f)$.
+    \item \textbf{identity laws}: for all $f \in \cat{A}(A,B)$,
+        $f \circ \id_A = f = \id_B \circ f$.
+  \end{enumarabic}
+\end{definition}
+
+\begin{remark}
+  As simplifications, we write:
+  \begin{enumalph}
+    \item $A \in \cat{A}$ to mean $A \in \ob{\cat{A}}$;
+    \item $f : A \to B$ or $A \xlongrightarrow{f} B$ to mean
+      $f \in \cat{A}(A,B)$;
+    \item $fg$ for $f \circ g$;
+  \end{enumalph}
+\end{remark}
+
+
+% \setmathfont[range={\mathscr,\mathbfscr}]{Tex Gyre Pagella Math}
+
+\begin{examples}
+  
+  \begin{enumarabic}
+    \item There is a category $\mathsf{Set}$, where
+      \begin{enumalph}
+        \item $\ob{\mathsf{Set}}$ is the collection of all sets;
+        \item $\mathsf{Set}(A,B)$ is the set of all functions from $A$ to $B$;
+        \item composition is ordinary function composition;
+        \item the identity on $A$ is the identity function on $A$.
+      \end{enumalph}
+    \item There is a category $\mathsf{Grp}$, where
+      \begin{enumalph}
+        \item $\ob{\mathsf{Grp}}$ is the collection of all groups;
+        \item $\mathsf{Grp}(G,H)$ is the set of all group homomorphisms from $G$ to $H$;
+        \item composition is ordinary function composition;
+        \item the identity on $G$ is the identity homomorphism on $G$.
+      \end{enumalph}
+    \item There is a category $\mathsf{Top}$ of topological space and continuous maps.
+    \item For each field $k$, there is a category $\mathsf{Vect}_k$ of vector spaces over $k$
+      and linear maps between them.
+  \end{enumarabic}
+\end{examples}
+
+\begin{definition}
+  A map $f : A \to B$ in a category $\cat{A}$ is an \newterm{isomorphism} if there exists
+  a map $g : B \to A$ such that $fg = \id_A$ and $gf = \id_B$.
+  Ee call $g$ the \newterm{inverse} of $f$ and write $f^{-1} = g$,
+  and say that $A$ and $B$ are \newterm{isomorphic}
+  if there exists an isomorphism between them.
+
+  \begin{examples}
+    \begin{enumarabic}
+      \item In $\mathsf{Set}$, isomorphisms are bijections.
+      \item In $\mathsf{Grp}$ and $\mathsf{Ring}$, isomorphisms are
+        group and ring isomorphisms respectively.
+      \item In $\mathsf{Vect}_k$, isomorphisms are linear isomorphisms.
+    \end{enumarabic}
+  \end{examples}
+
+\end{definition}
+
+% restriction categories
+\subsection{Restriction Categories}
+\begin{definition}
+  A \newterm{restriction category} is a category $\cat{A}$ with a
+  \newterm{restriction} operation that assigns to each arrow $f : A \to B$
+  an arrow $\bar{f} : A \to A$ such that:
+  \begin{enumarabic}
+    \item $\bar{f} \circ f = f$;
+    \item $\bar{f} \circ \bar{g} = \bar{g} \circ \bar{f}$
+      whenever $\dom{f} = \dom{g}$;
+    \item $\overline{f \circ \bar{g}} = \bar{g} \circ \bar{f}$
+      whenever $\dom{f} = \dom{g}$.
+    \item $\bar{g} \circ f = \bar{g} \circ f \circ \bar{g}$
+      whenever $\dom{f} = \range{g}$.
+  \end{enumarabic}
+\end{definition}
+
+\begin{remark}
+  It follows from the definition that $\bar{f}$ is \newterm{idempotent}.
+  That is, $\bar{f} \circ \bar{f} = \bar{f}$.
+
+  Furthermore, the operation $f \mapsto \bar{f}$ is also monotonic,
+  with $\bar{\bar{f}} = \bar{f}$.
+\end{remark}
+
+\begin{examples}
+  Here are a few examples of restriction categories.~\cite{CATEGORY-THEORY-TEXT}
+  \begin{enumarabic}
+    \item All categories admit the trivial restriction operation
+      that maps $f : A \to B$ to $\bar{f} = \id_{A}$.
+    \item The category $\mathsf{Par}$ of partial functions between sets
+      admits a restriction operation that maps
+      $f : A \parto B$ to $\bar{f} = \id_{\dom{f}}$.
+  \end{enumarabic}
+\end{examples}
