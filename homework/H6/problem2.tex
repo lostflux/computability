@@ -20,7 +20,7 @@
     Suppose
     $\displaystyle f(x) = \lim_{s_0 \to \inf} \lim_{s_1 \to \inf} \cdots \lim_{s_{n-1} \to \inf} g(x, s_0, s_1, \ldots, s_{n-1})$.
 
-    First, we see that $f$ is $\Sigma^0_{n+1}$:
+    First, we see that $f$ is $\Sigma^0_{2n+2}$:
     \begin{alignat*}{10}
       &\exists s_0 \forall \parens{s_{0'} > s_0} \\
       &\qquad \exists s_1 \forall \parens{s_{1'} > s_1} \\
@@ -30,7 +30,7 @@
     \end{alignat*}
 
     \step
-    Similarly, $f$ is $\Pi^0_{n+1}$:
+    Similarly, $f$ is $\Pi^0_{2n+2}$:
     \begin{alignat*}{10}
       &\forall s_0 \exists \parens{s_{0'} > s_0} \\
       &\qquad \forall s_1 \exists \parens{s_{1'} > s_1} \\
@@ -40,7 +40,7 @@
     \end{alignat*}
 
     \step
-    Thus, $f(x)$ is $\Delta^0_{n+1}$.
+    Thus, $f(x)$ is $\Delta^0_{2n+2}$.
 
     By the limit lemma (Lemma 4),
     $f$ is computable from $\varnothing'$

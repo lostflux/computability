@@ -1,4 +1,4 @@
-\begin{problem}
+\begin{problem}[5]
   Given a countable sequence of sets $\set{A_i}_{i \in \omega}$,
   define the \emph{infinite join}
   $A = \bigjoin_{i \in \omega} A_i$ by
@@ -17,7 +17,8 @@
   \begin{answer}
     For each $i \in \omega$, let
     \[ A_i = \set{i} \] and
-    \[ B_i = \set{ e \given \varphi_{e, i}(e) \converges}. \]
+    % \[ B_i = \set{ e \given \varphi_{e, i}(e) \converges}. \]
+    \[ B_i = \set{ e \quad \given \quad e = i \text{ and } \varphi_i(i) \converges } \]
 
     First, we show that each $A_i \equiv_T B_i$.
     \begin{enumarabic}
@@ -26,25 +27,23 @@
         since it is a singleton set containing $i$.
         Thus, for any $A_i$ and $B_i$, we can define $\Phi_e^{B_i}$
         to be an oracle machine that,
-        given $n$, ignores $B_i$ and computes $f : \omega \to \omega$
+        given $n$, ignores $B_i$ and computes $\chi_A$
         as follows:
         % returns $1$ if $n = i$ or $0$ otherwise.
         \[ 
-          f(n) = \begin{cases}
+          \chi_{A_i}(n) = \begin{cases}
             1 & \text{if } n = i, \\
             0 & \text{otherwise}.
           \end{cases}
         \]
 
       \item $B_i \leq_T A_i$.
-        Each $B_i$ is also computable since we limit the number of
-        execution steps to a maximum of $i$.
-        We can define $\Phi_e^{A_i}$ to be an oracle machine that,
-        given $n$, ignores $A_i$ and simulates $\varphi_{n,i}(n)$
-        up to a maximum of $i$ steps, computing the following function:
+        Define $\Phi_e^{A_i}$ to be an oracle machine that,
+        given $n$, first checks if $n \in A_i$ then simulates
+        $\varphi_n(n)$ and checks if it converges.
         \[
-          f(n) = \begin{cases}
-            1 & \text{if } \varphi_{n,i}(n) \converges, \\
+          \chi_{B_i}(n) = \begin{cases}
+            1 & \text{if } n \in A_i \land \varphi_n(n) \converges \\
             0 & \text{otherwise}.
           \end{cases}
         \]
@@ -53,13 +52,13 @@
     Next, we show that $A \not\equiv_T B$.
 
     Let \[ A = \set{\vector{i, n} \mid n \in A_i} = \set{\vector{i, i} \given i \in \omega} \]
-    and \[ B = \set{\vector{i, n} \mid n \in B_i} = \set{\vector{i, n} \given \varphi_{n,i}(n) \converges}. \]
+    and \[ B = \set{\vector{i, n} \mid n \in B_i} = \set{\vector{i, i} \given \varphi_i(i) \converges}
+    = \set{\vector{i, i} \given i \in K}. \]
 
-    Since the number of execution steps in $B$ is not restricted to
-    a specific $i$, $B$ has the capability to solve the halting
-    problem, which is known to be non-computable.
-    Thus, $B$ is not computable, while $A$ is computable.
-    Therefore, $A \not\equiv_T B$.
-
+    $A$ is computable since it is a set of all pairs of the form $\vector{i, i}$.
+    Given a pair $\vector{i, n}$, we can computably check if $n = i$.
+    However, $B$ is not computable since it is the set of all pairs $\vector{i, i}$ such that
+    $\varphi_i(i)$ converges, which is equivalent to the halting problem.
+    Thus, $A \not\equiv_T B$.
   \end{answer}
 \end{problem}
