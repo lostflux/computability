@@ -1,4 +1,4 @@
-\begin{problem}
+\begin{problem}[3]
   Give an example of a set $X$ such that $X \bot_T \emptyset^{(n)}$
   for all $n > 1$. \\
   \emph{
@@ -7,29 +7,43 @@
   }
 
   \begin{answer}
-    We use a priority construction to define $X$.
+    % We use a priority construction to define $X$.
 
-    % First, define $\displaystyle \emptyset^{(\omega_{>1})} = \bigcup_{n = 2, 3, 4, \ldots} \emptyset^{(n)}$.
+    \begin{enumarabic}
+      \item Start with $X = \emptyset$.
+      \item Define the requirement $R_{e,n}$:
+        \[
+          R_{e, n} : \Phi_e^{\emptyset^{(n)}}(x_n) \neq 1
+        \]
+      \item Define the requirement $Q_{e,n}$ as follows:
+        \[
+          Q_{e,n} : \Phi_e^{\emptyset^{(n)}}(n) \neq x_n
+        \]
+      \item For each $n \in 1, 2, 3, \ldots$,
+        \begin{enumroman}
+          \item Pick $x' = \max{ \set{ x_1, x_2, \ldots, x_{n-1}}}$.
+            If $n = 1$, set $x' = 0$.
+          \item Pick $x_n$ to be the smallest $i \in \omega$ such that
+            $x_n > x'$ and both $R_{e,n}$ and $Q_{e,n}$ are satisfied
+            by the selection of $x_n$, for all $e \in \omega$.
+          \item Add $x_n$ to $X$.
+        \end{enumroman}
 
-    Define the requirements $R_e$ and $Q_e$ as follows:
-    \[
-      R_e : \chi_X \neq \Phi_e^{\emptyset^{(e)}}
-    \]
-    % \[
-    %   Q_e : \chi_{\emptyset^{(\omega_{>1})}} \neq \Phi_e^X
-    % \]
-
-    Let $X_0 = \emptyset$.
-    At each step $s+1$, pick $x \not \in X_s$.
-    Simulate $\Phi_x^{\emptyset^{(s)}}(x)$.
-    If $\Phi_x^{\emptyset^{(s)}}(x) \convergesto 0$, then
-    set $X_{s+1} = X_s \cup \set{x}$.
-    Otherwise, repeat this step until such an $x$ is found.
+    \end{enumarabic}
 
     \step
-    For each $n > 1$, let $x_n$ be the $n$-th element that wasadded to $X$,
-    then $\Phi_x^{\emptyset^{(n)}}(x_n) \convergesto 0$, so
-    $\chi_X(x_n) = 1 \neq \Phi_x^{\emptyset^{(n)}}(x_n)$.
-    Thus, $X \bot_T \emptyset^{(n)}$ for all $n > 1$.
+    We claim that $X \bot_T \emptyset^{(n)}$ for all $n > 1$.
+    \begin{enumarabic}
+      \item $X \not \leq_T \emptyset^{(n)}$: \\
+        For any $n > 1$, let $x_n$ be the $n$-th item added to $X$,
+        such that $x_n$ satisfies $R_{e, n}$ for all $e \in \omega$, meaning
+        $\Phi_e^{\emptyset^{(n)}}(x_n) \neq 1$.
+        This ensures that $\Phi_e^{\emptyset^{(n)}}(x_n) \neq \chi_X(x_n)$.
+      \item $\emptyset^{(n)} \not \leq_T X$: \\
+        For any $n > 1$, let $x_n$ be the $n$-th item added to $X$,
+        such that $x_n$ satisfies $Q_{e, n}$ for all $e \in \omega$, meaning
+        $\Phi_e^{\emptyset^{(n)}}(n) \neq x_n$.
+        This ensures that $\Phi_e^{\emptyset^{(n)}}$ cannot compute $x_n$.
+    \end{enumarabic}
   \end{answer}
 \end{problem}
