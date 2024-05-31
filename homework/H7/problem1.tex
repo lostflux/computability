@@ -4,6 +4,23 @@
   Justify your answer.
 
   \begin{answer}
+    \newterm{Yes}.
 
+    Pick $B = \emptyset$ --- which is computable ---
+    and let $A$ be any non-computable set that is $\low$,
+    meaning $\emptyset' \equiv_T A'$
+    \emph{
+      As we showed in class using
+      the Low Basis Theorem and Sacks' Splitting Theorem,
+      such sets exist (and in fact, there are many of them).
+    }
+    Then:
+    \begin{enumarabic}
+      \item Since $B$ is computable but $A$ is non-computable,
+        $A \not\leq_T B$.
+      \item However, $A' = \emptyset'$ and $B' \equiv_T \emptyset'$,
+        meaning $A' \equiv_T B'$.
+        Therefore, $A' \leq_T B'$.
+    \end{enumarabic}
   \end{answer}
 \end{problem}

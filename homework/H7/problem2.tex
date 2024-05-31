@@ -6,7 +6,29 @@
       for all $e$.
 
       \begin{answer}
+        This means that $g$ is fixed-point free.
+        Define $h$ as follows:
+        \[
+          h(e) = g(\varphi_e(e)).
+        \]
 
+        \begin{enumarabic}
+          \item First, note that $\varphi_{g(x)} \neq \varphi_x$
+            means that $g(x) \neq x$ for all $x$,
+            as that would trivially imply $\varphi_{g(x)} = \varphi_x$
+            for some $x$.
+            Therefore, $h(e) = g(\varphi_e(e)) \neq \varphi_e(e)$
+            for all $e$.
+          \item Next, we show that $h \leq_T X$.
+            Since $g \leq_T X$, we can use $X$ as an oracle to compute $g(e)$
+            for any $e$. Specifically, there exists an oracle machine $k$
+            that uses $X$ as an oracle to compute $g$, such that
+            $\Phi_k^X(e) = g(e)$ for all $e$.
+            We can compute $h(e)$ by simulating $\varPhi_k^X(\varphi_e(e))$
+            and returning the result, thus $h$ can also be computed
+            by an oracle machine that takes $X$ as an oracle
+            and, on input $e$, simulates $\varPhi_k^X$ on $\varphi_e(e)$.
+        \end{enumarabic}
       \end{answer}
 
     \item Given $h \leq_T X$ such that $h(e) \neq \varphi_e(e)$ for all $e$,
@@ -16,6 +38,38 @@
 
       \begin{answer}
 
+        For each $e$, define $e'$ such that:
+        \[
+          \varphi_{e'}(x) = \begin{cases}
+            h(e) & \text{if } x = e \\
+            \diverges & \text{otherwise.}
+          \end{cases}
+        \]
+
+        This ensures that for any $e$, $\varphi_{e'}(e) = h(e) \neq \varphi_e(e)$,
+        and $W_{e'} = \set{ e }$ for all $e$ and corresponding $e'$.
+
+        Finally, define $f$ as follows:
+        \[
+          f(x) = (x + 1)'.
+        \]
+
+        \begin{enumarabic}
+          \item First, since $f(e) = (e + 1)'$,
+            $W_{f(e)} = \set{ e + 1 } \neq \set{ e } = W_e$.
+          \item Next, we show that $f \leq_T X$.
+            Since $X$ is an oracle for $h$, we can use $X$ to compute $h(e)$
+            for any $e$. Specifically, there exists an oracle machine $k$
+            that uses $X$ as an oracle to compute $h$, such that
+            $\Phi_k^X(e) = h(e)$ for all $e$.
+            We can compute $f$ as follows: \newline
+            \emph{
+              On input $e$, construct an oracle machine that,
+              on input $x$, simulates $\Phi_k^X(x)$ if $x = e + 1$,
+              and otherwise diverges. \\
+              Return the code of this machine as $f(e)$.
+            }
+        \end{enumarabic}
       \end{answer}
   \end{enumalph}
 \end{problem}
