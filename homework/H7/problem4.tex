@@ -1,8 +1,33 @@
 \begin{problem}
-  Prove that not ML-random set has an infinite c.e. subset.
-  (\emph{Hint: use a lemma from the class notes}).
+  Prove that no ML-random set has an infinite c.e. subset
+  (i.e., every ML-random set is immune). \newline
+  \emph{Hint: use a lemma from the class notes}.
 
   \begin{answer}
+    In the class notes, we proved that no ML-random set has an
+    infinite computable subset.
+    We can use this result to prove that no ML-random set has an
+    infinite c.e. subset by way of contradiction.
 
+    Suppose $R$ is an ML-random set with an infinite c.e. subset $A \subseteq B$.
+    
+    First, note that every c.e. set has a computable subset.
+    Specifically, given $A$ is c.e., then we can computably
+    enumerate members of $A$.
+    Let $a_i$ be the $i$th element enumerated in $A$.
+    Define \[ A' = \set{ a_i \given a_i > a_j \text{ for all } j < i }. \]
+    That is, $A'$ is set of elements in a \emph{unique} and
+    \emph{strictly increasing} sequence of members of $A$.
+
+    We claim that $A'$ is computable.
+    Specifically, given any $x$, we can enumerate members of $A$
+    until we either list $x$, then we know $x \in A'$,
+    or we list a number greater than $x$, then we know $x \notin A'$.
+
+    Thus: if an ML-random set $R$ has an infinite c.e. subset $A$,
+    then it necessarily has an infinite computable subset $A' \subseteq A \subseteq R$.
+    However, the lemma tells us that no ML-random set can have an
+    infinite computable subset, so it must be the case that
+    $R$ cannot have an infinite c.e. subset either.
   \end{answer}
 \end{problem}

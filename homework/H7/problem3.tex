@@ -4,6 +4,52 @@
   compute $K$.
 
   \begin{answer}
+    We define $\displaystyle f = \bigcup_s \sigma_s$, where:
+    \begin{enumarabic}
+      \item Define $\sigma_0 = \emptyset$.
+      \item Given $\sigma_s$, define $\sigma_{s + 1}$ as follows:
+        \begin{enumalph}
+          \item Say that $e$ ``looks total up to $n$'' if there exists some $t$
+            such that $\varphi_{e, t}(x) \converges$ for all $x \leq n$.
+            \emph{
+              Note that $\emptyset'$ can determine if $e$ is total up to $n$
+              because this is a $\Sigma^0_1$ question.
+            }
+          \item Look for a $\tau$ properly extending $\sigma$
+            such that $\varphi_e(x) \leq \tau(x)$ for all
+            $\abs{\sigma} < x \leq \abs{\tau}$ and all $e \leq s$
+            which look total up to $\abs{\tau}$, and an $x$ such that
+            $\Phi^\tau_s(x) \converges \neq K(x)$.
+            If there is such a $\tau$ and $x$, let $\sigma_{2s + 1} = \tau$.
+            If not, let $\sigma_{2s + 1} = \sigma_{2s}$.
+            \emph{
+              Similarly, this is a $\Sigma^0_1$ question,
+              so $\emptyset'$ can determine if such a $\tau$ exists.
+            }
+        \end{enumalph}
+    \end{enumarabic}
 
+    We now show that (1) $f$ dominates every total computable function,
+    and (2) $f$ does not compute $K$.
+    \begin{enumarabic}
+      \item Let $g$ be a total computable function.
+        We show that there exists some $x'$ such that $g(x) \leq f(x)$
+        for all $x > x'$.
+        \begin{enumalph}
+          \item Since $g$ is total computable, there exists some $e$
+            such that $\varphi_e = g$.
+          \item Accordingly, for every $x$, there exists some $\tau$ such that
+            $\abs{\sigma} < x \leq \abs{\tau}$, so $\varphi_e(x) \leq \tau(x)$.
+            By the definition that $\sigma_{2s + 1} = \tau$,
+            we have that $\varphi_e(x) \leq \sigma_{2s + 1}(x) = f(x)$.
+        \end{enumalph}
+      \item We show that $f$ does not compute $K$. \newline
+        In particular, we know by Rice's theorem that $K$ is non-computable,
+        and $f$ is computable (given any fixed input $x$, we can walk through
+        the constructions of $\sigma_s$ until we find the appropriate one that
+        gives the value for $f(x)$).
+        Therefore, $f$ has a smaller Turing degree than $K$
+        and cannot compute $K$.
+    \end{enumarabic}
   \end{answer}
 \end{problem}
