@@ -1,97 +1,268 @@
 \section{Turing Categories}
 
-A Turing category is a cartesian restriction category
+A \emph{turing category} is a specific categorification\footnote[1]{
+  Categorification is the generalization of set-theoretic
+  structures and properties to category theory
+  (or from category theory to higher category theory).
+}
+of \newterm{partial combinatory algebras}\footnote[2]{
+  A partial combinatory algebra is a generalization
+  of untyped lambda calculus (equivalently, Turing machines),
+  allowing for application to be only partially defined.
+}
+based on restriction categories.
+Precisely, a Turing category is a cartesian restriction category
 $\cat{T}$ equipped with:
 \begin{enumarabic}
   \item cartesian products --- to pair (the codes of) data and programs;
   \item a restriction structure representing the
-    notion of partiality --- for represent programs (morphisms)
-    which do not necessarily halt;
-  \item and a \newterm{Turing object} $A$ --– to represent the
-    ``codes'' of all programs.
-    A Turing object is an object $A$ such that for any $X, Y \in \cat{T}$,
+    notion of partiality, since programs may not terminate on all inputs;
+  \item and a \newterm{Turing object} $A$ --– as some execution context
+    or universal machine that understands and executes codes (morphisms)
+    within the category.
+    For any $X, Y \in \ob{\cat{T}}$,
     there is a universal application morphism
     $\tau_{X, Y} : A \times X \to Y$
     that represents the application of a program (in $A$) to data (in $X$)
     to produce a result (in $Y$).~\cite{TURING-CATEGORIES}
-    % $\tau_{X, Y}$ is referred to as a \newterm{Turing morphism}.
+    \def \TM {\mathsf{TM}}
+    \begin{remark}
+      For example, in a Turing category $\TM$ of Turing machines,
+      the Turing object $A$ would be a universal Turing machine
+      that takes as input some code $e$ and data $x$,
+      and simulates $\varphi_e(x)$.
+    \end{remark}
 \end{enumarabic}
 
 Turing categories provide an abstract framework for computability:
 a ``category with partiality'' equipped with a ``universal computer'',
-whose programs and codes thereof constitute the objects of interest.
+whose codes constitute the objects of interest.
 \cite{TURING-CATEGORIES}
 
-\clearpage
-\subsection{Basic Properties of Turing Categories}
+% \clearpage
+\subsection{Properties of Turing Categories}
 
 \begin{definition}
   Given two objects $A, B \in \cat{C}$, $A$ is a \newterm{retract} of $B$
   if there exist morphisms $s : A \to B$ and $r : B \to A$ such that
   $r \circ s = \id_A$.
-  $s$ is called a \newterm{section} and $r$ is called a \newterm{retraction}.
   \[
     \begin{tikzcd}
       A \arrow[r, "s", bend left] &B \arrow[l, "r", bend left]
     \end{tikzcd}
   \]
+  In this case, $s$ is called a \newterm{section} or \emph{right inverse} of $r$,
+  and $r$ is called a \newterm{retraction} or \emph{left inverse} of $s$.
+  \cite{APPLICATIVE-STRUCTURES}
 \end{definition}
 
 \begin{lemma}
   In a Turing category $\cat{C}$ with a Turing object $A$,
+  then $A$ is a universal object in the sense that
   every object $B \in \cat{C}$ is a retract of $A$.
+  \begin{proof}
+    To show that every object $B \in \cat{C}$ is a retract of $A$,
+    we need to exhibit a section $s : B \to A$ and a retraction $r : A \to B$.
+    Since $A$ is a Turing object, there exists a morphism
+    $\tau_{B, A} : A \times B \to A$ that represents the application
+    of a program (in $A$) to data (in $B$) to produce a result (in $A$).
+    Define $s = \pi_2 : B \to A$ and $r = \pi_1 : A \to B$
+    such that $r \circ s = \pi_1 \circ \pi_2 = \id_A$. \\
+    \crim{revisit}
+  \end{proof}
 \end{lemma}
 
-\begin{examples}
-  Here are some examples of Turing categories:
+% Some of the key results in computability theory
+% carry over to Turing categories, including
+% the following.
 
-  \begin{enumarabic}
-    \item The classical recursion category $\cat{R}$,
-      where objects are sets and morphisms are partial computable (``recursive'') functions.
-      Since Turing machine (or register-machine)--computable functions are exactly
-      the partial computable functions, one may consider the codes of Turing machines
-      corresponding to the partial computable functions as the objects of $\cat{R}$,
-      with $\varphi_i : \N \to \N$ representing the machine with code $i$.~\cite{TURING-CATEGORIES}
-      When $f = \varphi_e$, we say that $e$ is a \emph{code} for $f$.
-
-      Key properties of classical recursion include:
-      \begin{enumalph}
-        \item The existence of a universal partial computable function
-          $\Phi$ such that for each $e \in \N$,
-          \[
-            \Phi(e, x_1, x_2, \ldots, x_n) = \varphi_e(x_1, x_2, \ldots, x_n).
-          \]
-        \item The \textbf{s-m-n Theorem}: There are computable and injective functions
-          $s_m^n$ for each $m, n > 0$ such that
-          \[
-            \varphi_e(x_1, x_2, \ldots, x_m, y_1, y_2, \ldots, y_n)
-            = \varphi_{s_m^n(e, x_1, x_2, \ldots, x_m)}(y_1, y_2, \ldots, y_n).
-          \]
-      \end{enumalph}
-
-      Define \begin{align*}
-        \dotp : \N \times \N &\to \N \\
-        (e, x) &\mapsto \varphi_e(x).
-      \end{align*}
-
-      \def \Comp {\mathsf{Comp}}
-      Consider the category $\Comp(\N)$ with the following properties:
-      \begin{enumalph}
-        \item $\ob{\Comp(\N)} = \set{ \N^i \given i \in \N }$;
-        \item $f : N^k \to \N^m$ is an $m$-tuple of partial computable functions
-          of $k$ variables each.
-      \end{enumalph}
-  \end{enumarabic}
-\end{examples}
-
-Some of the key results in computability theory
-carry over to Turing categories, including
-the following.
+% \begin{theorem}
+%   (smn) For $\varphi : A \to B$ partial computable, there exists a
+%   partial computable function $s : \N \to \N$ such that
+%   $\varphi(\vector{i, n}) = \varphi_{s(i)}(n)$ for all $x \in \dom{\varphi}$.
+% \end{theorem}
 
 \begin{theorem}
-  (smn) For $\varphi : A \to B$ partial computable, there exists a
-  partial computable function $s : \N \to \N$ such that
-  $\varphi(\vector{i, n}) = \varphi_{s(i)}(n)$ for all $x \in \dom{\varphi}$.
+  Given a partial combinatory algebra $\A$,
+  the computable maps in $\A$ form a Turing category.
+
+  \begin{proof}
+    The proof is by construction.
+    Given a partial combinatory algebra $\A$,
+    we construct a Turing category $\cat{T}$ as follows:
+    \begin{enumarabic}
+      \item The objects of $\cat{T}$ are the elements of $\A$.
+      \item The morphisms of $\cat{T}$ are the computable maps in $\A$.
+      \item The Turing object $A$ is the universal machine in $\A$.
+      \item The application morphism $\tau_{X, Y} : A \times X \to Y$
+        is the application of a program (in $A$) to data (in $X$)
+        to produce a result (in $Y$).
+    \end{enumarabic}
+    The resulting category $\cat{T}$ is a Turing category.
+  \end{proof}
 \end{theorem}
 
+% This theorem means that whenever we have a construct with (partial) computable maps
+% or functions and a known way of applying these functions to data,
+% then we can construct a Turing category around this construct
+% by imposing extra structure.
 
+\begin{theorem} (Recognition Criterion for Turing Categories)
+  Given a category $C$, the following are equivalent:
+  \begin{enumarabic}
+    \item $C$ is a Turing category.
+    \item There exists an object $A \in \ob{C}$ of which every other
+      Turing object is a retract
+  \end{enumarabic}
+\end{theorem}
+
+\step
+% \begin{examples}
+\subsection{Examples of Turing Categories}
+  % Here are some examples of Turing categories:
+
+\subsubsection{Classical Recursion Category}
+
+  Consider an enumeration
+  of partial computable functions $f : \omega \to \omega$ as
+  $\varphi_0, \varphi_1, \varphi_2, \ldots$
+  since each such function consists of a finite number of
+  instructions that can be encoded as a natural number.
+  Alternatively, since the partial computable functions
+  are exactly the Turing machine-computable ones, one may
+  consider a coding for Turing machines.
+
+  Similarly, one can consider an enumeration of $n$-ary functions
+  $f : \omega^n \to \omega$ as $\varphi_0^n, \varphi_1^n, \varphi_2^n, \ldots$.
+
+  We define the classical recursion category $\cat{R}$ with:
+  \begin{enumarabic}
+    \item $\ob{\cat{R}} = \set{\omega, \omega^2, \omega^3, \ldots}$;
+    \item The Turing object is a universal machine $\Phi$;
+    \item Morphisms are codes for partial computable (``recursive'') functions
+      with each $i$ representing $\varphi_i$.
+  \end{enumarabic}
+
+  To distinguish between unary, binary, ternary, etc., functions,
+  we denote $\Phi^{(n)}(e, x_1, \ldots, x_n)$ when the universal machine
+  $\Phi$ interprets $e$ as a code for an $n$-ary function
+  and applies it to the arguments $x_1, \ldots, x_n$.
+
+  \begin{remark}
+    For the category to be well-formed, the coding scheme must be consistent.
+    For example, if the Turing object interprets codes as Turing machines,
+    then each code must encode a turing machine.
+    Mixing codes for Turing machines with codes for register machines
+    or codes for function instructions,
+    for example, would break the structure of the category.
+  \end{remark}
+  
+  \begin{remark}
+    When convenient (and purely for semantic reasons), we sometimes interchange
+    the functions and machines as the morphisms in $\cat{R}$.
+  \end{remark}
+
+  Key properties of classical recursion include:
+  \begin{enumalph}
+    \item By the construction of the category, the \textbf{\emph{Universality Theorem}}
+      holds. That is: for each $e, n \in \omega$,
+      \[
+        \Phi^{(n)}(e, x_1, x_2, \ldots, x_n) = \varphi_e(x_1, x_2, \ldots, x_n).
+      \]
+    \item The \textbf{\emph{s-m-n Theorem}} also holds.
+      That is, there exists computable and injective functions
+      $s_m^n$ for each $m, n \in \omega$ such that
+      \[
+        \Phi^{(m+n)}(x_1, x_2, \ldots, x_m, y_1, y_2, \ldots, y_n)
+        = \Phi^{(n)}(s_m^n(e, x_1, x_2, \ldots, x_m), y_1, y_2, \ldots, y_n).
+      \]
+  \end{enumalph}
+
+\subsubsection{Variations of Classical Recursion}
+
+A slight variation of the classical recursion category above is obtained
+when we consider the category obtained by considering
+the c.e. subsets of $\omega^n, k > 0$ as objects
+and tuples of partial computable functions as morphisms.
+This category is denoted $\cat{R}_n$.
+
+% \subsubsection{Reflexive Turing Category}
+
+%   \begin{definition}
+%     A \newterm{reflexive object} in a category $\cat{C}$ is an object $A$
+%     such that there exists a morphism $r : A \to A$ such that $r \circ r = r$.
+%   \end{definition}
+
+\subsubsection{A Non-Example}
+
+  When does a category not form a Turing category?
+  One of the important requirements is that the morphisms
+  within the category have a \emph{suitable} enumeration.
+  For example, consider the subcategory of total computable functions
+  within the classical recursion category.
+  This subcategory does not form a Turing category because no suitable
+  enumeration can be constituted for the total functions.
+
+  \begin{proof}
+    Suppose we enumerate the total computable functions as
+    $\varphi_0, \varphi_1, \varphi_2, \ldots$,
+    Then, by diagonalization, we can always find a total computable function
+    not in the enumeration: $f(e) = \varphi_e(e) + 1$.
+  \end{proof}
+
+\subsection{(Some) Applications of Turing Categories}
+
+\subsubsection{Turing Equivalences}
+
+  \begin{lemma}~\label{lemma:turing-equivalence}
+    Given $A$ is a Turing object in $C$, then $B$ is a Turing object
+    if and only if $A$ is a retract of $B$.
+
+    \begin{proof}
+      Since all Turing-complete models of computation are equivalent, 
+      given any two Turing objects $A$ and $B$,
+      there exists some computable isomorphism between them.
+
+      For example, for each register machine simulating some
+      function $f$, there exists
+      some Turing machine that simulates the same
+      sequence of instructions needed
+      to compute $f$.
+
+      For each $i \in \omega$, suppose $\phi_i$ is the Turing machine
+      with coding $i$, and $\psi_i$ is the register machine with coding $i$,
+      then for each $\phi_i$ there exists some $\psi_k$
+      (with $k$ not necessarily equal to $i$) such that $\phi_i \equiv \psi_k$.
+      Define $s$ and $t$ such that $s(\phi_i) = \psi_k$ and $t(\psi_k) = \phi_i$.
+      Then, $s$ and $t$ satisfy the conditions for a section and retraction.
+    \end{proof}
+
+    This means that the coding scheme for any Turing object
+    has to be consistent with the coding scheme for other valid
+    Turing objects, since the models of computation are equivalent.
+
+    Furthermore, even when a category contains a finite finite number
+    of codes,
+    the Turing object itself must be capable of representing
+    an infinite number of codes for it to be Turing-complete.
+  \end{lemma}
+
+  \step
+  \begin{definition}
+    Two categories $\cat{C}$ and $\cat{D}$ are \newterm{equivalent}
+    if there exists a pair of functors $F : \cat{C} \to \cat{D}$ and
+    $G : \cat{D} \to \cat{C}$ such that $F \circ G \cong \id_{\cat{D}}$
+    and $G \circ F \cong \id_{\cat{C}}$, and all the laws of functors
+    are satisfied.
+  \end{definition}
+
+  Following from Lemma~\ref{lemma:turing-equivalence},
+  any two Turing categories $A$ and $B$ encoding the same set
+  of morphisms are equivalent. This means that
+  whenever $\ob{A} \equiv \ob{B}$\footnote[1]{
+    Not necessarily the same codes, but simulating the same functions.
+  } then all properties consistent in $A$ are also consistent in $B$.
+
+  Turing equivalences provide a way to compare the computability
+  of different structures and constructs, and effectively
+  equate different models of computation.
